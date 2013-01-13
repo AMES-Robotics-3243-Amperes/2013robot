@@ -12,7 +12,7 @@ package edu.ames.frc.robot;
  * Stop auto-target toggle: 10
  * Activate frisbee grab button: 8
  * Launch climb procedure: 9 (We need to make it nesscesary to hold, or double/triple tap the button so as to aviod accidentally starting the climb)
- * 
+ * Test Gitttttt
  */
 public class InputManager {
     
