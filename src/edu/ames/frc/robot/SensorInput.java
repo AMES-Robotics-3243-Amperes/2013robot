@@ -7,5 +7,9 @@
 package edu.ames.frc.robot;
   
 public class SensorInput {
+    int getGyroAngle() {
+        int a = 2; // for now
+        return a;
+    }
     
 }
