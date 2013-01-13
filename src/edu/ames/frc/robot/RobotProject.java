@@ -29,7 +29,7 @@ public class RobotProject extends IterativeRobot {
    protected static ImageProcessor IP = new ImageProcessor();
    protected static FrisbeeSimulator FS = new FrisbeeSimulator();
    protected static Communication Com = new Communication();
-   protected static SensorInput Sensor = new SensorInput();
+   protected static SensorInput SI = new SensorInput();
    protected static RobotMap RM = new RobotMap();
     public void robotInit() {
 
@@ -39,6 +39,7 @@ public class RobotProject extends IterativeRobot {
      * This function is called periodically during autonomous
      */
     public void autonomousPeriodic() {
+        
 
     }
 
