@@ -11,7 +11,7 @@ package edu.ames.frc.robot;
  * Force Realign button: 7
  * Stop auto-target toggle: 10
  * Activate frisbee grab button: 8
- * Launch climb procedure: Simultaneously press 6 and 5
+ * Launch climb procedure: Simultaneously &  5,6,7,8,9, and 10.
  *
  */
 public class InputManager {
