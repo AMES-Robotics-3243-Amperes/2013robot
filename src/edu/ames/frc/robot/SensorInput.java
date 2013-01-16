@@ -4,6 +4,9 @@
  * 
  * This class polls robot sensors and switches, such as gyros, buttons, and accelerometers.
  */
+/*
+ * This is a test to teach programming team.
+ */
 package edu.ames.frc.robot;
   
 import edu.wpi.first.wpilibj.Gyro;
