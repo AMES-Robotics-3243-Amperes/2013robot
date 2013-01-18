@@ -5,5 +5,7 @@
 package edu.ames.frc.robot;
 
 public class MotorControl {
-     
+     protected static void Drive(double[] pwrs ){
+         
+     }
 }
