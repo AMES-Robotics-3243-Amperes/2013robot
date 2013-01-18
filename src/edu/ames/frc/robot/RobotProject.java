@@ -3,7 +3,7 @@
 /* Open Source Software - may be modified and shared by FRC teams. The code   */
 /* must be accompanied by the FIRST BSD license file in the root directory of */
 /* the project.      
-/*----------------------------------------------------------------------------*/
+ /*----------------------------------------------------------------------------*/
 
 package edu.ames.frc.robot;
 //___
@@ -20,19 +20,20 @@ import edu.wpi.first.wpilibj.IterativeRobot;
  * directory.
  */
 public class RobotProject extends IterativeRobot {
+
     /**
      * This function is run when the robot is first started up and should be
      * used for any initialization code.
      */
-   protected static MotorControl MC = new MotorControl();
-   protected static InputManager IM = new InputManager();
-   protected static ImageProcessor IP = new ImageProcessor();
-   protected static FrisbeeSimulator FS = new FrisbeeSimulator();
-   protected static Communication Com = new Communication();
-   protected static SensorInput SI = new SensorInput();
-   protected static RobotMap RM = new RobotMap();
-    public void robotInit() {
+    protected static MotorControl MC = new MotorControl();
+    protected static InputManager IM = new InputManager();
+    protected static ImageProcessor IP = new ImageProcessor();
+    protected static FrisbeeSimulator FS = new FrisbeeSimulator();
+    protected static Communication Com = new Communication();
+    protected static SensorInput SI = new SensorInput();
+    protected static RobotMap RM = new RobotMap();
 
+    public void robotInit() {
     }
 
     /**
@@ -40,7 +41,6 @@ public class RobotProject extends IterativeRobot {
      */
     public void autonomousPeriodic() {
         
-
     }
 
     /**
@@ -48,8 +48,6 @@ public class RobotProject extends IterativeRobot {
      */
     public void teleopPeriodic() {
         while (isOperatorControl() && isEnabled()) {
-
-            
             
         }
     }

@@ -18,4 +18,5 @@ public class RobotMap {
     protected final static int Bpin = 2;
     protected final static int Cpin = 3;
     
+    protected final static int gyroport = 1; // gyro is on analog port 1
 } 
