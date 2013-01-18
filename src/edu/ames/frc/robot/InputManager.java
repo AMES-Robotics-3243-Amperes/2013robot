@@ -19,7 +19,8 @@ import edu.wpi.first.wpilibj.Joystick;
 public class InputManager {
 //Git is good
     protected static Joystick PS2Cont = new Joystick(1);
-
+    protected static RobotMap Rm = new RobotMap();
+    protected static boolean dzactive  = false; // In case we want to check for deadzoneing being active
     protected static double[][] GetPureAxis() { // Gets, stores, and returns the status of the joysticks on the PS2 Controller
         /* We will use a double dimension arry to hold the joystick data so that everything can be sent to other functions.
          * Both of the first dimensions will hold 2 doulbes, the first is the x & y axis of the first (paning) joystick
@@ -36,10 +37,17 @@ public class InputManager {
     protected static double[][] deadzone(double[][] axis) {// Checks for deadzone
         //This is a skeleton of the deadzone funtion. Mark should fill this in.
         
+        
         return (axis);
     }
     protected static double[][] ramp(double[][] axis){// Ramps inputs so that they curve all happy like.
         //This is a skeleton of the ramp funtion. Mark should fill this in.
+        if(axis[0][0] <= Rm.deadzone){
+            axis[0][0] = 0;
+            dzactive = true;
+        }
+        if(axis[0][1] <= Rm.deadzone){
+    }
         return (axis);
     }
     protected static double[][] translate(double[][] axis){// Translates deadzoned and scaled inputs into whatever exact type of input MotorControl needs/wants.
