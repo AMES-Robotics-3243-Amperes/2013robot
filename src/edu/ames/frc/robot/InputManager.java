@@ -16,4 +16,9 @@ package edu.ames.frc.robot;
  */
 public class InputManager {
     
+   protected static double[][] GetPureJoyAxis(){
+        double[][] axis = new double[2][2]; 
+       
+       return(axis);
+    }
 }
