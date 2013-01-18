@@ -17,7 +17,7 @@ import edu.wpi.first.wpilibj.Joystick;
  */
 
 public class InputManager {
-
+//Git is good
     protected static Joystick PS2Cont = new Joystick(1);
 
     protected static double[][] GetPureAxis() { // Gets, stores, and returns the status of the joysticks on the PS2 Controller
