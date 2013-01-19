@@ -71,8 +71,10 @@ public class InputManager {
         double angle = 0;
         double hypo = 0;
         double[] vect = new double[2];
-        hypo = Math.sqrt(MathUtils.pow(axis[0][0],2) + MathUtils.pow(axis[0][1], 2));
-        
+        speed = Math.sqrt(MathUtils.pow(axis[0][0],2) + MathUtils.pow(axis[0][1], 2));
+        //Tangent thingy
+        vect[0] = angle;
+        vect[1] = speed;
         return (vect);
     }
     //protected static double[] translate(double[][] axis){// Translates deadzoned and scaled inputs into whatever exact type of input MotorControl needs/wants.
