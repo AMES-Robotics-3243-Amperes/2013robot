@@ -53,7 +53,7 @@ public class MotorControl {
     /* This converts the direction we want to go (from 0 to 1, relative to the robot's base)
      * and speed (from 0 to 1) directly to values for the three omni-wheeled motors.
      */
-    double[] convertHeadingToMotorCommands(double direction, double speed) {
+    double[] convertHeadingToMotorCommands(double direction, double speed, double pivot) {
         double[] motorvalue = new double[3];
         
         /* so, we'll define the direction we want to go as "forward". There are
@@ -67,17 +67,16 @@ public class MotorControl {
         motorvalue[1] = speed * Math.sin(direction - (2 * Math.PI / 3));
         motorvalue[2] = speed * Math.sin(direction + (2 * Math.PI / 3));
        
-      
-        return motorvalue;
-    }
-     static void pivot(double pivot){ 
-        if(pivot<0){
-            
+      if(pivot<0){
+            motorvalue[0] =- pivot;
+            motorvalue[1] =- pivot;
+            motorvalue[2] =- pivot;
         }
         if(pivot>0){
-            
+            motorvalue[0] =+ pivot;
+            motorvalue[1] =+ pivot;
+            motorvalue[2] =+ pivot;
         }
-        
-        
-           }
+        return motorvalue;
+    }
 }

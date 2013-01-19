@@ -54,7 +54,7 @@ public class RobotProject extends IterativeRobot {
         while (isOperatorControl() && isEnabled()) {
             wd.feed();
             double[] joystickangleandspeed = IM.getPureAxis();
-            double[] drivemotorvalues = MC.convertHeadingToMotorCommands(joystickangleandspeed[0], joystickangleandspeed[1]);
+            double[] drivemotorvalues = MC.convertHeadingToMotorCommands(joystickangleandspeed[0], joystickangleandspeed[1], joystickangleandspeed[2]);
             MC.drive(drivemotorvalues);
         }
     }

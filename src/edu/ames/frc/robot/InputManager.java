@@ -34,7 +34,7 @@ public class InputManager {
          * The second dimension holds the x & y for the second (pivoting) joystick
          */
         double[][] axis = new double[2][2];// Variable for storing all that data
-        double[] dir = new double [2];
+        double[] dir = new double [3];
         axis[0][0] = ps2cont.getRawAxis(1);// X
         axis[0][1] = ps2cont.getRawAxis(2);// Y
         axis[1][0] = ps2cont.getRawAxis(3);// X
@@ -69,7 +69,7 @@ public class InputManager {
     }
     protected static double[] translate(double[][] axis){// Ramps inputs so that they curve all happy like.
         //This is a skeleton of the ramp funtion. Mark should fill this in
-        double[] vect = new double[2];
+        double[] vect = new double[3];
         double speed = 0;
         double angle = 0;
    //     double hypo = 0;
@@ -77,6 +77,7 @@ public class InputManager {
         angle = RobotArithmetic.arcTangent(axis[0][0], axis[0][1]);
         vect[0] = angle;
         vect[1] = speed;
+        vect[3] = axis[1][0];
         return (vect);
     }
     public static class button{
