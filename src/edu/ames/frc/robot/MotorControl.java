@@ -20,19 +20,19 @@ public class MotorControl {
         if(mv[0]<-1){
             mv[0] = -1;
         }
-        if(mv[0]<1){
+        if(mv[0]>1){
             mv[0] = 1;
         }
         if(mv[1]<-1){
             mv[1] = -1;
         }
-        if(mv[1]<1){
+        if(mv[1]>1){
             mv[1] = 1;
         }
         if(mv[2]<-1){
             mv[2] = -1;
         }
-        if(mv[2]<1){
+        if(mv[2]>1){
             mv[2] = 1;
         }
         A.set(mv[0]);
