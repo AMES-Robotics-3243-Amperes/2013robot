@@ -4,7 +4,24 @@
  */
 package edu.ames.frc.robot;
 
+import edu.wpi.first.wpilibj.Jaguar;
+import edu.wpi.first.wpilibj.Relay;
+import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.Victor;
+
 public class MotorControl {
+    
+    private static RobotMap rm = new RobotMap();
+    
+    private static Victor A = new Victor(rm.Apin);
+    private static Victor B = new Victor(rm.Bpin);
+    private static Victor C = new Victor(rm.Cpin);
+    
+    static void Drive(double[] mv){
+        A.set(mv[0]);
+        B.set(mv[1]);
+        C.set(mv[2]);
+    }
      
     /* This converts the direction we want to go (from 0 to 1, relative to the robot's base)
      * and speed (from 0 to 1) directly to values for the three omni-wheeled motors.
