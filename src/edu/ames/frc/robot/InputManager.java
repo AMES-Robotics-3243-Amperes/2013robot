@@ -20,7 +20,7 @@ import com.sun.squawk.util.MathUtils;
 public class InputManager {
 //Git is good       double[] ABC = new double[3]; // Element 0 is the direction for A, the relative front end of the robot. The other two elements are arranged clockwise so the bottom right corner of the triangle is B and the other is C
        // ABC[0] = 
-    protected static Joystick PS2Cont = new Joystick(1);
+    protected static Joystick ps2control = new Joystick(1);
     protected static RobotMap Rm = new RobotMap();
     protected static boolean dzactive  = false; // In case we want to check for deadzoneing being active
     
@@ -36,9 +36,9 @@ public class InputManager {
          */
         double[][] axis = new double[2][2];// Variable for storing all that data
         double[] pwr = new double [3];
-        axis[0][0] = PS2Cont.getRawAxis(1);// X
-        axis[0][1] = PS2Cont.getRawAxis(2);// Y
-        axis[1][0] = PS2Cont.getRawAxis(3);// X
+        axis[0][0] = ps2control.getRawAxis(1);// X
+        axis[0][1] = ps2control.getRawAxis(2);// Y
+        axis[1][0] = ps2control.getRawAxis(3);// X
  //       axis[1][1] = PS2Cont.getRawAxis(4);// Y We dont actually need this value
         axis = deadzone(axis);
         return (pwr); // Returns axis data to the caller.
