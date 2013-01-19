@@ -19,14 +19,14 @@ import com.sun.squawk.util.MathUtils;
 
 public class InputManager {
 //Git is good
-    protected static Joystick PS2Cont = new Joystick(1);
+    protected static Joystick ps2cont = new Joystick(1);
    // protected static boolean dzactive  = false; // In case we want to check for deadzoneing being active
   //  protected static double[] axisOC = new double[2]; // Stores the original copies of the axis reads, for use elsewhere.
     protected static button manpivot = new button (true, 2);
     protected static button firebutton = new button (false, 4);
     protected static button realign = new button (false, 7);
     protected static button infrisbee = new button (false, 8);
-    protected static button autotarg = new button (false, 10);
+    protected static button autotarg = new button (true, 10);
     public static double[] getPureAxis() { // Gets, stores, and returns the status of the joysticks on the PS2 Controller
         /* We will use a double dimension arry to hold the joystick data so that everything can be sent to other functions.
          * Both of the first dimensions will hold 2 doulbes, the first is the x & y axis of the first (paning) joystick
@@ -34,10 +34,10 @@ public class InputManager {
          */
         double[][] axis = new double[2][2];// Variable for storing all that data
         double[] dir = new double [2];
-        axis[0][0] = PS2Cont.getRawAxis(1);// X
-        axis[0][1] = PS2Cont.getRawAxis(2);// Y
-        axis[1][0] = PS2Cont.getRawAxis(3);// X
-  //      axisOC[0] = axis[0][0];
+        axis[0][0] = ps2cont.getRawAxis(1);// X
+        axis[0][1] = ps2cont.getRawAxis(2);// Y
+        axis[1][0] = ps2cont.getRawAxis(3);// X
+  //      axisOC[0] = axis[0][0]; 
     //    axisOC[1] = axis[0][1];
  //       axis[1][1] = PS2Cont.getRawAxis(4);// Y We dont actually need this value
         axis = deadzone(axis);
