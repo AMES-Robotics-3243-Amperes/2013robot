@@ -71,11 +71,11 @@ public class InputManager {
         return (axis);
     }
     protected static double[] translate(double[][] axis){// Ramps inputs so that they curve all happy like.
-        //This is a skeleton of the ramp funtion. Mark should fill this in.
+        //This is a skeleton of the ramp funtion. Mark should fill this in
+        double[] vect = new double[2];
         double speed = 0;
         double angle = 0;
-        double hypo = 0;
-        double[] vect = new double[2];
+   //     double hypo = 0;
         speed = Math.sqrt(MathUtils.pow(axis[0][0],2) + MathUtils.pow(axis[0][1], 2));
         angle = RobotArithmetic.arcTangent(axisOC[0][0], axisOC[0][1]);
         vect[0] = angle;
