@@ -27,6 +27,7 @@ public class InputManager {
     protected static button realign = new button (false, 7);
     protected static button infrisbee = new button (false, 8);
     protected static button autotarg = new button (true, 10);
+    protected static button speedboost = new button (false, 11)
     public static double[] getPureAxis() { // Gets, stores, and returns the status of the joysticks on the PS2 Controller
         /* We will use a double dimension arry to hold the joystick data so that everything can be sent to other functions.
          * Both of the first dimensions will hold 2 doulbes, the first is the x & y axis of the first (paning) joystick
