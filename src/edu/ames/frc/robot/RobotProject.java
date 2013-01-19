@@ -48,7 +48,7 @@ public class RobotProject extends IterativeRobot {
      */
     public void teleopPeriodic() {
         while (isOperatorControl() && isEnabled()) {
-            MC.Drive(IM.GetPureAxis());
+            
         }
     }
     
