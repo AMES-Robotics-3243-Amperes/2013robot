@@ -14,13 +14,24 @@ public class MotorControl {
     private static Victor A = new Victor(RobotMap.Apin);
     private static Victor B = new Victor(RobotMap.Bpin);
     private static Victor C = new Victor(RobotMap.Cpin);
+    private static Jaguar shoot = new Jaguar(4);
     
     static void drive(double[] mv){
         A.set(mv[0]);
         B.set(mv[1]);
         C.set(mv[2]);
     }
-     
+    
+    public void shooter(double power) {
+        if (power < -1) {
+            power = -1;
+        }
+        if (power > 1) {
+            power = 1;
+        }
+        shoot.set(power);
+    }
+
     /* This converts the direction we want to go (from 0 to 1, relative to the robot's base)
      * and speed (from 0 to 1) directly to values for the three omni-wheeled motors.
      */
