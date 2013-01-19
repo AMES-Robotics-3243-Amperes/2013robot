@@ -10,7 +10,7 @@ public class RobotMap {
     protected final static double deadzone = .05;
     /*Drive motor pins.
      * For managment reasons we will track each wheel motor based on the side of the traingle/hexagon it is located at
-     * Each corner is labeled as either A,B, or C. A being the front wheel, B being the back right, and C being the right left.
+     * Each corner is labeled as either A,B, or C. A being the front wheel, B being the back right, and C being the back left.
      * This nameing trend is reflected in the pin assignments in this class and should continue to be reflected in other parts
      * of the overall robot system.
      */
