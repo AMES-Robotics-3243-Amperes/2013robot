@@ -21,7 +21,7 @@ public class InputManager {
 //Git is good
     protected static Joystick PS2Cont = new Joystick(1);
     protected static boolean dzactive  = false; // In case we want to check for deadzoneing being active
-    protected static double[][] axisOC = new double[2][2]; // Stores the original copies of the axis reads, for use elsewhere.
+    protected static double[] axisOC = new double[2]; // Stores the original copies of the axis reads, for use elsewhere.
     
     public static double[] getPureAxis() { // Gets, stores, and returns the status of the joysticks on the PS2 Controller
         /* We will use a double dimension arry to hold the joystick data so that everything can be sent to other functions.
@@ -33,10 +33,8 @@ public class InputManager {
         axis[0][0] = PS2Cont.getRawAxis(1);// X
         axis[0][1] = PS2Cont.getRawAxis(2);// Y
         axis[1][0] = PS2Cont.getRawAxis(3);// X
-        axisOC[0][0] = axis[0][0];
-        axisOC[0][1] = axis[0][1];
-        axisOC[0][0] = axis[1][0];
-        axisOC[0][0] = axis[1][1];
+        axisOC[0] = axis[0][0];
+        axisOC[1] = axis[0][1];
  //       axis[1][1] = PS2Cont.getRawAxis(4);// Y We dont actually need this value
         axis = deadzone(axis);
         axis = ramp(axis);
@@ -71,7 +69,7 @@ public class InputManager {
         double angle = 0;
    //     double hypo = 0;
         speed = Math.sqrt(MathUtils.pow(axis[0][0],2) + MathUtils.pow(axis[0][1], 2));
-        angle = RobotArithmetic.arcTangent(axisOC[0][0], axisOC[0][1]);
+        angle = RobotArithmetic.arcTangent(axisOC[0], axisOC[1]);
         vect[0] = angle;
         vect[1] = speed;
         return (vect);
