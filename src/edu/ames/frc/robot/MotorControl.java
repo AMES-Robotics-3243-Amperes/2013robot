@@ -66,7 +66,18 @@ public class MotorControl {
         motorvalue[0] = speed * Math.sin(direction);
         motorvalue[1] = speed * Math.sin(direction - (2 * Math.PI / 3));
         motorvalue[2] = speed * Math.sin(direction + (2 * Math.PI / 3));
-        
+       
+      
         return motorvalue;
     }
+     static void pivot(double pivot){ 
+        if(pivot<0){
+            
+        }
+        if(pivot>0){
+            
+        }
+        
+        
+           }
 }
