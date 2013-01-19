@@ -11,6 +11,7 @@ package edu.ames.frc.robot;
 // | | | | _>     | _>     |_| |(/_   |||(_| | | |   (_  | (_|_> _>
 //The main class is under control of Kolton Yager and Danial Ebling. DO NOT EDIT
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.Watchdog;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -32,8 +33,11 @@ public class RobotProject extends IterativeRobot {
     protected static Communication Com = new Communication();
     protected static SensorInput SI = new SensorInput();
     protected static RobotMap RM = new RobotMap();
+    protected static Watchdog wd;
 
     public void robotInit() {
+        wd = Watchdog.getInstance();
+        wd.setExpiration(0.5);
     }
 
     /**
@@ -48,6 +52,7 @@ public class RobotProject extends IterativeRobot {
      */
     public void teleopPeriodic() {
         while (isOperatorControl() && isEnabled()) {
+            wd.feed();
             
         }
     }
