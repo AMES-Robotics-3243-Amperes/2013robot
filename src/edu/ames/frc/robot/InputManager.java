@@ -24,14 +24,8 @@ public class InputManager {
     protected static boolean dzactive  = false; // In case we want to check for deadzoneing being active
     
     public static class directions{
-        public directions(double dira, double dirb, double dirc, double piv){
-            ABC[0] = dira;
-            ABC[1] = dirb;
-            ABC[2] = dirc;
-            pivot = piv;
+        public directions(){
         }
-        double[] ABC = new double[3];//Holds directions
-        double pivot;
     }
     
     public static double[] GetPureAxis() { // Gets, stores, and returns the status of the joysticks on the PS2 Controller
@@ -70,17 +64,12 @@ public class InputManager {
         */
         return (axis);
     }
-    protected static directions translate(double[][] axis){// Ramps inputs so that they curve all happy like.
+    protected static double translate(double[][] axis){// Ramps inputs so that they curve all happy like.
         //This is a skeleton of the ramp funtion. Mark should fill this in.
-        //Find direction
-        byte direction = 0; // 1, forward, 2 right
-        if(axis[0][1]> 0 ){
-            
-        }
-        double[] ABC = new double[3];
+        double speed = 0;
+        double vect = 0;
         
-        directions dir;
-        return (dir);
+        return (vect);
     }
     //protected static double[] translate(double[][] axis){// Translates deadzoned and scaled inputs into whatever exact type of input MotorControl needs/wants.
         
