@@ -3,7 +3,7 @@
  * and open the template in the editor.
  */
 package edu.ames.frc.robot;
-
+//We need to test this.
 import edu.wpi.first.wpilibj.Joystick;
 import com.sun.squawk.util.MathUtils;
 /* List of buttons/toggles needed
@@ -23,7 +23,7 @@ public class InputManager {
     protected static Joystick PS2Cont = new Joystick(1);
     protected static RobotMap Rm = new RobotMap();
     protected static boolean dzactive  = false; // In case we want to check for deadzoneing being active
-    
+    protected static double[][] axisOC = new double[2][2]; // Stores the original copies of the axis reads, for use elsewhere.
     public static class directions{
         public directions(){
         }
@@ -35,13 +35,19 @@ public class InputManager {
          * The second dimension holds the x & y for the second (pivoting) joystick
          */
         double[][] axis = new double[2][2];// Variable for storing all that data
-        double[] pwr = new double [3];
+        double[] dir = new double [2];
         axis[0][0] = PS2Cont.getRawAxis(1);// X
         axis[0][1] = PS2Cont.getRawAxis(2);// Y
         axis[1][0] = PS2Cont.getRawAxis(3);// X
+        axisOC[0][0] = axis[0][0];
+        axisOC[0][1] = axis[0][1];
+        axisOC[0][0] = axis[1][0];
+        axisOC[0][0] = axis[1][1];
  //       axis[1][1] = PS2Cont.getRawAxis(4);// Y We dont actually need this value
         axis = deadzone(axis);
-        return (pwr); // Returns axis data to the caller.
+        axis = ramp(axis);
+        dir = translate(axis);
+        return (dir); // Returns axis data to the caller.
     }
 
     protected static double[][] deadzone(double[][] axis) {// Checks for deadzone
@@ -71,7 +77,7 @@ public class InputManager {
         double hypo = 0;
         double[] vect = new double[2];
         speed = Math.sqrt(MathUtils.pow(axis[0][0],2) + MathUtils.pow(axis[0][1], 2));
-        //Tangent thingy
+        angle = RobotArithmetic.arcTangent(axisOC[0][0], axisOC[0][1]);
         vect[0] = angle;
         vect[1] = speed;
         return (vect);

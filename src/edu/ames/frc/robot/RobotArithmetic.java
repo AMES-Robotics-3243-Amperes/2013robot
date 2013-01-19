@@ -193,7 +193,7 @@ public class RobotArithmetic {
     /* Get the arctangent (angle) of a certain ratio. We'll use a table of values, 
      * and look up an approximate number
      */
-    double arcTangent(double x, double y) {
+    static double arcTangent(double x, double y) {
         double in = y / x;
         double out = 0;
         double nearest = 0; // smallest difference for inexact values
