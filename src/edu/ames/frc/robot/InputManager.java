@@ -18,6 +18,7 @@ import edu.wpi.first.wpilibj.Joystick;
 
 public class InputManager {
 //Git is good
+    static RobotMap rm = new RobotMap();//New Robot Map instance.
     protected static Joystick PS2Cont = new Joystick(1);
 
     protected static double[][] GetPureAxis() { // Gets, stores, and returns the status of the joysticks on the PS2 Controller
@@ -35,7 +36,18 @@ public class InputManager {
 
     protected static double[][] deadzone(double[][] axis) {// Checks for deadzone
         //This is a skeleton of the deadzone funtion. Mark should fill this in.
-        
+        if (axis[0][0] <= rm.deadzone && axis[0][0] >= rm.deadzone) { 
+            axis[0][0] = 0;
+        }
+        if (axis[0][1] <= rm.deadzone && axis[0][1] >= rm.deadzone) {
+            axis[0][1] = 0;
+        }
+        if (axis[1][0] <= rm.deadzone && axis[1][0] >= rm.deadzone) {
+            axis[1][0] = 0;
+        }
+        if (axis[1][1] <= rm.deadzone && axis[1][1] >= rm.deadzone) {
+            axis[1][1] = 0;
+        }
         return (axis);
     }
     protected static double[][] ramp(double[][] axis){// Ramps inputs so that they curve all happy like.
