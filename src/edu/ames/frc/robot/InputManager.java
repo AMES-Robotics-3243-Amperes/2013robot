@@ -36,9 +36,9 @@ public class InputManager {
          */
         double[][] axis = new double[2][2];// Variable for storing all that data
         double[] pwr = new double [3];
-        axis[0][0] = PS2Cont.getRawAxis(1);// X
-        axis[0][1] = PS2Cont.getRawAxis(2);// Y
-        axis[1][0] = PS2Cont.getRawAxis(3);// X
+        axis[0][0] = ps2control.getRawAxis(1);// X
+        axis[0][1] = ps2control.getRawAxis(2);// Y
+        axis[1][0] = ps2control.getRawAxis(3);// X
  //       axis[1][1] = PS2Cont.getRawAxis(4);// Y We dont actually need this value
         axis = deadzone(axis);
         return (pwr); // Returns axis data to the caller.
