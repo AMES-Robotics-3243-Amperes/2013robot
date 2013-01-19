@@ -53,7 +53,9 @@ public class RobotProject extends IterativeRobot {
     public void teleopPeriodic() {
         while (isOperatorControl() && isEnabled()) {
             wd.feed();
-            
+            double[] joystickangleandspeed = IM.getPureAxis();
+            double[] drivemotorvalues = MC.convertHeadingToMotorCommands(joystickangleandspeed[0], joystickangleandspeed[1]);
+            MC.drive(drivemotorvalues);
         }
     }
     
