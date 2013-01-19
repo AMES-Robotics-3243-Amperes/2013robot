@@ -19,9 +19,9 @@ public class MotorControl {
         // 0 is what we define as the "front" motor - what we measure our heading angle from,
         // 1 is the motor one position clockwise from that, and
         // 2 is the motor one position counter-clockwise from 0.
-        motorvalue[0] = speed * (Math.sin(direction) / 3);
-        motorvalue[1] = speed * (Math.sin(direction - (2 * Math.PI / 3)) / 3);
-        motorvalue[2] = speed * (Math.sin(direction + (2 * Math.PI)) / 3);
+        motorvalue[0] = speed * Math.sin(direction);
+        motorvalue[1] = speed * Math.sin(direction - (2 * Math.PI / 3));
+        motorvalue[2] = speed * Math.sin(direction + (2 * Math.PI)) / 3;
         
         return motorvalue;
     }
