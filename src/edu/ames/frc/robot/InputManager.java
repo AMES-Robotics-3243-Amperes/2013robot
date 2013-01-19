@@ -60,6 +60,10 @@ public class InputManager {
         }
         return (axis);
     }
+    protected static double[][] ramp(double[][] axis){
+        axis[0][0] = MathUtils.pow(axis[0][0], rm.expo_ramp);
+        return (axis);
+    }
     protected static double[] translate(double[][] axis){// Ramps inputs so that they curve all happy like.
         //This is a skeleton of the ramp funtion. Mark should fill this in.
         double speed = 0;
