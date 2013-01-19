@@ -7,7 +7,7 @@ public class RobotArithmetic {
     public static float[][] arctantable = new float[180][2];
     
     /* Initialize variables, such as the table of values for arctangent */
-    void init() {
+    static void init() {
         arctantable[0][0] = (float) 0.0;                arctantable[0][1] = (float) 0.0;
         arctantable[1][0] = (float) 0.017454773;  	arctantable[1][1] = (float) 0.017453;
         arctantable[2][0] = (float) 0.034920182;  	arctantable[2][1] = (float) 0.034906;
@@ -196,15 +196,15 @@ public class RobotArithmetic {
     static double arcTangent(double x, double y) {
         double in = y / x;
         double out = 0;
-        double nearest = 0; // smallest difference for inexact values
+        double nearest = 10000; // smallest difference for inexact values
         int position = -1;  // array position of closest variable
         
         for(int i=0;i<arctantable.length;i++) {
             if(arctantable[i][0] == in) { // unlikely, but could happen
                 out = arctantable[i][1];
             } else {
-                double tmp = arctantable[i][0] - in; // temporary variable for comparing
-                if(tmp < nearest) {
+                double tmp = in - arctantable[i][0]; // temporary variable for comparing
+                if(Math.abs(tmp) < Math.abs(nearest)) {
                     nearest = tmp;
                     position = i;
                 }
