@@ -5,6 +5,7 @@
 package edu.ames.frc.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
+import com.sun.squawk.util.MathUtils;
 /* List of buttons/toggles needed
  * Manual pivot toggle: 2
  * Speed boost button: Active joystick push
@@ -64,10 +65,13 @@ public class InputManager {
         */
         return (axis);
     }
-    protected static double translate(double[][] axis){// Ramps inputs so that they curve all happy like.
+    protected static double[] translate(double[][] axis){// Ramps inputs so that they curve all happy like.
         //This is a skeleton of the ramp funtion. Mark should fill this in.
         double speed = 0;
-        double vect = 0;
+        double angle = 0;
+        double hypo = 0;
+        double[] vect = new double[2];
+        hypo = Math.sqrt(MathUtils.pow(axis[0][0],2) + MathUtils.pow(axis[0][1], 2));
         
         return (vect);
     }
