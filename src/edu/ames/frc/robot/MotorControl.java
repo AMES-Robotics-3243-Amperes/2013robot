@@ -10,14 +10,12 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.Victor;
 
 public class MotorControl {
+       
+    private static Victor A = new Victor(RobotMap.Apin);
+    private static Victor B = new Victor(RobotMap.Bpin);
+    private static Victor C = new Victor(RobotMap.Cpin);
     
-    private static RobotMap rm = new RobotMap();
-    
-    private static Victor A = new Victor(rm.Apin);
-    private static Victor B = new Victor(rm.Bpin);
-    private static Victor C = new Victor(rm.Cpin);
-    
-    static void Drive(double[] mv){
+    static void drive(double[] mv){
         A.set(mv[0]);
         B.set(mv[1]);
         C.set(mv[2]);
