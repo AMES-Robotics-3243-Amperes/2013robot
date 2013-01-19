@@ -22,10 +22,6 @@ public class InputManager {
     protected static Joystick PS2Cont = new Joystick(1);
     protected static boolean dzactive  = false; // In case we want to check for deadzoneing being active
     protected static double[][] axisOC = new double[2][2]; // Stores the original copies of the axis reads, for use elsewhere.
-    public static class directions{
-        public directions(){
-        }
-    }
     
     public static double[] GetPureAxis() { // Gets, stores, and returns the status of the joysticks on the PS2 Controller
         /* We will use a double dimension arry to hold the joystick data so that everything can be sent to other functions.
@@ -50,22 +46,22 @@ public class InputManager {
 
     protected static double[][] deadzone(double[][] axis) {// Checks for deadzone
         //This is a skeleton of the deadzone funtion. Mark should fill this in.
-        if (axis[0][0] <= RobotMap.deadzone && axis[0][0] >= rm.deadzone) { 
+        if (axis[0][0] <= RobotMap.deadzone && axis[0][0] >= RobotMap.deadzone) { 
             axis[0][0] = 0;
         }
-        if (axis[0][1] <= RobotMap.deadzone && axis[0][1] >= rm.deadzone) {
+        if (axis[0][1] <= RobotMap.deadzone && axis[0][1] >= RobotMap.deadzone) {
             axis[0][1] = 0;
         }
-        if (axis[1][0] <= RobotMap.deadzone && axis[1][0] >= rm.deadzone) {
+        if (axis[1][0] <= RobotMap.deadzone && axis[1][0] >= RobotMap.deadzone) {
             axis[1][0] = 0;
         }
-        if (axis[1][1] <= RobotMap.deadzone && axis[1][1] >= rm.deadzone) {
+        if (axis[1][1] <= RobotMap.deadzone && axis[1][1] >= RobotMap.deadzone) {
             axis[1][1] = 0;
         }
         return (axis);
     }
     protected static double[][] ramp(double[][] axis){
-        axis[0][0] = MathUtils.pow(axis[0][0], rm.expo_ramp);
+        axis[0][0] = MathUtils.pow(axis[0][0], RobotMap.expo_ramp);
         return (axis);
     }
     protected static double[] translate(double[][] axis){// Ramps inputs so that they curve all happy like.
