@@ -14,6 +14,7 @@ public class MotorControl {
     private static Victor A = new Victor(RobotMap.Apin);
     private static Victor B = new Victor(RobotMap.Bpin);
     private static Victor C = new Victor(RobotMap.Cpin);
+    private static Relay Col = new Relay(5);
     private static Jaguar shoot = new Jaguar(4);
     
     static void drive(double[] mv){
@@ -48,6 +49,7 @@ public class MotorControl {
             power = 1;
         }
         shoot.set(power);
+        
     }
 
     /* Make sure the motors don't go full blast all the time */
