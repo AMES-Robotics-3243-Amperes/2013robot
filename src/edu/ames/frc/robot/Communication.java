@@ -36,4 +36,8 @@ public class Communication {
     }
     
     
+    public class PiSocket{
+        
+    }
+    
 } 
