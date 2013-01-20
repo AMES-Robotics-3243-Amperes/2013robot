@@ -1,6 +1,7 @@
 /* Currently managed by: Levi Raby
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ * 
+ * 
+ * 
  */
 package edu.ames.frc.robot;
 import edu.wpi.first.wpilibj.DriverStation;
@@ -11,7 +12,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.Communication;
 
 
-// test
 
 public class Communication {
     

@@ -14,8 +14,8 @@ public class MotorControl {
     private static Victor A = new Victor(RobotMap.Apin);
     private static Victor B = new Victor(RobotMap.Bpin);
     private static Victor C = new Victor(RobotMap.Cpin);
+    private static Relay col = new Relay(5);
     private static Jaguar shoot = new Jaguar(4);
-    
     static void drive(double[] mv){
         if(mv[0]<-1){
             mv[0] = -1;
@@ -48,11 +48,37 @@ public class MotorControl {
             power = 1;
         }
         shoot.set(power);
+        
     }
 
+    /* Make sure the motors don't go full blast all the time */
+    double[] setSpeedCap(double[] in) {
+        for(int i=0;i<in.length;i++) {
+            if(in[i] > RobotMap.speedcap) {
+                in[i] = RobotMap.speedcap;
+            }
+        }
+        return in;
+    }
+    
     /* This converts the direction we want to go (from 0 to 1, relative to the robot's base)
      * and speed (from 0 to 1) directly to values for the three omni-wheeled motors.
      */
+    public void direction(int state)
+    {
+        if (state > 0)
+        {
+            col.set(Relay.Value.kForward);
+        }
+        else if (state < 0)
+        {
+            col.set(Relay.Value.kReverse);
+        }
+        else if (state == 0){
+            col.set(Relay.Value.kOff);
+        }
+    }
+    //the col motor either goes front, back or stays there.
     double[] convertHeadingToMotorCommands(double direction, double speed, double pivot) {
         double[] motorvalue = new double[3];
         
