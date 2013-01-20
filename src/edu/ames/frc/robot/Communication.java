@@ -1,4 +1,4 @@
-/* Currently managed by: Levi Rabi
+/* Currently managed by: Levi Raby
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
@@ -15,10 +15,22 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Communication {
     
+    public static boolean isinit = false;   // make sure we're already initted
+    public static boolean debugmode = false; // debugging symbols enabled/disabled?
+    public static long time; 
+    public static int step = 0;
+    public static double voltage;
+    public static boolean mainlcd = false;  // enable/disable main led
+    public static boolean sensorlighton;
+    public static String[] messages = new String[5];
+    public static int cycle = 0;            // how many clock cycles the robot ran, divided by 500
     
+    public void ConsoleMsg (String msg, int type)
+    {
+        messages[type]=msg;
+    }
     
-    
-    
+    public void MsgPrint ()
     
     
 } 
