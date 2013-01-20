@@ -16,7 +16,6 @@ public class MotorControl {
     private static Victor C = new Victor(RobotMap.Cpin);
     private static Relay Col = new Relay(5);
     private static Jaguar shoot = new Jaguar(4);
-    
     static void drive(double[] mv){
         if(mv[0]<-1){
             mv[0] = -1;
