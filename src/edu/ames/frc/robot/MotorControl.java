@@ -50,6 +50,16 @@ public class MotorControl {
         shoot.set(power);
     }
 
+    /* Make sure the motors don't go full blast all the time */
+    double[] setSpeedCap(double[] in) {
+        for(int i=0;i<in.length;i++) {
+            if(in[i] > RobotMap.speedcap) {
+                in[i] = RobotMap.speedcap;
+            }
+        }
+        return in;
+    }
+    
     /* This converts the direction we want to go (from 0 to 1, relative to the robot's base)
      * and speed (from 0 to 1) directly to values for the three omni-wheeled motors.
      */
