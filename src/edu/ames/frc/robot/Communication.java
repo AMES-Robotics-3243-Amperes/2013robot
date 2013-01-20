@@ -31,8 +31,12 @@ public class Communication {
     }
     
     public void MsgPrint ()
-    {
-    
+    {       long newtime =System.currentTimeMillis();
+            if (newtime - time > 500) 
+                
+                
+                
+                
     }
     
     
