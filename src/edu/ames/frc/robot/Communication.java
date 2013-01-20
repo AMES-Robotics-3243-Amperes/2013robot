@@ -31,6 +31,9 @@ public class Communication {
     }
     
     public void MsgPrint ()
+    {
+    
+    }
     
     
 } 
