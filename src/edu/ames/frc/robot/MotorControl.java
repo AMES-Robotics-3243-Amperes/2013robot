@@ -69,7 +69,11 @@ public class MotorControl {
     {
         if (dirc)
         {
-            
+            Col.set(0.4);
+        }
+        if (!dirc)
+        {
+            Col.set(-0.4);
         }
     }
     double[] convertHeadingToMotorCommands(double direction, double speed, double pivot) {
