@@ -14,7 +14,7 @@ public class MotorControl {
     private static Victor A = new Victor(RobotMap.Apin);
     private static Victor B = new Victor(RobotMap.Bpin);
     private static Victor C = new Victor(RobotMap.Cpin);
-    private static Relay Col = new Relay(5);
+    private static Relay col = new Relay(5);
     private static Jaguar shoot = new Jaguar(4);
     static void drive(double[] mv){
         if(mv[0]<-1){
@@ -64,15 +64,18 @@ public class MotorControl {
     /* This converts the direction we want to go (from 0 to 1, relative to the robot's base)
      * and speed (from 0 to 1) directly to values for the three omni-wheeled motors.
      */
-    public void direction(boolean dirc)
+    public void direction(int state)
     {
-        if (dirc)
+        if (state > 0)
         {
-            Col.set(0.4);
+            col.set(Relay.Value.kForward);
         }
-        if (!dirc)
+        else if (state < 0)
         {
-            Col.set(-0.4);
+            col.set(Relay.Value.kReverse);
+        }
+        else if (state == 0){
+            col.set(Relay.Value.kOff);
         }
     }
     
