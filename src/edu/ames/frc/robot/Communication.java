@@ -4,6 +4,9 @@
  * 
  */
 package edu.ames.frc.robot;
+
+import SocketServer.java;
+import SocketClient.java;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.DriverStationLCD;
 import edu.wpi.first.wpilibj.Timer;
@@ -37,6 +40,7 @@ public class Communication {
     
     
     public class PiSocket{
+        Socket  pi = new Socket();
         
     }
     
