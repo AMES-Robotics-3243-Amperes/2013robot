@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj.DriverStationLCD;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.Watchdog;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
+import edu.wpi.first.wpilibj.Communication;
 
 
 // test
@@ -32,7 +32,14 @@ public class Communication {
     
     public void MsgPrint ()
     {       long newtime =System.currentTimeMillis();
-            if (newtime - time > 500) 
+            if (newtime - time > 500){
+                
+                if (!messages[1].equals(" ")) {      
+                        SmartDashboard.putString("Shooter speed: ", messages[1]);
+            } 
+           
+                
+                
                 
                 
                 
