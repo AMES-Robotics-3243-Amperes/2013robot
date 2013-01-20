@@ -76,6 +76,7 @@ public class MotorControl {
             Col.set(-0.4);
         }
     }
+    
     double[] convertHeadingToMotorCommands(double direction, double speed, double pivot) {
         double[] motorvalue = new double[3];
         
