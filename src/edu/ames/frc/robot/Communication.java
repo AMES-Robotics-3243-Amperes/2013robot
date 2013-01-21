@@ -77,4 +77,15 @@ public class Communication {
             } 
     }
     
+    public void VisualImage(){
+        
+        
+        
+        
+    }   
+
+
+
+
+
 }
