@@ -6,7 +6,7 @@
 package edu.ames.frc.robot;
 //Non-explicit imports of io libraries. Once code is finished it should be changed into a set of explicit imports.
 import java.io.*;
-import javax.microedition.io.ServerSocketConnection;
+import javax.microedition.io.*;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.DriverStationLCD;
 import edu.wpi.first.wpilibj.Timer;
@@ -40,12 +40,13 @@ public class Communication {
     }
     public class PISocket{
         boolean active;
+        ServerSocketConnection psock = null;
         public PISocket(boolean activated){
             active = activated;
-        }
-        ServerSocketConnection psock = (ServerSocketConnection)
+             psock = (ServerSocketConnection)
                   Connector.open("socket://127.0.0.1:3243");
-        pscok.setSocketOption(SocketConnection.writing delay (0), 5);
+        }
+        
          
     }
     
