@@ -4,8 +4,9 @@
  * 
  */
 package edu.ames.frc.robot;
-import SocketServer.java;
-import SocketClient.java;
+//Non-explicit imports of io libraries. Once code is finished it should be changed into a set of explicit imports.
+import java.io.*;
+
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.DriverStationLCD;
 import edu.wpi.first.wpilibj.Timer;
@@ -36,11 +37,12 @@ public class Communication {
     {
     
     }
-    
-    
-    public class PiSocket{
-        Socket pisocket = new Socket();
-        pisocket = new Socket("Crio", 7);
+    public class PISocket{
+        boolean active;
+        public PISocket(boolean activated){
+            active = activated;
+        }
+        //Starting rescource for frc sockets:   http://www.wbrobotics.com/javadoc/javax/microedition/io/ServerSocketConnection.html
     }
     
 } 
