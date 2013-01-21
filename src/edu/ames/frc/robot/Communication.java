@@ -43,8 +43,9 @@ public class Communication {
         public PISocket(boolean activated){
             active = activated;
         }
-        //ServerSocketConnection psock = (ServerSocketConnection)
-                  // Connector.open("socket://:3243");
+        ServerSocketConnection psock = (ServerSocketConnection)
+                  Connector.open("socket://:3243");
+         
     }
     
-} 
+}  
