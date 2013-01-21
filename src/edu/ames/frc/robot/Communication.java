@@ -45,7 +45,7 @@ public class Communication {
         }
         ServerSocketConnection psock = (ServerSocketConnection)
                   Connector.open("socket://127.0.0.1:3243");
-        // sc.setSocketOption(SocketConnection.LINGER, 5);
+        pscok.setSocketOption(SocketConnection.writing delay (0), 5);
          
     }
     
