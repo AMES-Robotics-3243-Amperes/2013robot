@@ -12,7 +12,7 @@ import edu.wpi.first.wpilibj.DriverStationLCD;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.Watchdog;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
+//ServerSocket Javadoc: http://docs.oracle.com/javase/1.4.2/docs/api/java/net/ServerSocket.html
 
 
 
@@ -44,7 +44,6 @@ public class Communication {
         }
         //ServerSocketConnection psock = (ServerSocketConnection)
                   // Connector.open("socket://:3243");
-        //http://docs.oracle.com/javase/1.4.2/docs/api/java/net/ServerSocket.html
     }
     
 } 
