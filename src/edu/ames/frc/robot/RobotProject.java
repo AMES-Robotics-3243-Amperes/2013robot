@@ -48,7 +48,7 @@ public class RobotProject extends IterativeRobot {
        /* double[] example = new double[3];
         example[0] = 0;
         example[1] = 1;
-        example[2] = 2;
+        example[2] = 1;
         MC.drive(example);
         */
     }
