@@ -42,8 +42,9 @@ public class Communication {
         public PISocket(boolean activated){
             active = activated;
         }
-        ServerSocketConnection scn = (ServerSocketConnection)
-                   Connector.open("socket://:3243");
+        //ServerSocketConnection psock = (ServerSocketConnection)
+                  // Connector.open("socket://:3243");
+        //http://docs.oracle.com/javase/1.4.2/docs/api/java/net/ServerSocket.html
     }
     
 } 
