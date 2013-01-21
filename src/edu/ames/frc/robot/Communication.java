@@ -43,7 +43,7 @@ public class Communication {
             active = activated;
         }
         ServerSocketConnection scn = (ServerSocketConnection)
-                Connoctor.open("socket://:3243");
+                   Connector.open("socket://:3243");
     }
     
 } 
