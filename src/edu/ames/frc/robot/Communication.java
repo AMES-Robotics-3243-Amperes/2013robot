@@ -44,7 +44,7 @@ public class Communication {
             active = activated;
         }
         ServerSocketConnection psock = (ServerSocketConnection)
-                  Connector.open("socket://:3243");
+                  Connector.open("socket://127.0.0.1:3243");
          
     }
     
