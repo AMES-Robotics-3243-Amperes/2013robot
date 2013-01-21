@@ -44,7 +44,13 @@ public class RobotProject extends IterativeRobot {
      * This function is called periodically during autonomous
      */
     public void autonomousPeriodic() {
-        
+        //Tarun example
+       /* double[] example = new double[3];
+        example[0] = 0;
+        example[1] = 1;
+        example[2] = 2;
+        MC.drive(example);
+        */
     }
 
     /**
