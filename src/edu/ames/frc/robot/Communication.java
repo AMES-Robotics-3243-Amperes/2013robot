@@ -42,7 +42,8 @@ public class Communication {
         public PISocket(boolean activated){
             active = activated;
         }
-        //Starting rescource for frc sockets:   http://www.wbrobotics.com/javadoc/javax/microedition/io/ServerSocketConnection.html
+        ServerSocketConnection scn = (ServerSocketConnection)
+                Connoctor.open("socket://:3243");
     }
     
 } 
