@@ -51,7 +51,7 @@ public class Communication {
  OutputStream os = psock.openOutputStream();
 
  os.write("\r\n".getBytes()); int ch = 0; while(ch != -1) { ch = is.read(); }
-
+//this is how we keep this Socket's OutputStream, os, open and still be able to send the message
  is.close(); os.close(); psock.close();
 
         }
