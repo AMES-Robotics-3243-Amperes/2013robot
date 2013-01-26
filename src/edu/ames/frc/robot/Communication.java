@@ -47,7 +47,7 @@ public class Communication {
              
  //psock.setSocketOption(SocketConnection.LINGER, 5);
 
- InputStream is = psock.openInputStream(); 
+ InputStream is = psock.openInputStream();
  OutputStream os = psock.openOutputStream();
 
  os.write("\r\n".getBytes()); int ch = 0; while(ch != -1) { ch = is.read(); }
