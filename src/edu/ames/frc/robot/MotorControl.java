@@ -17,28 +17,20 @@ public class MotorControl {
     private static Jaguar shoot = new Jaguar(4);
 
     static void drive(double[] mv) {
-        if (mv[0] < -1) {
-            mv[0] = -1;
-        }
-        if (mv[0] > 1) {
-            mv[0] = 1;
-        }
-        if (mv[1] < -1) {
-            mv[1] = -1;
-        }
-        if (mv[1] > 1) {
-            mv[1] = 1;
-        }
-        if (mv[2] < -1) {
-            mv[2] = -1;
-        }
-        if (mv[2] > 1) {
-            mv[2] = 1;
-        }
         A.set(mv[0]);
         B.set(mv[1]);
         C.set(mv[2]);
     }
+    static double limit(double value){
+        if(value < -1 ){
+        value = -1;
+        }
+        if(value > 1){
+            value = 1;
+           }
+        return(value);
+        }
+    
 
     public void shooter(double power) {
         if (power < -1) {
