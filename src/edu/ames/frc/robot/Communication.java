@@ -42,14 +42,14 @@ public class Communication {
             active = activated;
              psock = (SocketConnection)
                   Connector.open("socket://127.0.0.1:3243");  
-             
-             
+                          
  InputStream is = psock.openInputStream();
  OutputStream os = psock.openOutputStream();
  Integer intVal = new Integer(is.read());
  
  
  is.close(); psock.close();os.close(); 
+
              
 
  
