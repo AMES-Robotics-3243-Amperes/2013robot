@@ -73,7 +73,7 @@ public class MotorControl {
             col.set(Relay.Value.kOff);
         }
     }
-    
+
     //the col motor either goes front, back or stays there.
     double[] convertHeadingToMotorCommands(double direction, double speed, double pivot) {
         double[] motorvalue = new double[3];
