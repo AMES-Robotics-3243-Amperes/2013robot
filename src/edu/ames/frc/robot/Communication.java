@@ -58,3 +58,4 @@ public class Communication {
         }
     }
 }
+//Take integer. Divide by 1000. Store result as int. Lose decimal. Take second number and divide by 1000. Store as int to lose decimal.
