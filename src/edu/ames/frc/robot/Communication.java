@@ -1,4 +1,4 @@
-/* Currently managed by: Levi Raby,Tarun Sunkaraneni
+/* Currently managed by: Levi Raby,Tarun Sunkaraneni, Adam Jessop
  * 
  * 
  * 
@@ -37,23 +37,22 @@ public class Communication {
     public class PISocket{
 
         boolean active;
-        ServerSocketConnection psock = null;
+        SocketConnection psock = null;
         public PISocket(boolean activated) throws Exception{
             active = activated;
-             psock = (ServerSocketConnection)
+             psock = (SocketConnection)
                   Connector.open("socket://127.0.0.1:3243");  
              
              
              
  //psock.setSocketOption(SocketConnection.LINGER, 5);
 
- //InputStream is = psock.openInputStream(); 
- //OutputStream os =
- //psock.openOutputStream();
+ InputStream is = psock.openInputStream(); 
+ OutputStream os = psock.openOutputStream();
 
- //os.write("\r\n".getBytes()); int ch = 0; while(ch != -1) { ch = is.read(); }
+ os.write("\r\n".getBytes()); int ch = 0; while(ch != -1) { ch = is.read(); }
 
- //is.close(); os.close(); psock.close();
+ is.close(); os.close(); psock.close();
 
         }
     }
