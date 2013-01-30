@@ -34,6 +34,27 @@ public class Communication {
     public void MsgPrint() {
     }
 
+    /***************************************************************************
+     *               Raspberry Pi Protocol Information
+     * 
+     * The Raspberry Pi sends information about direction (height and 
+     * angle) the goals are in, distance to the goals, and confidence 
+     * level (how sure it is that the blobs it found are actual goals) 
+     * This is sent in a long integer:
+     * 
+     * (example): 67455423497
+     * 
+     * The 11-digit number is split up as such:
+     * 
+     *      check numbers (to make sure the integer sent is valid)
+     *            |          |          |
+     *     67    4    55    4    23    4    97
+     *      |          |          |          |
+     *  height(x)  angle(y)   distance    confidence level
+     * 
+     * All values range from 0 to 99 - that is, these values use 
+     * arbitrary units.
+     **************************************************************************/ 
     public class PISocket {
 
         boolean active;
