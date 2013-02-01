@@ -50,7 +50,7 @@ public class Communication {
      *            |          |          |
      *     67    4    55    4    23    4    97
      *      |          |          |          |
-     *  height(x)  angle(y)   distance    confidence level
+     *  angle(x)  height(y)   distance    confidence level
      * 
      * All values range from 0 to 99 - that is, these values use 
      * arbitrary units.
