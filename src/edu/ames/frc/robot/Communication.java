@@ -73,7 +73,25 @@ public class Communication {
                 {
                     newRcnum=newRcnum-1;
                 }
-                
+                long newRcnum2;
+                newRcnum2= newRcnum/1000;
+                if(newRcnum/newRcnum2 >100 )
+                {
+                    newRcnum2=newRcnum2-1;
+                }
+                long newRcnum3;
+                newRcnum3= newRcnum2/1000;
+                if(newRcnum2/newRcnum3 >100 )
+                {
+                    newRcnum3=newRcnum3-1;
+                }
+                long newRcnum4;
+                newRcnum4= newRcnum3/1000;
+                if(newRcnum3/newRcnum4 >100 )
+                {
+                    newRcnum4=newRcnum4-1;
+                }
+                // Is this right Kole?
         }
     }
 }
