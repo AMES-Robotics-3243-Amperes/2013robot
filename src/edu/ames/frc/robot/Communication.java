@@ -42,16 +42,16 @@ public class Communication {
     }
 
     public void MsgPrint() {
-             printMsg("update", true, 0);
+            // printMsg("update", true, 0);
 
     
      }
     
     
-    public void MsgPrint( ){
+   /* public void MsgPrint( ){
         
     }
-
+*/
     /***************************************************************************
      *               Raspberry Pi Protocol Information
      * 
