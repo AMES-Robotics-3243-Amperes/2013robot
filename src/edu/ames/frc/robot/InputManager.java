@@ -21,7 +21,6 @@ import edu.wpi.first.wpilibj.Joystick;
 
 public class InputManager {
 //Git is good
-
     protected static Joystick ps2cont = new Joystick(1);
     // protected static boolean dzactive  = false; // In case we want to check for deadzoneing being active
     //  protected static double[] axisOC = new double[2]; // Stores the original copies of the axis reads, for use elsewhere.
@@ -30,7 +29,7 @@ public class InputManager {
     protected static button pivotRight = new button(false, 6);
     protected static button pivotLeft = new button(false, 5);
     protected static button realign = new button(false, 7);
-    protected static button infrisbee = new button(false, 8);
+    protected static button infrisbee = new button(false, 8);//Activates the frisbee retriever 
     protected static button autotarg = new button(true, 10);
     protected static button speedBoost = new button(false, 11);
 
