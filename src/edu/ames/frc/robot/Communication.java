@@ -70,3 +70,4 @@ public class Communication {
         }
     }
 }
+//Figure out how to take a long number such as 67455423497 and seperate it into many individual numbers according to the layout shown above
