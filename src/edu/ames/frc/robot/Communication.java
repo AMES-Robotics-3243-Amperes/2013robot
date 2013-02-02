@@ -63,12 +63,13 @@ public class Communication {
         public PISocket(boolean activated) throws Exception {
             active = activated;
             psock = (SocketConnection) Connector.open("socket://127.0.0.1:3243");
-
+            InputStream is = psock.openInputStream();
+              Long number = new Long(is.readLine());
 
 
             //psock.setSocketOption(SocketConnection.LINGER, 5);
 
-            InputStream is = psock.openInputStream();
+            
            // OutputStream os = psock.openOutputStream();
 
 // os.write("\r\n".getBytes()); //int ch = 0; while(ch != -1) { ch = is.read(); }
