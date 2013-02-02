@@ -55,17 +55,13 @@ public class InputManager {
 
     protected static double[][] deadzone(double[][] axis) {// Checks for deadzone
         //This is a skeleton of the deadzone funtion. Mark should fill this in.
-        if (axis[0][0] <= RobotMap.deadzone && axis[0][0] >= RobotMap.deadzone) {
-            axis[0][0] = 0;
-        }
-        if (axis[0][1] <= RobotMap.deadzone && axis[0][1] >= RobotMap.deadzone) {
-            axis[0][1] = 0;
-        }
-        if (axis[1][0] <= RobotMap.deadzone && axis[1][0] >= RobotMap.deadzone) {
-            axis[1][0] = 0;
-        }
-        if (axis[1][1] <= RobotMap.deadzone && axis[1][1] >= RobotMap.deadzone) {
-            axis[1][1] = 0;
+        
+        for(byte li = 0; li <= axis.length; li++){//Loops through first dimesion of array
+            for(byte si = 0; li <= axis[0].length; li++){//loops through second dimension of array.
+                if(axis[li][si] >= RobotMap.deadzone | axis[li][si] <= -RobotMap.deadzone){
+                    axis[li][si] = 0;
+                }
+            }
         }
         return (axis);
     }
@@ -75,7 +71,7 @@ public class InputManager {
         return (axis);
     }
 
-    protected static double[] translate(double[][] axis) {// Ramps inputs so that they curve all happy like.
+    protected static double[] translate(double[][] axis) {// Translates final input values into a format for use by the rest of the code.
         //This is a skeleton of the ramp funtion. Mark should fill this in
         double[] vect = new double[3];
         double speed = 0;

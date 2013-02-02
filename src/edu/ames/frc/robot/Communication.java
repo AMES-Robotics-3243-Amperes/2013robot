@@ -27,7 +27,7 @@ public class Communication {
     public static String[] messages = new String[5];
     public static int cycle = 0;            // how many clock cycles the robot ran, divided by 500
 
-    public void ConsoleMsg(String msg, int type) {
+    public void ConsoleMsg(String msg, int type) {//What is this? Levi explain please.
         messages[type] = msg;
     }
 
