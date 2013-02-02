@@ -10,6 +10,8 @@ import edu.wpi.first.wpilibj.Joystick;
  * Manual pivot toggle: 2
  * Speed boost button: Active joystick push
  * Force shoot button: 4 
+ * Pivot Left : 5
+ * Pivot Right : 6
  * Force Realign button: 7
  * Stop auto-target toggle: 10
  * Activate frisbee grab button: 8
@@ -25,6 +27,8 @@ public class InputManager {
     //  protected static double[] axisOC = new double[2]; // Stores the original copies of the axis reads, for use elsewhere.
     protected static button manpivot = new button(true, 2);
     protected static button fireButton = new button(false, 4);
+    protected static button pivotRight = new button(false, 6);
+    protected static button pivotLeft = new button(false, 5);
     protected static button realign = new button(false, 7);
     protected static button infrisbee = new button(false, 8);
     protected static button autotarg = new button(true, 10);

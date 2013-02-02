@@ -34,26 +34,49 @@ public class Communication {
     public void MsgPrint() {
     }
 
-    public class PISocket{
+    /***************************************************************************
+     *               Raspberry Pi Protocol Information
+     * 
+     * The Raspberry Pi sends information about direction (height and 
+     * angle) the goals are in, distance to the goals, and confidence 
+     * level (how sure it is that the blobs it found are actual goals) 
+     * This is sent in a long integer:
+     * 
+     * (example): 67455423497
+     * 
+     * The 11-digit number is split up as such:
+     * 
+     *      check numbers (to make sure the integer sent is valid)
+     *            |          |          |
+     *     67    4    55    4    23    4    97
+     *      |          |          |          |
+     *  angle(x)  height(y)   distance    confidence level
+     * 
+     * All values range from 0 to 99 - that is, these values use 
+     * arbitrary units.
+     **************************************************************************/ 
+    public class PISocket {
 
         boolean active;
         SocketConnection psock = null;
-        public PISocket(boolean activated) throws Exception{
+
+        public PISocket(boolean activated) throws Exception {
             active = activated;
-             psock = (SocketConnection)
-                  Connector.open("socket://127.0.0.1:3243");  
-                          
- InputStream is = psock.openInputStream();
- OutputStream os = psock.openOutputStream();
- Integer intVal = new Integer(is.read());
- 
- 
- is.close(); psock.close();os.close(); 
+            psock = (SocketConnection) Connector.open("socket://127.0.0.1:3243");
+
+
+
+            //psock.setSocketOption(SocketConnection.LINGER, 5);
+
+            InputStream is = psock.openInputStream();
+           // OutputStream os = psock.openOutputStream();
 
 // os.write("\r\n".getBytes()); //int ch = 0; while(ch != -1) { ch = is.read(); }
 //this is how we keep this Socket's OutputStream, os, open and still be able to send the message
- //'\r' means carriage retrun. It will return the control back to the first character of the current rowp.
- is.close(); os.close(); psock.close();
+            //'\r' means carriage retrun. It will return the control back to the first character of the current rowp.
+            is.close();
+            //os.close();
+            psock.close();
 
         }
     }

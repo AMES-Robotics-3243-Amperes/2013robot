@@ -21,16 +21,17 @@ public class MotorControl {
         B.set(mv[1]);
         C.set(mv[2]);
     }
-    static double limit(double value){
-        if(value < -1 ){
-        value = -1;
+
+    static double limit(double value) {
+        if (value < -1) {
+            value = -1;
         }
-        if(value > 1){
+        if (value > 1) {
             value = 1;
-           }
-        return(value);
         }
-    
+        return (value);
+    }
+
 
     public void shooter(double power) {
         if (power < -1) {
