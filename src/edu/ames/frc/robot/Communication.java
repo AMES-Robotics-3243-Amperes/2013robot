@@ -59,11 +59,12 @@ public class Communication {
 
         boolean active;
         SocketConnection psock = null;
+        Long rcnum;
         public PISocket(boolean activated) throws Exception {
             active = activated;
             psock = (SocketConnection) Connector.open("socket://127.0.0.1:3243");
             InputStream is = psock.openInputStream();
-            Long number = new Long(is.read());
+            rcnum = new Long(is.read());
             is.close();
             psock.close();
         }
