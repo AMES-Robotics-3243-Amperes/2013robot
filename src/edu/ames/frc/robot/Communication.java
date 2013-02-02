@@ -54,28 +54,18 @@ public class Communication {
      * 
      * All values range from 0 to 99 - that is, these values use 
      * arbitrary units.
-     **************************************************************************/ 
+     **************************************************************************/
     public class PISocket {
 
         boolean active;
         SocketConnection psock = null;
-
         public PISocket(boolean activated) throws Exception {
             active = activated;
             psock = (SocketConnection) Connector.open("socket://127.0.0.1:3243");
-
-            //psock.setSocketOption(SocketConnection.LINGER, 5);
-
             InputStream is = psock.openInputStream();
-           // OutputStream os = psock.openOutputStream();
-              Long number = new Long(is.read());
-// os.write("\r\n".getBytes()); //int ch = 0; while(ch != -1) { ch = is.read(); }
-//this is how we keep this Socket's OutputStream, os, open and still be able to send the message
-            //'\r' means carriage retrun. It will return the control back to the first character of the current rowp.
+            Long number = new Long(is.read());
             is.close();
-            //os.close();
             psock.close();
-
         }
     }
 }
