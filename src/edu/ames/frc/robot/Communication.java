@@ -63,15 +63,12 @@ public class Communication {
         public PISocket(boolean activated) throws Exception {
             active = activated;
             psock = (SocketConnection) Connector.open("socket://127.0.0.1:3243");
-            InputStream is = psock.openInputStream();
-              Long number = new Long(is.readLine());
-
 
             //psock.setSocketOption(SocketConnection.LINGER, 5);
 
-            
+            InputStream is = psock.openInputStream();
            // OutputStream os = psock.openOutputStream();
-
+              Long number = new Long(is.read());
 // os.write("\r\n".getBytes()); //int ch = 0; while(ch != -1) { ch = is.read(); }
 //this is how we keep this Socket's OutputStream, os, open and still be able to send the message
             //'\r' means carriage retrun. It will return the control back to the first character of the current rowp.
