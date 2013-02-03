@@ -51,7 +51,7 @@ public class Communication {
    /* public void MsgPrint( ){
         
     }
-*/
+
     /***************************************************************************
      *               Raspberry Pi Protocol Information
      * 
@@ -68,7 +68,7 @@ public class Communication {
      *            |          |          |
      *     67    4    55    4    23    4    97
      *      |          |          |          |
-     *  angle(x)  height(y)   distance    confidence level
+     *  angle(x)  height(y)   distance(z)    confidence level(c)
      * 
      * All values range from 0 to 99 - that is, these values use 
      * arbitrary units.
@@ -77,14 +77,64 @@ public class Communication {
 
         boolean active;
         SocketConnection psock = null;
-        Long rcnum;
+        Integer rcnum;
         public PISocket(boolean activated) throws Exception {
             active = activated;
             psock = (SocketConnection) Connector.open("socket://127.0.0.1:3243");
             InputStream is = psock.openInputStream();
-            rcnum = new Long(is.read());
+            rcnum = new Integer(is.read()); //Converting int to Integer object
             is.close();
-            psock.close();
+            psock.close(); 
+           
+            String strNumber  = rcnum.toString();  //Converting Integer value into a string value
+            
+            
+             //Need to make sure that check numbers are correct
+            if(strNumber.charAt(2) == '4' &&  strNumber.charAt(5) == '4' && strNumber.charAt(8) == '4')//DANIEL, ARE YOU SURE OUR CHECK NUMBERS WILL ONLY BE 4???
+            {
+                String angleX = strNumber.substring(0, 2);//   assiging the first two digits into the varible angleX = 67 in this case.it starts a the 0th possition and goes to the number before 2nd possition
+                int angleXIntVal = Integer.parseInt(angleX);//converts the angleX srting variable type to int.
+                    
+                
+                String heightY = strNumber.substring(3, 5);//   assiging the first two digits into the varible height=55 in this case .it starts a the 0th possition and goes to the number before 2nd possition
+                int heightYIntVal = Integer.parseInt(heightY);//converts the heightY srting variable type to int.
+                
+                String distanceZ = strNumber.substring(6, 8);//   assiging the first two digits into the varible distanceZ = 23 in this case .it starts a the 0th possition and goes to the number before 2nd possition
+                int distanceZIntVal = Integer.parseInt(distanceZ);//converts the distanceZ srting variable type to int.
+                
+                String confidenceLevelC = strNumber.substring(9, 11);//   assiging the first two digits into the varible confidenceLevel = 95 in this case .it starts a the 0th possition and goes to the number before 2nd possition
+                int confidenceLevelCIntVal = Integer.parseInt(confidenceLevelC);//converts the ConfidenceLevelC srting variable type to int.
+            }
+            else
+            {
+                System.out.println("Check numbers are wrong do something here....");//if it turns out not being genuine
+            }
+            //WE REALLY DON'T NEED THIS!
+            /*      long newRcnum;         
+                newRcnum= rcnum/100;
+                if(rcnum/newRcnum >100 )
+                {
+                    newRcnum=newRcnum-1;
+                }
+                long newRcnum2;
+                newRcnum2= newRcnum/1000;
+                if(newRcnum/newRcnum2 >1000 )
+                {
+                    newRcnum2=newRcnum2-1;
+                }
+                long newRcnum3;
+                newRcnum3= newRcnum2/1000;
+                if(newRcnum2/newRcnum3 >1000 )
+                {
+                    newRcnum3=newRcnum3-1;
+                }
+                long newRcnum4;
+                newRcnum4= newRcnum3/1000;
+                if(newRcnum3/newRcnum4 >1000 )
+                {
+                    newRcnum4=newRcnum4-1;
+                }
+             */   // Is this right Kole?
         }
     }
 }
