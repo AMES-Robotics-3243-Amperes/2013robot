@@ -50,7 +50,7 @@ public class Communication {
      *            |          |          |
      *     67    4    55    4    23    4    97
      *      |          |          |          |
-     *  angle(x)  height(y)   distance    confidence level
+     *  angle(x)  height(y)   distance(z)    confidence level(c)
      * 
      * All values range from 0 to 99 - that is, these values use 
      * arbitrary units.
@@ -59,26 +59,40 @@ public class Communication {
 
         boolean active;
         SocketConnection psock = null;
-        long rcnum;
+        Integer rcnum;
         public PISocket(boolean activated) throws Exception {
             active = activated;
             psock = (SocketConnection) Connector.open("socket://127.0.0.1:3243");
             InputStream is = psock.openInputStream();
-            rcnum = is.read();
+            rcnum = new Integer(is.read()); //Converting int to Integer object
             is.close();
-            psock.close();
-            int i;                          //Rename this, if you want.  It's just there for the for loop.
-            long Paca=rcnum;                //There might be a better way to do this, but this is what I ended up with.  The variable "Paca" might be unnecessary. 
-            long Array[]= new long[4];      //Here's the array of the four values.  This definitely needs to be renamed, and it might not need to be "longs".
-            for(i=0;i<4;i++)     
+            psock.close(); 
+           
+            String strNumber  = rcnum.toString();  //Converting Integer value into a string value
+            
+            
+             //Need to make sure that check numbers are correct
+            if(strNumber.charAt(2) == '4' &&  strNumber.charAt(5) == '4' && strNumber.charAt(8) == '4')//DANIEL, ARE YOU SURE OUR CHECK NUMBERS WILL ONLY BE 4???
             {
-                Array[i]=Paca%100;          //This modulus SHOULD store the last two numbers of Paca.  At the time of writing, it hasn't been tested.
-                Paca =- Array[i];           //This makes the last two digits of paca 0.
-                Paca = Paca / 100;          //This knocks the zeroes off of Paca, so when it loops again the program will take the next two numbers.
-            }                               //Again, I don't actually know if this will work, because we haven't tested it.  Some things definitely need to be changed, such as the variable names.
-                                            //It should be noted that the values will be stored from the last two digits to the first two.  This shouldn't be too much of a problem, but it might cause some mistakes. 
-                                            //  And here ends our work.     -Tarun & Noah 
-            /*      long newRcnum;          //This is what we had before  I came up with a efficient way. 
+                String angleX = strNumber.substring(0, 2);//   assiging the first two digits into the varible angleX = 67 in this case.it starts a the 0th possition and goes to the number before 2nd possition
+                int angleXIntVal = Integer.parseInt(angleX);//converts the angleX srting variable type to int.
+                    
+                
+                String heightY = strNumber.substring(3, 5);//   assiging the first two digits into the varible height=55 in this case .it starts a the 0th possition and goes to the number before 2nd possition
+                int heightYIntVal = Integer.parseInt(heightY);//converts the heightY srting variable type to int.
+                
+                String distanceZ = strNumber.substring(0, 2);//   assiging the first two digits into the varible distanceZ = 23 in this case .it starts a the 0th possition and goes to the number before 2nd possition
+                int distanceZIntVal = Integer.parseInt(distanceZ);//converts the distanceZ srting variable type to int.
+                
+                String confidenceLevelC = strNumber.substring(0, 2);//   assiging the first two digits into the varible confidenceLevel = 95 in this case .it starts a the 0th possition and goes to the number before 2nd possition
+                int confidenceLevelCIntVal = Integer.parseInt(confidenceLevelC);//converts the ConfidenceLevelC srting variable type to int.
+            }
+            else
+            {
+                System.out.println("Check numbers are wrong do something here....");//if it turns out not being genuine
+            }
+            //WE REALLY DON'T NEED THIS!
+            /*      long newRcnum;         
                 newRcnum= rcnum/100;
                 if(rcnum/newRcnum >100 )
                 {
