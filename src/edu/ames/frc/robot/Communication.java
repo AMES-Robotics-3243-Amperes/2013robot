@@ -67,7 +67,18 @@ public class Communication {
             rcnum = is.read();
             is.close();
             psock.close();
-                long newRcnum;
+            int i;                          //Rename this, if you want.  It's just there for the for loop.
+            long Paca=rcnum;                //There might be a better way to do this, but this is what I ended up with.  The variable "Paca" might be unnecessary. 
+            long Array[]= new long[4];      //Here's the array of the four values.  This definitely needs to be renamed, and it might not need to be "longs".
+            for(i=0;i<4;i++)     
+            {
+                Array[i]=Paca%100;          //This modulus SHOULD store the last two numbers of Paca.  At the time of writing, it hasn't been tested.
+                Paca =- Array[i];           //This makes the last two digits of paca 0.
+                Paca = Paca / 100;          //This knocks the zeroes off of Paca, so when it loops again the program will take the next two numbers.
+            }                               //Again, I don't actually know if this will work, because we haven't tested it.  Some things definitely need to be changed, such as the variable names.
+                                            //It should be noted that the values will be stored from the last two digits to the first two.  This shouldn't be too much of a problem, but it might cause some mistakes. 
+                                            //  And here ends our work.     -Tarun & Noah 
+            /*      long newRcnum;          //This is what we had before  I came up with a efficient way. 
                 newRcnum= rcnum/100;
                 if(rcnum/newRcnum >100 )
                 {
@@ -91,7 +102,7 @@ public class Communication {
                 {
                     newRcnum4=newRcnum4-1;
                 }
-                // Is this right Kole?
+             */   // Is this right Kole?
         }
     }
 }
