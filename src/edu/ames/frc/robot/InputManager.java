@@ -80,7 +80,7 @@ public class InputManager {
         //     double hypo = 0;
         speed = Math.sqrt(MathUtils.pow(axis[0], 2) + MathUtils.pow(axis[1], 2));
         //angle = RobotArithmetic.arcTangent(axis[0], axis[1]);
-        angle = MathUtils.atan2(axis[0], axis[1]);
+        angle = MathUtils.atan2(axis[1], axis[0]);
         vect[0] = angle;
         vect[1] = speed;
         vect[2] = axis[2];
