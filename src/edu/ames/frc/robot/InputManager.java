@@ -38,11 +38,11 @@ public class InputManager {
          * Both of the first dimensions will hold 2 doulbes, the first is the x & y axis of the first (paning) joystick
          * The second dimension holds the x & y for the second (pivoting) joystick
          */
-        double[][] axis = new double[2][2];// Variable for storing all that data
+        double[] axis = new double[3];// Variable for storing all that data
         double[] dir = new double[3];
-        axis[0][0] = ps2cont.getRawAxis(1);// X
-        axis[0][1] = ps2cont.getRawAxis(2);// Y
-        axis[1][0] = ps2cont.getRawAxis(3);// X
+        axis[0] = ps2cont.getRawAxis(1);// X
+        axis[1] = ps2cont.getRawAxis(2);// Y
+        axis[2] = ps2cont.getRawAxis(3);// X
         //      axisOC[0] = axis[0][0]; 
         //    axisOC[1] = axis[0][1];
         //       axis[1][1] = PS2Cont.getRawAxis(4);// Y We dont actually need this value
@@ -52,35 +52,38 @@ public class InputManager {
         return (dir); // Returns axis data to the caller.
     }
 
-    protected static double[][] deadzone(double[][] axis) {// Checks for deadzone
+    protected static double[] deadzone(double[] axis) {// Checks for deadzone
         //This is a skeleton of the deadzone funtion. Mark should fill this in.
         
-        for(byte li = 0; li <= axis.length; li++){//Loops through first dimesion of array
-            for(byte si = 0; li <= axis[0].length; li++){//loops through second dimension of array.
-                if(axis[li][si] >= RobotMap.deadzone | axis[li][si] <= -RobotMap.deadzone){
-                    axis[li][si] = 0;
+       // for(byte li = 0; li <= axis.length; li++){//Loops through first dimesion of array
+            for(byte si = 0; si < axis.length; si++){//loops through second dimension of array.
+                if(axis[si] <= RobotMap.deadzone && axis[si] >= -RobotMap.deadzone){
+                    axis[si] = 0;
                 }
             }
+      //  }
+        return (axis);
+    }
+
+    protected static double[] ramp(double[] axis) {
+        for(byte ri = 0; ri < axis.length; ri++){
+        axis[ri] = MathUtils.pow(axis[ri], RobotMap.expo_ramp);
         }
         return (axis);
     }
 
-    protected static double[][] ramp(double[][] axis) {
-        axis[0][0] = MathUtils.pow(axis[0][0], RobotMap.expo_ramp);
-        return (axis);
-    }
-
-    protected static double[] translate(double[][] axis) {// Translates final input values into a format for use by the rest of the code.
+    protected static double[] translate(double[] axis) {// Translates final input values into a format for use by the rest of the code.
         //This is a skeleton of the ramp funtion. Mark should fill this in
         double[] vect = new double[3];
         double speed = 0;
         double angle = 0;
         //     double hypo = 0;
-        speed = Math.sqrt(MathUtils.pow(axis[0][0], 2) + MathUtils.pow(axis[0][1], 2));
-        angle = RobotArithmetic.arcTangent(axis[0][0], axis[0][1]);
+        speed = Math.sqrt(MathUtils.pow(axis[0], 2) + MathUtils.pow(axis[1], 2));
+        //angle = RobotArithmetic.arcTangent(axis[0], axis[1]);
+        angle = MathUtils.atan2(axis[0], axis[1]);
         vect[0] = angle;
         vect[1] = speed;
-        vect[3] = axis[1][0];
+        vect[2] = axis[2];
         return (vect);
     }
 
