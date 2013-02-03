@@ -40,8 +40,10 @@ public class RobotProject extends IterativeRobot {
     double[] joystickangleandspeed;
     public void robotInit() {
         wd = Watchdog.getInstance();
-        wd.setExpiration(0.5);
+        wd.setEnabled(false);
+        wd.setExpiration(1);
         SI.init();
+        wd.feed();
     }
 
     /**
@@ -61,11 +63,13 @@ public class RobotProject extends IterativeRobot {
      * This function is called periodically during operator control
      */
     public void teleopPeriodic() {
+        wd.feed();
         while (isOperatorControl() && isEnabled()) {
             wd.feed();
             joystickangleandspeed = IM.getPureAxis();
             drivemotorvalues = MC.convertHeadingToMotorCommands(joystickangleandspeed[0], joystickangleandspeed[1], joystickangleandspeed[2]);
             drivemotorvalues = MC.setSpeedCap(drivemotorvalues);
+            wd.feed();
             MC.drive(drivemotorvalues);
         }
     }
