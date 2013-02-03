@@ -17,12 +17,12 @@ public class MotorControl {
     private static Jaguar shoot = new Jaguar(4);
 
     static void drive(double[] mv) {
-        A.set(mv[0]);
-        B.set(mv[1]);
-        C.set(mv[2]);
+        A.set(limit(mv[0]));
+        B.set(limit(mv[1]));
+        C.set(limit(mv[2]));
     }
 
-    /*static double limit(double value) {//Not used
+    static double limit(double value) {
         if (value < -1) {
             value = -1;
         }
@@ -30,7 +30,7 @@ public class MotorControl {
             value = 1;
         }
         return (value);
-    }*/
+    }
 
 
     public void shooter(double power) {
@@ -41,7 +41,6 @@ public class MotorControl {
             power = 1;
         }
         shoot.set(power);
-
     }
 
     /* Make sure the motors don't go full blast all the time */
@@ -75,7 +74,7 @@ public class MotorControl {
          * 3 different points where only two motors will need to run (if the direction
          * is parallel to a motor's axle).
          */
-        // 0 is what we define as the "front" motor - what we measure our heading angle from,
+        // 0 is what we define as the "front" motodrivemotorvalues - what we measure our heading angle from,
         // 1 is the motor one position clockwise from that, and
         // 2 is the motor one position counter-clockwise from 0.
         motorvalue[0] = speed * Math.sin(direction);
