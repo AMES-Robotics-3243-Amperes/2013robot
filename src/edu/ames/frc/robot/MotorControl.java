@@ -17,12 +17,12 @@ public class MotorControl {
     private static Jaguar shoot = new Jaguar(4);
 
     static void drive(double[] mv) {
-        A.set(mv[0]);
-        B.set(mv[1]);
-        C.set(mv[2]);
+        A.set(limit(mv[0]));
+        B.set(limit(mv[1]));
+        C.set(limit(mv[2]));
     }
 
-    static double limit(double value) {//Not used
+    static double limit(double value) {
         if (value < -1) {
             value = -1;
         }

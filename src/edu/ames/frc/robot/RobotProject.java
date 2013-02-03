@@ -66,7 +66,6 @@ public class RobotProject extends IterativeRobot {
             joystickangleandspeed = IM.getPureAxis();
             drivemotorvalues = MC.convertHeadingToMotorCommands(joystickangleandspeed[0], joystickangleandspeed[1], joystickangleandspeed[2]);
             drivemotorvalues = MC.setSpeedCap(drivemotorvalues);
-            drivemotorvalues = MC.setSpeedCap(drivemotorvalues);
             MC.drive(drivemotorvalues);
         }
     }
