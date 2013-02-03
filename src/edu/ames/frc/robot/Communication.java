@@ -81,10 +81,10 @@ public class Communication {
                 String heightY = strNumber.substring(3, 5);//   assiging the first two digits into the varible height=55 in this case .it starts a the 0th possition and goes to the number before 2nd possition
                 int heightYIntVal = Integer.parseInt(heightY);//converts the heightY srting variable type to int.
                 
-                String distanceZ = strNumber.substring(0, 2);//   assiging the first two digits into the varible distanceZ = 23 in this case .it starts a the 0th possition and goes to the number before 2nd possition
+                String distanceZ = strNumber.substring(6, 8);//   assiging the first two digits into the varible distanceZ = 23 in this case .it starts a the 0th possition and goes to the number before 2nd possition
                 int distanceZIntVal = Integer.parseInt(distanceZ);//converts the distanceZ srting variable type to int.
                 
-                String confidenceLevelC = strNumber.substring(0, 2);//   assiging the first two digits into the varible confidenceLevel = 95 in this case .it starts a the 0th possition and goes to the number before 2nd possition
+                String confidenceLevelC = strNumber.substring(9, 11);//   assiging the first two digits into the varible confidenceLevel = 95 in this case .it starts a the 0th possition and goes to the number before 2nd possition
                 int confidenceLevelCIntVal = Integer.parseInt(confidenceLevelC);//converts the ConfidenceLevelC srting variable type to int.
             }
             else
