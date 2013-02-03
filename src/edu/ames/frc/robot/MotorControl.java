@@ -32,7 +32,6 @@ public class MotorControl {
         return (value);
     }
 
-
     public void shooter(double power) {
         if (power < -1) {
             power = -1;
@@ -48,6 +47,9 @@ public class MotorControl {
         for (int i = 0; i < in.length; i++) {
             if (in[i] > RobotMap.speedcap) {
                 in[i] = RobotMap.speedcap;
+            }
+            if (in[i] < -RobotMap.speedcap) {
+                in[i] = -RobotMap.speedcap;
             }
         }
         return in;
@@ -81,16 +83,23 @@ public class MotorControl {
         motorvalue[1] = speed * Math.sin(direction - (2 * Math.PI / 3));
         motorvalue[2] = speed * Math.sin(direction + (2 * Math.PI / 3));
 
-        if (pivot < 0) {
-            motorvalue[0] = -pivot;
-            motorvalue[1] = -pivot;
-            motorvalue[2] = -pivot;
-        }
-        if (pivot > 0) {
-            motorvalue[0] = +pivot;
-            motorvalue[1] = +pivot;
-            motorvalue[2] = +pivot;
-        }
+        motorvalue[0] += pivot;
+        motorvalue[1] += pivot;
+        motorvalue[2] += pivot;
+
+        /*
+         if (pivot < 0) {
+         motorvalue[0] = -pivot;
+         motorvalue[1] = -pivot;
+         motorvalue[2] = -pivot;
+         }
+         if (pivot > 0) {
+         motorvalue[0] = +pivot;
+         motorvalue[1] = +pivot;
+         motorvalue[2] = +pivot;
+         }
+         */
+
         return motorvalue;
     }
 }
