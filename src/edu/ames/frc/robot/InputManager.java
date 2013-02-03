@@ -57,7 +57,7 @@ public class InputManager {
         
        // for(byte li = 0; li <= axis.length; li++){//Loops through first dimesion of array
             for(byte si = 0; si < axis.length; si++){//loops through second dimension of array.
-                if(axis[si] <= RobotMap.deadzone & axis[si] >= -RobotMap.deadzone){
+                if(axis[si] <= RobotMap.deadzone && axis[si] >= -RobotMap.deadzone){
                     axis[si] = 0;
                 }
             }
