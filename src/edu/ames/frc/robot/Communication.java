@@ -8,12 +8,20 @@ package edu.ames.frc.robot;
 import java.io.*;
 import javax.microedition.io.*;
 import edu.wpi.first.wpilibj.DriverStation;
-import edu.wpi.first.wpilibj.DriverStationLCD;
 import edu.wpi.first.wpilibj.Timer;
-import edu.wpi.first.wpilibj.Watchdog;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-//ServerSocket Javadoc: http://docs.oracle.com/javase/1.4.2/docs/api/java/net/ServerSocket.html
-//http://www.wbrobotics.com/javadoc/javax/microedition/io/SocketConnection.html
+ import edu.wpi.first.wpilibj.command.Subsystem;
+//import edu.wpi.first.wpilibj.Communication;
+
+/* import edu.wpi.first.wpilibj.command.Command;
+ *
+ * import edu.wpi.first.wpilibj.templates.OI;
+ * 
+ * 
+ * 
+ * 
+ */
+
 
 public class Communication {
 
@@ -26,12 +34,22 @@ public class Communication {
     public static boolean sensorlighton;
     public static String[] messages = new String[5];
     public static int cycle = 0;            // how many clock cycles the robot ran, divided by 500
+    
+    public void ConsoleMsg (String msg, int type)
+    {                                                   
+        messages[type]=msg;  //array hold all robot mesages
 
-    public void ConsoleMsg(String msg, int type) {//What is this? Levi explain please.
-        messages[type] = msg;
     }
 
     public void MsgPrint() {
+            // printMsg("update", true, 0);
+
+    
+     }
+    
+    
+   /* public void MsgPrint( ){
+        
     }
 
     /***************************************************************************

@@ -22,7 +22,7 @@ public class MotorControl {
         C.set(limit(mv[2]));
     }
 
-    static double limit(double value) {//Not used
+    static double limit(double value) {
         if (value < -1) {
             value = -1;
         }
