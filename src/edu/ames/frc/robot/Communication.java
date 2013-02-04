@@ -32,25 +32,24 @@ public class Communication {
     public static boolean sensorlighton;
     public static String[] messages = new String[5];
     public static int cycle = 0;            // how many clock cycles the robot ran, divided by 500
+
     
-    // real timer; used in threads
-    public void superTimer(double delay) {
-        double a = System.currentTimeMillis();
-        double b;
-        while(true) {
-            Timer.delay(0.05);
-            b = System.currentTimeMillis();
-            if(b - a >= delay) {
-                break;
-            }
-        }
     
+    
+    //Speed & Direction
+    public void RobotSpeed(double Speedo ){
+        String RS = "Speed:";
+        SmartDashboard.getDouble(RS , Speedo); 
     }
     
-    /**
-     *
-     */
-    public void UpdateMsg()
+    public void RobotDirection(double x){
+        String RD ="Robot Direction:";
+        SmartDashboard.getDouble(RD, x);
+        
+    }
+    
+    
+   /* public void UpdateMsg()                          ****Conceputual Mumbo Jumbo****
     {
              ConsolMsg("update", true, 0);
      }
@@ -114,7 +113,7 @@ public class Communication {
                 time = newtime;
             }
         
-    }
+    }        */
 
     /***************************************************************************
      *               Raspberry Pi Protocol Information
