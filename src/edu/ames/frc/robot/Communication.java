@@ -38,11 +38,13 @@ public class Communication {
     
     //Speed & Direction
     public void RobotSpeed(double Speedo ){
+        long newtime = System.currentTimeMillis();
         String RS = "Speed:";
         SmartDashboard.getDouble(RS , Speedo); 
     }
     
     public void RobotDirection(double x){
+        long newtime = System.currentTimeMillis();
         String RD ="Robot Direction:";
         SmartDashboard.getDouble(RD, x);
         
