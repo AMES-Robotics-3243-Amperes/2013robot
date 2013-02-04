@@ -9,7 +9,6 @@ import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.Victor;
 
 public class MotorControl {
-
     private static Victor A = new Victor(RobotMap.Apin);
     private static Victor B = new Victor(RobotMap.Bpin);
     private static Victor C = new Victor(RobotMap.Cpin);
@@ -54,7 +53,6 @@ public class MotorControl {
         }
         return in;
     }
-
     /* This converts the direction we want to go (from 0 to 1, relative to the robot's base)
      * and speed (from 0 to 1) directly to values for the three omni-wheeled motors.
      */
@@ -71,7 +69,6 @@ public class MotorControl {
     //the col motor either goes front, back or stays there.
     double[] convertHeadingToMotorCommands(double direction, double speed, double pivot) {
         double[] motorvalue = new double[3];
-
         /* so, we'll define the direction we want to go as "forward". There are
          * 3 different points where only two motors will need to run (if the direction
          * is parallel to a motor's axle).
