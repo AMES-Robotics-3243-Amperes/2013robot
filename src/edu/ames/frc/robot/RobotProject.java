@@ -40,9 +40,10 @@ public class RobotProject extends IterativeRobot {
     double[] joystickangleandspeed;
     public void robotInit() {
         wd = Watchdog.getInstance();
-        wd.setEnabled(false);
         wd.setExpiration(1);
         SI.init();
+        IM.init();
+        MC.init();
         wd.feed();
     }
 

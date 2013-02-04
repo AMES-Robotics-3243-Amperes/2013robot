@@ -21,18 +21,31 @@ import edu.wpi.first.wpilibj.Joystick;
 
 public class InputManager {
 //Git is good
-    protected static Joystick ps2cont = new Joystick(1);
+    static RobotMap rm = new RobotMap();
+    protected static Joystick ps2cont;
     // protected static boolean dzactive  = false; // In case we want to check for deadzoneing being active
     //  protected static double[] axisOC = new double[2]; // Stores the original copies of the axis reads, for use elsewhere.
-    protected static button manpivot = new button(true, 2);
-    protected static button fireButton = new button(false, 4);
-    protected static button pivotRight = new button(false, 6);
-    protected static button pivotLeft = new button(false, 5);
-    protected static button realign = new button(false, 7);
-    protected static button infrisbee = new button(false, 8);//Activates the frisbee retriever 
-    protected static button autotarg = new button(true, 10);
-    protected static button speedBoost = new button(false, 11);
+    protected static button manpivot;
+    protected static button fireButton;
+    protected static button pivotRight;
+    protected static button pivotLeft;
+    protected static button realign;
+    protected static button infrisbee;
+    protected static button autotarg;
+    protected static button speedBoost;
 
+    void init() {
+         ps2cont = new Joystick(1);
+         manpivot = new button(true, 2);
+         fireButton = new button(false, 4);
+         pivotRight = new button(false, 6);
+         pivotLeft = new button(false, 5);
+         realign = new button(false, 7);
+         infrisbee = new button(false, 8);//Activates the frisbee retriever 
+         autotarg = new button(true, 10);
+         speedBoost = new button(false, 11);
+    }
+    
     public static double[] getPureAxis() { // Gets, stores, and returns the status of the joysticks on the PS2 Controller
         /* We will use a double dimension arry to hold the joystick data so that everything can be sent to other functions.
          * Both of the first dimensions will hold 2 doulbes, the first is the x & y axis of the first (paning) joystick
@@ -40,9 +53,9 @@ public class InputManager {
          */
         double[] axis = new double[3];// Variable for storing all that data
         double[] dir = new double[3];
-        axis[0] = ps2cont.getRawAxis(1);// X
+        axis[0] = -ps2cont.getRawAxis(1);// X
         axis[1] = ps2cont.getRawAxis(2);// Y
-        axis[2] = ps2cont.getRawAxis(3);// X
+        axis[2] = -ps2cont.getRawAxis(3);// X
         //      axisOC[0] = axis[0][0]; 
         //    axisOC[1] = axis[0][1];
         //       axis[1][1] = PS2Cont.getRawAxis(4);// Y We dont actually need this value
@@ -57,7 +70,7 @@ public class InputManager {
         
        // for(byte li = 0; li <= axis.length; li++){//Loops through first dimesion of array
             for(byte si = 0; si < axis.length; si++){//loops through second dimension of array.
-                if(axis[si] <= RobotMap.deadzone && axis[si] >= -RobotMap.deadzone){
+                if(axis[si] <= rm.deadzone && axis[si] >= -rm.deadzone){
                     axis[si] = 0;
                 }
             }
@@ -67,7 +80,7 @@ public class InputManager {
 
     protected static double[] ramp(double[] axis) {
         for(byte ri = 0; ri < axis.length; ri++){
-        axis[ri] = MathUtils.pow(axis[ri], RobotMap.expo_ramp);
+        axis[ri] = MathUtils.pow(axis[ri], rm.expo_ramp);
         }
         return (axis);
     }
@@ -80,7 +93,12 @@ public class InputManager {
         //     double hypo = 0;
         speed = Math.sqrt(MathUtils.pow(axis[0], 2) + MathUtils.pow(axis[1], 2));
         //angle = RobotArithmetic.arcTangent(axis[0], axis[1]);
-        angle = MathUtils.atan2(axis[1], axis[0]);
+        angle = MathUtils.atan2(axis[0], axis[1]);
+        
+        if(angle < 0) {
+            angle = (2 * Math.PI) - Math.abs(angle);
+        }
+        
         vect[0] = angle;
         vect[1] = speed;
         vect[2] = axis[2];

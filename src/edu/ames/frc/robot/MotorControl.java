@@ -9,13 +9,24 @@ import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.Victor;
 
 public class MotorControl {
-    private static Victor A = new Victor(RobotMap.Apin);
-    private static Victor B = new Victor(RobotMap.Bpin);
-    private static Victor C = new Victor(RobotMap.Cpin);
-    private static Relay col = new Relay(5);
-    private static Jaguar shoot = new Jaguar(4);
+    static RobotMap rm = new RobotMap();
+    static Victor A;
+    static Victor B;
+    static Victor C;
+    static Relay col;
+    static Jaguar shoot;
+    
+    static double pivotconstant = 0.12; // because the robot drift-pivots
 
-    static void drive(double[] mv) {
+    void init() {
+        A = new Victor(rm.Apin);
+        B = new Victor(rm.Bpin);
+        C = new Victor(rm.Cpin);
+        col = new Relay(5);
+        shoot = new Jaguar(4);
+    }
+    
+    void drive(double[] mv) {
         A.set(limit(mv[0]));
         B.set(limit(mv[1]));
         C.set(limit(mv[2]));
@@ -44,12 +55,7 @@ public class MotorControl {
     /* Make sure the motors don't go full blast all the time */
     double[] setSpeedCap(double[] in) {
         for (int i = 0; i < in.length; i++) {
-            if (in[i] > RobotMap.speedcap) {
-                in[i] = RobotMap.speedcap;
-            }
-            if (in[i] < -RobotMap.speedcap) {
-                in[i] = -RobotMap.speedcap;
-            }
+            in[i] = in[i] * rm.speedcap;
         }
         return in;
     }
@@ -79,7 +85,9 @@ public class MotorControl {
         motorvalue[0] = speed * Math.sin(direction);
         motorvalue[1] = speed * Math.sin(direction - (2 * Math.PI / 3));
         motorvalue[2] = speed * Math.sin(direction + (2 * Math.PI / 3));
-
+        
+        pivot += pivotconstant;
+        
         motorvalue[0] += pivot;
         motorvalue[1] += pivot;
         motorvalue[2] += pivot;
