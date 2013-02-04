@@ -11,10 +11,10 @@ import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  import edu.wpi.first.wpilibj.command.Subsystem;
-//import edu.wpi.first.wpilibj.Communication;
+
 
 /* import edu.wpi.first.wpilibj.command.Command;
- *
+ * import edu.wpi.first.wpilibj.Communication;
  * import edu.wpi.first.wpilibj.templates.OI;
  * 
  * 
@@ -25,32 +25,97 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Communication {
 
-    public static boolean isinit = false;   // make sure we're already initted
     public static boolean debugmode = false; // debugging symbols enabled/disabled?
     public static long time;
     public static int step = 0;
     public static double voltage;
-    public static boolean mainlcd = false;  // enable/disable main led
     public static boolean sensorlighton;
     public static String[] messages = new String[5];
     public static int cycle = 0;            // how many clock cycles the robot ran, divided by 500
-    
-    public void ConsoleMsg (String msg, int type)
-    {                                                   
-        messages[type]=msg;  //array hold all robot mesages
 
+    
+    
+    
+    //Speed & Direction
+    public void RobotSpeed(double Speedo ){
+        long newtime = System.currentTimeMillis();
+        String RS = "Speed:";
+        SmartDashboard.getDouble(RS , Speedo); 
     }
-
-    public void MsgPrint() {
-            // printMsg("update", true, 0);
-
     
+    public void RobotDirection(double x){
+        long newtime = System.currentTimeMillis();
+        String RD ="Robot Direction:";
+        SmartDashboard.getDouble(RD, x);
+        
+    }
+    
+    
+   /* public void UpdateMsg()                          ****Conceputual Mumbo Jumbo****
+    {
+             ConsolMsg("update", true, 0);
      }
     
     
-   /* public void MsgPrint( ){
+    public void ConsolMsg(String msg, boolean NewStuff, int type){ //Sends Messages to Consol
+                long newtime = System.currentTimeMillis();
+
+        if (newtime - time > 500) {
+                if (!"update".equals(msg)) {
+                    if (!messages[1].equals(" ")) {                                     // Shooter Speed
+                        SmartDashboard.putString("Shooter Speed: ", messages[1]);
+                    }
+                    
+                    if (!messages[2].equals(" ")) {                                     // shooter Angle 
+                        SmartDashboard.putString("Shooter Angle: ", messages[2]);
+                    }
+                    
+                    if (!messages[3].equals(" ")) {                                     // Gyro Angle
+                        SmartDashboard.putString("Gyro Angle: ", messages[3]);
+                    }
+                    
+                    if (!messages[4].equals(" ")) {                                     // errors
+                        SmartDashboard.putString("Error: ", messages[4]);
+                    }
+                    
+                    if (!messages[5].equals(" ")) {       
+                        SmartDashboard.putString("Error: ", messages[5]);
+                    }
+                    
+                    if (!messages[6].equals(" ")) {      
+                        SmartDashboard.putString("Error: ", messages[6]);
+                    }
+                    
+                    if (!messages[7].equals(" ")) {      
+                        SmartDashboard.putString("Error: ", messages[7]);
+                    }
+                    
+                    if (!messages[8].equals(" ")) {      
+                        SmartDashboard.putString("Error: ", messages[8]);
+                    }
+                    
+                    if (!messages[8].equals(" ")) {      
+                        SmartDashboard.putString(": ", messages[9]);
+                    }
+                    
+                    if (!messages[8].equals(" ")) {      
+                        SmartDashboard.putString(" ", messages[10]);
+                    }
+                }
+
+                if ("update".equals(msg) && NewStuff) {
+                    System.out.println("RobotInfo: updated");
+                    for (int i = 0; i < messages.length; i++) { // reset messages
+                        messages[i] = " ";
+                    }
+                } else {
+                    //System.out.println(s);
+                }
+
+                time = newtime;
+            }
         
-    }
+    }        */
 
     /***************************************************************************
      *               Raspberry Pi Protocol Information
@@ -92,7 +157,7 @@ public class Communication {
              //Need to make sure that check numbers are correct
             if(strNumber.charAt(2) == '4' &&  strNumber.charAt(5) == '4' && strNumber.charAt(8) == '4')//DANIEL, ARE YOU SURE OUR CHECK NUMBERS WILL ONLY BE 4???
             {
-                String angleX = strNumber.substring(0, 2);//   assiging the first two digits into the varible angleX = 67 in this case.it starts a the 0th possition and goes to the number before 2nd possition
+                String angleX = strNumber.substring(0, 2);//   assinging the first two digits into the varible angleX = 67 in this case.it starts a the 0th possition and goes to the number before 2nd possition
                 int angleXIntVal = Integer.parseInt(angleX);//converts the angleX srting variable type to int.
                     
                 
