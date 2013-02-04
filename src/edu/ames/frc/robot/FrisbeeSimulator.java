@@ -6,11 +6,10 @@
 package edu.ames.frc.robot;
 
 public class FrisbeeSimulator {
-    
-    public static double CalcPhys(double distance,double height){
+
+    public static double CalcPhys(double distance, double height) {
         double finangle = 0;
-        
+
         return (finangle);
-}
-   
+    }
 }

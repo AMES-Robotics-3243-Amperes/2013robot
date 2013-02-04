@@ -21,6 +21,7 @@ import edu.wpi.first.wpilibj.Joystick;
 
 public class InputManager {
 //Git is good
+
     static RobotMap rm = new RobotMap();
     protected static Joystick ps2cont;
     // protected static boolean dzactive  = false; // In case we want to check for deadzoneing being active
@@ -35,17 +36,17 @@ public class InputManager {
     protected static button speedBoost;
 
     void init() {
-         ps2cont = new Joystick(1);
-         manpivot = new button(true, 2);
-         fireButton = new button(false, 4);
-         pivotRight = new button(false, 6);
-         pivotLeft = new button(false, 5);
-         realign = new button(false, 7);
-         infrisbee = new button(false, 8);//Activates the frisbee retriever 
-         autotarg = new button(true, 10);
-         speedBoost = new button(false, 11);
+        ps2cont = new Joystick(1);
+        manpivot = new button(true, 2);
+        fireButton = new button(false, 4);
+        pivotRight = new button(false, 6);
+        pivotLeft = new button(false, 5);
+        realign = new button(false, 7);
+        infrisbee = new button(false, 8);//Activates the frisbee retriever 
+        autotarg = new button(true, 10);
+        speedBoost = new button(false, 11);
     }
-    
+
     public static double[] getPureAxis() { // Gets, stores, and returns the status of the joysticks on the PS2 Controller
         /* We will use a double dimension arry to hold the joystick data so that everything can be sent to other functions.
          * Both of the first dimensions will hold 2 doulbes, the first is the x & y axis of the first (paning) joystick
@@ -67,20 +68,20 @@ public class InputManager {
 
     protected static double[] deadzone(double[] axis) {// Checks for deadzone
         //This is a skeleton of the deadzone funtion. Mark should fill this in.
-        
-       // for(byte li = 0; li <= axis.length; li++){//Loops through first dimesion of array
-            for(byte si = 0; si < axis.length; si++){//loops through second dimension of array.
-                if(axis[si] <= rm.deadzone && axis[si] >= -rm.deadzone){
-                    axis[si] = 0;
-                }
+
+        // for(byte li = 0; li <= axis.length; li++){//Loops through first dimesion of array
+        for (byte si = 0; si < axis.length; si++) {//loops through second dimension of array.
+            if (axis[si] <= rm.deadzone && axis[si] >= -rm.deadzone) {
+                axis[si] = 0;
             }
-      //  }
+        }
+        //  }
         return (axis);
     }
 
     protected static double[] ramp(double[] axis) {
-        for(byte ri = 0; ri < axis.length; ri++){
-        axis[ri] = MathUtils.pow(axis[ri], rm.expo_ramp);
+        for (byte ri = 0; ri < axis.length; ri++) {
+            axis[ri] = MathUtils.pow(axis[ri], rm.expo_ramp);
         }
         return (axis);
     }
@@ -94,11 +95,11 @@ public class InputManager {
         speed = Math.sqrt(MathUtils.pow(axis[0], 2) + MathUtils.pow(axis[1], 2));
         //angle = RobotArithmetic.arcTangent(axis[0], axis[1]);
         angle = MathUtils.atan2(axis[0], axis[1]);
-        
-        if(angle < 0) {
+
+        if (angle < 0) {
             angle = (2 * Math.PI) - Math.abs(angle);
         }
-        
+
         vect[0] = angle;
         vect[1] = speed;
         vect[2] = axis[2];
