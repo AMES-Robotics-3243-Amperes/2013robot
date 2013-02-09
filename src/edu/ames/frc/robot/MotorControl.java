@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.Victor;
 
 public class MotorControl {
+
     static RobotMap rm = new RobotMap();
     static Victor A;
     static Victor B;
@@ -17,8 +18,6 @@ public class MotorControl {
     static Relay push;
     static Jaguar shoot;
     static Jaguar lift;
-    
-    
 
     void init() {
         A = new Victor(rm.Apin);
@@ -29,7 +28,7 @@ public class MotorControl {
         shoot = new Jaguar(4);
         lift = new Jaguar(5);
     }
-    
+
     void drive(double[] mv) {
         A.set(limit(mv[0]));
         B.set(limit(mv[1]));
@@ -55,21 +54,28 @@ public class MotorControl {
         }
         shoot.set(power);
     }
-    public void pusher(boolean active){
-        if(active){push.set(Relay.Value.kForward);}
-        else{push.set(Relay.Value.kOff);}
+
+    public void pusher(boolean active) {
+        if (active) {
+            push.set(Relay.Value.kForward);
+        } else {
+            push.set(Relay.Value.kOff);
+        }
     }
-    
-    public void shootertilt(double tilt){
+
+    public void shootertilt(double tilt) {
         lift.set(tilt);
     }
-    public double[] addPivot(double[] motorval, double pivot){
+
+    public double[] addPivot(double[] motorval, double pivot) {
+        pivot += rm.pivotconstant;
         motorval[0] += pivot;
         motorval[1] += pivot;
         motorval[2] += pivot;
         return motorval;
-}
+    }
     /* Make sure the motors don't go full blast all the time */
+
     double[] setSpeedCap(double[] in) {
         for (int i = 0; i < in.length; i++) {
             in[i] = in[i] * rm.speedcap;
@@ -79,6 +85,7 @@ public class MotorControl {
     /* This converts the direction we want to go (from 0 to 1, relative to the robot's base)
      * and speed (from 0 to 1) directly to values for the three omni-wheeled motors.
      */
+
     public void rotationDirection(int state) {
         if (state > 0) {
             col.set(Relay.Value.kForward);
@@ -103,9 +110,9 @@ public class MotorControl {
         motorvalue[0] = speed * Math.sin(direction);
         motorvalue[1] = speed * Math.sin(direction - (2 * Math.PI / 3));
         motorvalue[2] = speed * Math.sin(direction + (2 * Math.PI / 3));
-        
+
         //pivot += RobotMap.pivotconstant;
-        
+
 
         /*
          if (pivot < 0) {
