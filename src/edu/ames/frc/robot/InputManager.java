@@ -52,11 +52,11 @@ public class InputManager {
          * Both of the first dimensions will hold 2 doulbes, the first is the x & y axis of the first (paning) joystick
          * The second dimension holds the x & y for the second (pivoting) joystick
          */
-        double[] axis = new double[3];// Variable for storing all that data
-        double[] dir = new double[3];
+        double[] axis = new double[2];// Variable for storing all that data
+        double[] dir = new double[2];
         axis[0] = -ps2cont.getRawAxis(1);// X
         axis[1] = ps2cont.getRawAxis(2);// Y
-        axis[2] = -ps2cont.getRawAxis(3);// X
+      //  axis[2] = -ps2cont.getRawAxis(3);// X
         //      axisOC[0] = axis[0][0]; 
         //    axisOC[1] = axis[0][1];
         //       axis[1][1] = PS2Cont.getRawAxis(4);// Y We dont actually need this value
@@ -64,6 +64,10 @@ public class InputManager {
         axis = ramp(axis);
         dir = translate(axis);
         return (dir); // Returns axis data to the caller.
+    }
+    public static double getPivot(){
+        double pivot = -ps2cont.getRawAxis(3);
+        return (pivot);
     }
 
     protected static double[] deadzone(double[] axis) {// Checks for deadzone
@@ -88,7 +92,7 @@ public class InputManager {
 
     protected static double[] translate(double[] axis) {// Translates final input values into a format for use by the rest of the code.
         //This is a skeleton of the ramp funtion. Mark should fill this in
-        double[] vect = new double[3];
+        double[] vect = new double[2];
         double speed = 0;
         double angle = 0;
         //     double hypo = 0;
@@ -102,7 +106,6 @@ public class InputManager {
 
         vect[0] = angle;
         vect[1] = speed;
-        vect[2] = axis[2];
         return (vect);
     }
 

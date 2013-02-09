@@ -69,10 +69,11 @@ public class MotorControl {
         }
         lift.set(tilt);
     }
-    public void addPivot(double[] motorval, double pivot){
+    public double[] addPivot(double[] motorval, double pivot){
         motorval[0] += pivot;
         motorval[1] += pivot;
         motorval[2] += pivot;
+        return motorval;
 }
     /* Make sure the motors don't go full blast all the time */
     double[] setSpeedCap(double[] in) {

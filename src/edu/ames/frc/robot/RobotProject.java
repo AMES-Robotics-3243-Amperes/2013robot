@@ -34,7 +34,7 @@ public class RobotProject extends IterativeRobot {
     protected static SensorInput SI = new SensorInput();
     protected static RobotMap RM = new RobotMap();
     protected static Watchdog wd;
-    
+    double pivotval;
     
     double[] drivemotorvalues;
     double[] joystickangleandspeed;
@@ -68,8 +68,10 @@ public class RobotProject extends IterativeRobot {
         while (isOperatorControl() && isEnabled()) {
             wd.feed();
             joystickangleandspeed = IM.getPureAxis();
-            drivemotorvalues = MC.convertHeadingToMotorCommands(joystickangleandspeed[0], joystickangleandspeed[1], joystickangleandspeed[2]);
+            pivotval = IM.getPivot();
+            drivemotorvalues = MC.convertHeadingToMotorCommands(joystickangleandspeed[0], joystickangleandspeed[1]);
             drivemotorvalues = MC.setSpeedCap(drivemotorvalues);
+            drivemotorvalues = MC.addPivot(drivemotorvalues, pivotval);
             wd.feed();
             MC.drive(drivemotorvalues);
         }
