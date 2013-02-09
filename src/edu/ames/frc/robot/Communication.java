@@ -172,7 +172,8 @@ public class Communication {
             }
             else
             {
-                //System.out.println("Check numbers are wrong do something here....");//if it turns out not being genuine
+                SmartDashboard.putString("LOLwut?:", "Check numbers are wrong do something here....");
+                    //if it turns out not being genuine
             }
         }
         
