@@ -69,7 +69,11 @@ public class MotorControl {
         }
         lift.set(tilt);
     }
-
+    public void addPivot(double[] motorval, double pivot){
+        motorval[0] += pivot;
+        motorval[1] += pivot;
+        motorval[2] += pivot;
+}
     /* Make sure the motors don't go full blast all the time */
     double[] setSpeedCap(double[] in) {
         for (int i = 0; i < in.length; i++) {
@@ -92,7 +96,7 @@ public class MotorControl {
 
     //the col motor either goes front, back or stays there.
     //Who added double drive?
-    double[] convertHeadingToMotorCommands(double direction, double speed, double pivot) {
+    double[] convertHeadingToMotorCommands(double direction, double speed) {
         double[] motorvalue = new double[3];
         /* so, we'll define the direction we want to go as "forward". There are
          * 3 different points where only two motors will need to run (if the direction
@@ -105,11 +109,8 @@ public class MotorControl {
         motorvalue[1] = speed * Math.sin(direction - (2 * Math.PI / 3));
         motorvalue[2] = speed * Math.sin(direction + (2 * Math.PI / 3));
         
-        pivot += RobotMap.pivotconstant;
+        //pivot += RobotMap.pivotconstant;
         
-        motorvalue[0] += pivot;
-        motorvalue[1] += pivot;
-        motorvalue[2] += pivot;
 
         /*
          if (pivot < 0) {
