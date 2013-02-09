@@ -16,6 +16,7 @@ public class MotorControl {
     static Relay col;
     static Relay push;
     static Jaguar shoot;
+    static Jaguar lift;
     
     
 
@@ -26,6 +27,7 @@ public class MotorControl {
         col = new Relay(5);
         push = new Relay(6);
         shoot = new Jaguar(4);
+        lift = new Jaguar(5);
     }
     
     void drive(double[] mv) {
@@ -65,7 +67,7 @@ public class MotorControl {
         if (tilt > 1){
             tilt = 1;
         }
-        
+        lift.set(tilt);
     }
 
     /* Make sure the motors don't go full blast all the time */
