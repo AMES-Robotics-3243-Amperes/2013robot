@@ -146,7 +146,6 @@ public class Communication {
         public PISocket(boolean activated) throws Exception {
             active = activated;
             psock = (SocketConnection) Connector.open("socket://127.0.0.1:3243");
-            
         }   
         public void GetData() throws Exception {
             InputStream is = psock.openInputStream();
