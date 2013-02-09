@@ -17,6 +17,7 @@ public class MotorControl {
     static Relay push;
     static Jaguar shoot;
     
+    
 
     void init() {
         A = new Victor(rm.Apin);
@@ -65,7 +66,7 @@ public class MotorControl {
             tilt = 1;
         }
         
-    } 
+    }
 
     /* Make sure the motors don't go full blast all the time */
     double[] setSpeedCap(double[] in) {
