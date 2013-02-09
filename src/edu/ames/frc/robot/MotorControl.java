@@ -42,6 +42,16 @@ public class MotorControl {
         shoot.set(power);
 
     }
+    
+    public void shooterpivot(double tilt){
+        if(tilt < -1){
+            tilt = -1;
+        }
+        if (tilt > 1){
+            tilt = 1;
+        }
+        
+    } 
 
     /* Make sure the motors don't go full blast all the time */
     double[] setSpeedCap(double[] in) {
