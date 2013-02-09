@@ -57,7 +57,7 @@ public class MotorControl {
         else{push.set(Relay.Value.kOff);}
     }
     
-    public void shooterpivot(double tilt){
+    public void shootertilt(double tilt){
         if(tilt < -1){
             tilt = -1;
         }
@@ -88,7 +88,7 @@ public class MotorControl {
     }
 
     //the col motor either goes front, back or stays there.
-    double[] convertHeadingToMotorCommands(double direction, double speed, double pivot) {
+    double[] convertHeadingToMotorCommands(double direction, double speed, double pivot, double drive) {
         double[] motorvalue = new double[3];
         /* so, we'll define the direction we want to go as "forward". There are
          * 3 different points where only two motors will need to run (if the direction
@@ -103,9 +103,9 @@ public class MotorControl {
         
         pivot += RobotMap.pivotconstant;
         
-        motorvalue[0] += pivot;
-        motorvalue[1] += pivot;
-        motorvalue[2] += pivot;
+        motorvalue[0] += drive + pivot;
+        motorvalue[1] += drive + pivot;
+        motorvalue[2] += drive + pivot;
 
         /*
          if (pivot < 0) {
