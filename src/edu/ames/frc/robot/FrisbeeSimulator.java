@@ -4,7 +4,12 @@
  * 
  */
 package edu.ames.frc.robot;
-
+import com.sun.squawk.util.MathUtils;
 public class FrisbeeSimulator {
-   
+
+    public static double BasicTrig(double distance, double height) {
+        double AoA = 0; // AoA is notation for Angle of Attack
+        AoA = MathUtils.atan2(height, distance);
+        return (AoA);
+    }
 }

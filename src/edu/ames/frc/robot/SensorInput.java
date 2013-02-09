@@ -12,11 +12,12 @@ package edu.ames.frc.robot;
 import edu.wpi.first.wpilibj.Gyro;
 
 public class SensorInput {
-    Gyro gy;
+    static RobotMap rm = new RobotMap();
+    static Gyro gy;
     
-    /* Initialize sensor values & variables */
+//    /* Initialize sensor values & variables */
     void init() {
-        gy = new Gyro(RobotMap.gyroport); 
+        gy = new Gyro(rm.gyroport); 
         gy.reset();
     }
     
