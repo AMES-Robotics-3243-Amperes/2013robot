@@ -147,7 +147,7 @@ public class Communication {
             active = activated;
             psock = (SocketConnection) Connector.open("socket://127.0.0.1:3243");
             
-        }
+        }   
         public void GetData() throws Exception {
             InputStream is = psock.openInputStream();
             rcnum = new Integer(is.read()); //Converting int to Integer object
