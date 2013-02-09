@@ -81,7 +81,7 @@ public class InputManager {
 
     protected static double[] ramp(double[] axis) {
         for (byte ri = 0; ri < axis.length; ri++) {
-            axis[ri] = MathUtils.pow(axis[ri], rm.expo_ramp);
+            axis[ri] = (2/3)*MathUtils.pow(axis[ri], RobotMap.expo_ramp)+(1/3)*axis[ri];
         }
         return (axis);
     }
