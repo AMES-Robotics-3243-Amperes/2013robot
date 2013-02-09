@@ -15,7 +15,7 @@ public class SensorInput {
     static RobotMap rm = new RobotMap();
     static Gyro gy;
     
-    /* Initialize sensor values & variables */
+//    /* Initialize sensor values & variables */
     void init() {
         gy = new Gyro(rm.gyroport); 
         gy.reset();
