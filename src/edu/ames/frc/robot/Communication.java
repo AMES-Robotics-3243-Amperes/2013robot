@@ -146,10 +146,11 @@ public class Communication {
         public PISocket(boolean activated) throws Exception {
             active = activated;
             psock = (SocketConnection) Connector.open("socket://127.0.0.1:3243");
+            
+        }
+        public void GetData() throws Exception {
             InputStream is = psock.openInputStream();
             rcnum = new Integer(is.read()); //Converting int to Integer object
-            is.close();
-            psock.close(); 
            
             String strNumber  = rcnum.toString();  //Converting Integer value into a string value
             
@@ -174,33 +175,8 @@ public class Communication {
             {
                 //System.out.println("Check numbers are wrong do something here....");//if it turns out not being genuine
             }
-            //WE REALLY DON'T NEED THIS!
-            /*      long newRcnum;         
-                newRcnum= rcnum/100;
-                if(rcnum/newRcnum >100 )
-                {
-                    newRcnum=newRcnum-1;
-                }
-                long newRcnum2;
-                newRcnum2= newRcnum/1000;
-                if(newRcnum/newRcnum2 >1000 )
-                {
-                    newRcnum2=newRcnum2-1;
-                }
-                long newRcnum3;
-                newRcnum3= newRcnum2/1000;
-                if(newRcnum2/newRcnum3 >1000 )
-                {
-                    newRcnum3=newRcnum3-1;
-                }
-                long newRcnum4;
-                newRcnum4= newRcnum3/1000;
-                if(newRcnum3/newRcnum4 >1000 )
-                {
-                    newRcnum4=newRcnum4-1;
-                }
-             */   // Is this right Kole?
         }
+        
     }
 }
 //Figure out how to take a long number such as 67455423497 and seperate it into many individual numbers according to the layout shown above
