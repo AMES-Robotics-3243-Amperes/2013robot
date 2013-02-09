@@ -52,17 +52,17 @@ public class InputManager {
          * Both of the first dimensions will hold 2 doulbes, the first is the x & y axis of the first (paning) joystick
          * The second dimension holds the x & y for the second (pivoting) joystick
          */
-        double[] axis = new double[2];// Variable for storing all that data
+       // double[] axis = new double[2];// Variable for storing all that data
         double[] dir = new double[2];
-        axis[0] = -ps2cont.getRawAxis(1);// X
-        axis[1] = ps2cont.getRawAxis(2);// Y
+        dir[0] = -ps2cont.getRawAxis(1);// X
+        dir[1] = ps2cont.getRawAxis(2);// Y
       //  axis[2] = -ps2cont.getRawAxis(3);// X
         //      axisOC[0] = axis[0][0]; 
         //    axisOC[1] = axis[0][1];
         //       axis[1][1] = PS2Cont.getRawAxis(4);// Y We dont actually need this value
-        axis = deadzone(axis);
-        axis = ramp(axis);
-        dir = translate(axis);
+        dir = deadzone(dir);
+        dir = ramp(dir);
+        dir = translate(dir);
         return (dir); // Returns axis data to the caller.
     }
     public static double getPivot(){
