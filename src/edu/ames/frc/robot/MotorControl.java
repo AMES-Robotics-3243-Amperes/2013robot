@@ -61,12 +61,6 @@ public class MotorControl {
     }
     
     public void shootertilt(double tilt){
-        if(tilt < -1){
-            tilt = -1;
-        }
-        if (tilt > 1){
-            tilt = 1;
-        }
         lift.set(tilt);
     }
 
