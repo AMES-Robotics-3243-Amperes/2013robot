@@ -16,7 +16,6 @@ public class MotorControl {
     static Relay col;
     static Jaguar shoot;
     
-    static double pivotconstant = 0.12; // because the robot drift-pivots
 
     void init() {
         A = new Victor(rm.Apin);
@@ -86,7 +85,7 @@ public class MotorControl {
         motorvalue[1] = speed * Math.sin(direction - (2 * Math.PI / 3));
         motorvalue[2] = speed * Math.sin(direction + (2 * Math.PI / 3));
         
-        pivot += pivotconstant;
+        pivot += RobotMap.pivotconstant;
         
         motorvalue[0] += pivot;
         motorvalue[1] += pivot;
