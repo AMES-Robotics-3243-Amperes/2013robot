@@ -14,6 +14,7 @@ public class MotorControl {
     static Victor B;
     static Victor C;
     static Relay col;
+    static Relay push;
     static Jaguar shoot;
     
 
@@ -22,6 +23,7 @@ public class MotorControl {
         B = new Victor(rm.Bpin);
         C = new Victor(rm.Cpin);
         col = new Relay(5);
+        push = new Relay(6);
         shoot = new Jaguar(4);
     }
     
@@ -49,6 +51,10 @@ public class MotorControl {
             power = 1;
         }
         shoot.set(power);
+    }
+    public void pusher(boolean active){
+        if(active){push.set(Relay.Value.kForward);}
+        else{push.set(Relay.Value.kOff);}
     }
 
     /* Make sure the motors don't go full blast all the time */
