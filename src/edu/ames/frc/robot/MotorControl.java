@@ -76,9 +76,16 @@ public class MotorControl {
     }
     /* Make sure the motors don't go full blast all the time */
 
-    double[] setSpeedCap(double[] in) {
-        for (int i = 0; i < in.length; i++) {
-            in[i] = in[i] * rm.speedcap;
+    double[] setSpeedCap(double[] in, boolean boosted) {
+        if (!boosted) {
+
+            for (int i = 0; i < in.length & !boosted; i++) {
+                in[i] = in[i] * rm.speedcap;
+            }
+        } else if (boosted) {
+            for (int i = 0; i < in.length & !boosted; i++) {
+                in[i] = in[i] * (rm.speedcap - .2);
+            }
         }
         return in;
     }

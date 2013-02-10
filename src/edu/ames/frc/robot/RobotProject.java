@@ -70,7 +70,7 @@ public class RobotProject extends IterativeRobot {
             joystickangleandspeed = IM.getPureAxis();
             pivotval = IM.getPivot();
             drivemotorvalues = MC.convertHeadingToMotorCommands(joystickangleandspeed[0], joystickangleandspeed[1]);
-            drivemotorvalues = MC.setSpeedCap(drivemotorvalues);
+            drivemotorvalues = MC.setSpeedCap(drivemotorvalues, IM.speedBoost.getState());
             drivemotorvalues = MC.addPivot(drivemotorvalues, pivotval);
             wd.feed();
             System.out.println("motors: " + drivemotorvalues[0] + ",\t" + drivemotorvalues[1] + ",\t" + drivemotorvalues[2]);

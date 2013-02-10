@@ -35,16 +35,16 @@ public class InputManager {
     protected static button autotarg;
     protected static button speedBoost;
 
-    void init() {
+    public void init() {
         ps2cont = new Joystick(1);
         manpivot = new button(true, 2);
         fireButton = new button(false, 4);
         pivotRight = new button(false, 6);
         pivotLeft = new button(false, 5);
         realign = new button(false, 7);
-        infrisbee = new button(false, 8);//Activates the frisbee retriever 
+     //   infrisbee = new button(false, 8);//Activates the frisbee retriever 
         autotarg = new button(true, 10);
-        speedBoost = new button(false, 11);
+        speedBoost = new button(false, 8);
     }
 
     public static double[] getPureAxis() { // Gets, stores, and returns the status of the joysticks on the PS2 Controller
@@ -115,16 +115,19 @@ public class InputManager {
         vect[1] = speed;
         return (vect);
     }
-
     public static class button {
-
+        boolean state;
+        int bpin;
+        boolean toggle;
         public button(boolean isToggle, int pin) {
             toggle = isToggle;
             bpin = pin;
         }
-        boolean state;
-        int bpin;
-        boolean toggle;
+        public boolean getState(){
+            state = ps2cont.getRawButton(this.bpin);
+           return state;
+        }
+        
     }
     //protected static double[] translate(double[][] axis){// Translates deadzoned and scaled inputs into whatever exact type of input MotorControl needs/wants.
     //This is a skeleton of the translate funtion. Mark should fill this in.
