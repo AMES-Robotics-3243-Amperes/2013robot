@@ -67,6 +67,7 @@ public class InputManager {
     }
     public static double getPivot(){
         double pivot = -ps2cont.getRawAxis(3);
+        pivot = rampSingle(pivot);
         return (pivot);
     }
 
@@ -90,7 +91,12 @@ public class InputManager {
         }
         return (axis);
     }
-
+    protected static double rampSingle(double axis) {
+        
+            axis = MathUtils.pow(axis, rm.expo_ramp);
+           // axis[ri] = (2/3)*MathUtils.pow(axis[ri], RobotMap.expo_ramp)+(1/3)*axis[ri];
+        return (axis);
+    }
     protected static double[] translate(double[] axis) {// Translates final input values into a format for use by the rest of the code.
         //This is a skeleton of the ramp funtion. Mark should fill this in
         double[] vect = new double[2];
