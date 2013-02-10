@@ -73,6 +73,7 @@ public class RobotProject extends IterativeRobot {
             drivemotorvalues = MC.setSpeedCap(drivemotorvalues);
             drivemotorvalues = MC.addPivot(drivemotorvalues, pivotval);
             wd.feed();
+            System.out.println("motors: " + drivemotorvalues[0] + ",\t" + drivemotorvalues[1] + ",\t" + drivemotorvalues[2]);
             MC.drive(drivemotorvalues);
         }
     }

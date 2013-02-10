@@ -61,12 +61,13 @@ public class InputManager {
         //    axisOC[1] = axis[0][1];
         //       axis[1][1] = PS2Cont.getRawAxis(4);// Y We dont actually need this value
         dir = deadzone(dir);
-        dir = ramp(dir);
+        //dir = ramp(dir);
         dir = translate(dir);
         return (dir); // Returns axis data to the caller.
     }
     public static double getPivot(){
         double pivot = -ps2cont.getRawAxis(3);
+        pivot = rampSingle(pivot);
         return (pivot);
     }
 
@@ -85,12 +86,17 @@ public class InputManager {
 
     protected static double[] ramp(double[] axis) {
         for (byte ri = 0; ri < axis.length; ri++) {
-            axis[ri] = MathUtils.pow(axis[ri], rm.expo_ramp);
-           // axis[ri] = (2/3)*MathUtils.pow(axis[ri], RobotMap.expo_ramp)+(1/3)*axis[ri];
+            //axis[ri] = MathUtils.pow(axis[ri], rm.expo_ramp);
+            axis[ri] = ((.666)*MathUtils.pow(axis[ri], rm.expo_ramp))+((.333)*axis[ri]);
         }
         return (axis);
     }
-
+    protected static double rampSingle(double axis) {
+        
+            //axis = MathUtils.pow(axis, rm.expo_ramp);
+           axis = ((.666)*MathUtils.pow(axis, rm.expo_ramp))+((.333)*axis);
+        return (axis);
+    }
     protected static double[] translate(double[] axis) {// Translates final input values into a format for use by the rest of the code.
         //This is a skeleton of the ramp funtion. Mark should fill this in
         double[] vect = new double[2];
