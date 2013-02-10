@@ -143,32 +143,40 @@ public class Communication {
         boolean active;
         SocketConnection psock = null;
         Integer rcnum;
+        int angleInt;
+        int heightInt;
+        int distanceInt;
+        int confInt;
         public PISocket(boolean activated) throws Exception {
             active = activated;
             psock = (SocketConnection) Connector.open("socket://127.0.0.1:3243");
+            angleInt = 0;
+            heightInt = 0;
+            distanceInt = 0;
+            confInt = 0;
         }   
         public void GetData() throws Exception {
             InputStream is = psock.openInputStream();
             rcnum = new Integer(is.read()); //Converting int to Integer object
-           
-            String strNumber  = rcnum.toString();  //Converting Integer value into a string value
+           String strNumber  = rcnum.toString();  //Converting Integer value into a string value
             
             
              //Need to make sure that check numbers are correct
             if(strNumber.charAt(2) == '4' &&  strNumber.charAt(5) == '4' && strNumber.charAt(8) == '4')//DANIEL, ARE YOU SURE OUR CHECK NUMBERS WILL ONLY BE 4???
             {
                 String angleX = strNumber.substring(0, 2);//   assinging the first two digits into the varible angleX = 67 in this case.it starts a the 0th possition and goes to the number before 2nd possition
-                int angleXIntVal = Integer.parseInt(angleX);//converts the angleX srting variable type to int.
+                angleInt = Integer.parseInt(angleX);//converts the angleX srting variable type to int.
                     
                 
                 String heightY = strNumber.substring(3, 5);//   assiging the first two digits into the varible height=55 in this case .it starts a the 0th possition and goes to the number before 2nd possition
-                int heightYIntVal = Integer.parseInt(heightY);//converts the heightY srting variable type to int.
+                heightInt = Integer.parseInt(heightY);//converts the heightY srting variable type to int.
                 
                 String distanceZ = strNumber.substring(6, 8);//   assiging the first two digits into the varible distanceZ = 23 in this case .it starts a the 0th possition and goes to the number before 2nd possition
-                int distanceZIntVal = Integer.parseInt(distanceZ);//converts the distanceZ srting variable type to int.
+                distanceInt = Integer.parseInt(distanceZ);//converts the distanceZ srting variable type to int.
                 
                 String confidenceLevelC = strNumber.substring(9, 11);//   assiging the first two digits into the varible confidenceLevel = 95 in this case .it starts a the 0th possition and goes to the number before 2nd possition
-                int confidenceLevelCIntVal = Integer.parseInt(confidenceLevelC);//converts the ConfidenceLevelC srting variable type to int.
+                confInt = Integer.parseInt(confidenceLevelC);//converts the ConfidenceLevelC srting variable type to int.
+     
             }
             else
             {
