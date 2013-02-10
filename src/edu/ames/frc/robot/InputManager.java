@@ -61,7 +61,7 @@ public class InputManager {
         //    axisOC[1] = axis[0][1];
         //       axis[1][1] = PS2Cont.getRawAxis(4);// Y We dont actually need this value
         dir = deadzone(dir);
-        dir = ramp(dir);
+        //dir = ramp(dir);
         dir = translate(dir);
         return (dir); // Returns axis data to the caller.
     }
