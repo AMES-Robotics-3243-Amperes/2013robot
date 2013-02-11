@@ -79,7 +79,7 @@ public class MotorControl {
     double[] setSpeedCap(double[] in, boolean boosted) {
         if (!boosted) {
 
-            for (int i = 0; i < in.length & !boosted; i++) {
+            for (int i = 0; i < in.length; i++) {
                 in[i] = in[i] * rm.speedcap;
             }
         } else if (boosted) {

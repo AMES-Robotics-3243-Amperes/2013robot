@@ -98,17 +98,16 @@ public class InputManager {
         return (axis);
     }
     protected static double[] translate(double[] axis) {// Translates final input values into a format for use by the rest of the code.
-        //This is a skeleton of the ramp funtion. Mark should fill this in
         double[] vect = new double[2];
         double speed = 0;
         double angle = 0;
-        //     double hypo = 0;
-        speed = Math.sqrt(MathUtils.pow(axis[0], 2) + MathUtils.pow(axis[1], 2));
-        //angle = RobotArithmetic.arcTangent(axis[0], axis[1]);
-        angle = MathUtils.atan2(axis[0], axis[1]);
+        //Sets the speed to the length of the hypotenuse of the imaginary triangle between x & y directional values
+        speed = Math.sqrt(MathUtils.pow(axis[0], 2) + MathUtils.pow(axis[1], 2));// Pythagorean theorem: The square root of ( (X^2) + (y^2) )
+        //Sets the angle to the inverse tangent of x / y
+        angle = MathUtils.atan2(axis[0], axis[1]);// Tan^-1(x/y) Example: Tan^-1(.7/.2)
 
         if (angle < 0) {
-            angle = (2 * Math.PI) - Math.abs(angle);
+            angle = (2 * Math.PI) - Math.abs(angle);//Wut
         }
 
         vect[0] = angle;
