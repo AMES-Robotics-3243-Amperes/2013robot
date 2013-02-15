@@ -19,7 +19,6 @@ public class MotorControl {
     static Victor B;
     static Victor C;
     static Victor climb;
-    static Relay col;
     static Relay push;
     static Jaguar shoot;
     static Jaguar tilt;
@@ -31,7 +30,6 @@ public class MotorControl {
         C = new Victor(RobotMap.Cpin);
         climb = new Victor(RobotMap.climbpin);
         asstclimb = new Jaguar(RobotMap.assistclimb);
-        col = new Relay(RobotMap.collectorpin);
        // push = new Relay(RobotMap.pushpin);
         shoot = new Jaguar(RobotMap.pushpin);
         tilt = new Jaguar(RobotMap.tiltpin);
@@ -106,22 +104,10 @@ public class MotorControl {
         }
         return in;
     }
+  
     /* This converts the direction we want to go (from 0 to 1, relative to the robot's base)
      * and speed (from 0 to 1) directly to values for the three omni-wheeled motors.
      */
-
-    public void rotationDirection(int state) {
-        if (state > 0) {
-            col.set(Relay.Value.kForward);
-        } else if (state < 0) {
-            col.set(Relay.Value.kReverse);
-        } else if (state == 0) {
-            col.set(Relay.Value.kOff);
-        }
-    }
-
-    //the col motor either goes front, back or stays there.
-    //Who added double drive?
     double[] convertHeadingToMotorCommands(double direction, double speed) {
         double[] motorvalue = new double[3];
         /* so, we'll define the direction we want to go as "forward". There are
