@@ -19,7 +19,7 @@ public class RobotMap {
     protected final static int Cpin = 3;
     protected final static double pivotconstant = 0.07; // because the robot drift-pivots
     protected final static double speedcap = 0.5; // speed the robot should usually move
-    
+    protected final static int clmpin = 4;
     protected final static int gyroport = 1; // gyro is on analog port 1
     
     protected final static int expo_ramp = 3;

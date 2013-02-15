@@ -12,12 +12,13 @@ public class MotorControl {
 /*Motor control check list
  *Drive: Check
  *Shooter: Check
- * 
+ *
  */
     static RobotMap rm = new RobotMap();
     static Victor A;
     static Victor B;
     static Victor C;
+    static Victor climb;
     static Relay col;
     static Relay push;
     static Jaguar shoot;
@@ -27,6 +28,7 @@ public class MotorControl {
         A = new Victor(rm.Apin);
         B = new Victor(rm.Bpin);
         C = new Victor(rm.Cpin);
+        climb = new Victor(rm.clmpin);
         col = new Relay(5);
         push = new Relay(6);
         shoot = new Jaguar(4);
@@ -38,6 +40,10 @@ public class MotorControl {
         B.set(limit(mv[1]));
         C.set(limit(mv[2]));
     }
+    void climb(double power){
+        power = limit(power);
+        climb.set(power);
+    }
 
     static double limit(double value) {
         if (value < -1) {
@@ -47,6 +53,15 @@ public class MotorControl {
             value = 1;
         }
         return (value);
+    }
+    static double Climblimit(double inpow){
+        if(inpow > .1){
+            inpow = .1;
+        }
+        else if(inpow < -.1){
+            inpow = .1;
+        }
+        return inpow;
     }
 
     public void shooter(double power) {

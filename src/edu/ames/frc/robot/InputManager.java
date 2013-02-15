@@ -34,6 +34,7 @@ public class InputManager {
     protected static button infrisbee;
     protected static button autotarg;
     protected static button speedBoost;
+    protected static button climber;
 
     public void init() {
         ps2cont = new Joystick(1);
@@ -45,6 +46,7 @@ public class InputManager {
      //   infrisbee = new button(false, 8);//Activates the frisbee retriever 
         autotarg = new button(true, 10);
         speedBoost = new button(false, 8);
+        climber = new button(true, 9);
     }
     public void updateAll(){
        boolean voidBool;

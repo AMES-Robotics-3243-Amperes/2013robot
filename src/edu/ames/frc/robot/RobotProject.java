@@ -38,6 +38,7 @@ public class RobotProject extends IterativeRobot {
     
     double[] drivemotorvalues;
     double[] joystickangleandspeed;
+    double climbval;
     public void robotInit() {
         wd = Watchdog.getInstance();
         wd.setExpiration(1);
@@ -67,6 +68,8 @@ public class RobotProject extends IterativeRobot {
         wd.feed();
         while (isOperatorControl() && isEnabled()) {
             wd.feed();
+            IM.updateAll();
+            if(!IM.climber.state){
             joystickangleandspeed = IM.getPureAxis();
             pivotval = IM.getPivot();
             drivemotorvalues = MC.convertHeadingToMotorCommands(joystickangleandspeed[0], joystickangleandspeed[1]);
@@ -75,6 +78,12 @@ public class RobotProject extends IterativeRobot {
             wd.feed();
             System.out.println("motors: " + drivemotorvalues[0] + ",\t" + drivemotorvalues[1] + ",\t" + drivemotorvalues[2]);
             MC.drive(drivemotorvalues);
+            }
+            else{
+                climbval = IM.getPivot();
+                climbval = MC.Climblimit(climbval);
+                MC.climb(climbval);
+            }
         }
     }
     
