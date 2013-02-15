@@ -48,17 +48,15 @@ public class InputManager {
         climber = new button(false, RobotMap.clmpin);
     }
 
-    public void updateAll() {
-        boolean voidBool;
-        voidBool = manpivot.getState();
-        voidBool = fireButton.getState();
+    public void updateAllButtons() {
+        manpivot.getState();
+        fireButton.getState();
         //voidBool = pivotRight.getState();
         //voidBool = pivotLeft.getState();
-        voidBool = realign.getState();
-        voidBool = infrisbee.getState();
-        voidBool = autotarg.getState();
-        voidBool = speedBoost.getState();
-        voidBool = voidBool; // LUL
+        //voidBool = realign.getState();
+        //voidBool = infrisbee.getState();
+        //voidBool = autotarg.getState();
+        speedBoost.getState();
     }
 
     public static double[] getPureAxis() { // Gets, stores, and returns the status of the joysticks on the PS2 Controller

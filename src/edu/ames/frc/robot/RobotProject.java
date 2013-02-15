@@ -65,21 +65,19 @@ public class RobotProject extends IterativeRobot {
      * This function is called periodically during operator control
      */
     public void teleopPeriodic() {
-        wd.feed();
         while (isOperatorControl() && isEnabled()) {
             wd.feed();
-            IM.updateAll();
-            if(!IM.climber.state){
-            joystickangleandspeed = IM.getPureAxis();
-            pivotval = IM.getPivot();
-            drivemotorvalues = MC.convertHeadingToMotorCommands(joystickangleandspeed[0], joystickangleandspeed[1]);
-            drivemotorvalues = MC.setSpeedCap(drivemotorvalues, IM.speedBoost.getState());
-            drivemotorvalues = MC.addPivot(drivemotorvalues, pivotval);
-            wd.feed();
-            System.out.println("motors: " + drivemotorvalues[0] + ",\t" + drivemotorvalues[1] + ",\t" + drivemotorvalues[2]);
-            MC.drive(drivemotorvalues);
-            }
-            else if(IM.climber.state){
+            IM.updateAllButtons();
+            if (!IM.climber.getState()) {
+                joystickangleandspeed = IM.getPureAxis();
+                pivotval = IM.getPivot();
+                drivemotorvalues = MC.convertHeadingToMotorCommands(joystickangleandspeed[0], joystickangleandspeed[1]);
+                drivemotorvalues = MC.setSpeedCap(drivemotorvalues, IM.speedBoost.getState());
+                drivemotorvalues = MC.addPivot(drivemotorvalues, pivotval);
+                wd.feed();
+                System.out.println("motors: " + drivemotorvalues[0] + ",\t" + drivemotorvalues[1] + ",\t" + drivemotorvalues[2]);
+                MC.drive(drivemotorvalues);
+            } else {
                 climbval = IM.getClimb();
                 climbval = MC.Climblimit(climbval);
                 MC.climb(climbval);

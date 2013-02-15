@@ -131,26 +131,16 @@ public class MotorControl {
         // 0 is what we define as the "front" motodrivemotorvalues - what we measure our heading angle from,
         // 1 is the motor one position clockwise from that, and
         // 2 is the motor one position counter-clockwise from 0.
+        /*
         motorvalue[0] = speed * Math.sin(direction);
         motorvalue[1] = speed * Math.sin(direction - (2 * Math.PI / 3));
         motorvalue[2] = speed * Math.sin(direction + (2 * Math.PI / 3));
-
-        //pivot += RobotMap.pivotconstant;
-
-
-        /*
-         if (pivot < 0) {
-         motorvalue[0] = -pivot;
-         motorvalue[1] = -pivot;
-         motorvalue[2] = -pivot;
-         }
-         if (pivot > 0) {
-         motorvalue[0] = +pivot;
-         motorvalue[1] = +pivot;
-         motorvalue[2] = +pivot;
-         }
-         */
-
+        */
+        
+        motorvalue[0] = speed * Math.cos(direction - (Math.PI / 4));
+        motorvalue[1] = speed * -Math.sin(direction);
+        motorvalue[2] = speed * -Math.cos(direction);
+        
         return motorvalue;
     }
 }
