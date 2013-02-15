@@ -33,9 +33,11 @@ public class RobotMap {
     protected final static int realignpin = 5;
     protected final static int autotarg = 10;
     protected final static int speedboost = 3;
+    
     //Values go here!
     protected final static int expo_ramp = 3;
     protected final static double pivotconstant = 0.07; // because the robot drift-pivots
     protected final static double speedcap = 0.5; // speed the robot should usually move
+    protected final static double climberspeed = 0.4;
     protected final static double deadzone = .05;
 } 

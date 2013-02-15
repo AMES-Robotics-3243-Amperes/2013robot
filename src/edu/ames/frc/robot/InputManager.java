@@ -120,7 +120,7 @@ public class InputManager {
     }
 
     public static double rampClimb(double raw) {
-        raw = raw * .1;
+        raw = raw * RobotMap.climberspeed;
         return raw;
     }
 
@@ -132,10 +132,6 @@ public class InputManager {
         speed = Math.sqrt(MathUtils.pow(axis[0], 2) + MathUtils.pow(axis[1], 2));// Pythagorean theorem: The square root of ( (X^2) + (y^2) )
         //Sets the angle to the inverse tangent of x / y
         angle = MathUtils.atan2(axis[0], axis[1]);// Tan^-1(x/y) Example: Tan^-1(.7/.2)
-
-        if (angle < 0) {
-            angle = (2 * Math.PI) - Math.abs(angle);//Wut
-        }
 
         vect[0] = angle;
         vect[1] = speed;

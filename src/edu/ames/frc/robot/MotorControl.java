@@ -58,10 +58,10 @@ public class MotorControl {
     }
 
     static double Climblimit(double inpow) {
-        if (inpow > .1) {
-            inpow = .1;
-        } else if (inpow < -.1) {
-            inpow = -.1;
+        if (inpow > RobotMap.climberspeed) {
+            inpow = RobotMap.climberspeed;
+        } else if (inpow < -RobotMap.climberspeed) {
+            inpow = -RobotMap.climberspeed;
         }
         return inpow;
     }
