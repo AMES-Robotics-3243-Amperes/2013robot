@@ -58,8 +58,6 @@ public class MotorControl {
     }
 
     static double Climblimit(double inpow) {
-        inpow = inpow * .1;
-
         if (inpow > .1) {
             inpow = .1;
         } else if (inpow < -.1) {

@@ -120,7 +120,7 @@ public class InputManager {
     }
 
     public static double rampClimb(double raw) {
-        raw = raw / 10;
+        raw = raw * .1;
         return raw;
     }
 
