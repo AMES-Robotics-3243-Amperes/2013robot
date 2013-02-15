@@ -81,6 +81,7 @@ public class RobotProject extends IterativeRobot {
             }
             else{
                 climbval = IM.getPivot();
+                climbval = IM.rampClimb(climbval);
                 climbval = MC.Climblimit(climbval);
                 MC.climb(climbval);
             }

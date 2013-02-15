@@ -110,6 +110,10 @@ public class InputManager {
            axis = ((.666)*MathUtils.pow(axis, rm.expo_ramp))+((.333)*axis);
         return (axis);
     }
+    public static double rampClimb(double raw){
+        raw = raw/10;
+        return raw;
+    }
     protected static double[] translate(double[] axis) {// Translates final input values into a format for use by the rest of the code.
         double[] vect = new double[2];
         double speed = 0;
