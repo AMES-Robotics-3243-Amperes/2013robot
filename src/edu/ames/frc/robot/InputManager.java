@@ -28,8 +28,8 @@ public class InputManager {
     //  protected static double[] axisOC = new double[2]; // Stores the original copies of the axis reads, for use elsewhere.
     protected static button manpivot;
     protected static button fireButton;
-    protected static button pivotRight;
-    protected static button pivotLeft;
+   //protected static button pivotRight;//What are these two?
+   //protected static button pivotLeft;//What are these two?
     protected static button realign;
     protected static button infrisbee;
     protected static button autotarg;
@@ -39,14 +39,25 @@ public class InputManager {
         ps2cont = new Joystick(1);
         manpivot = new button(true, 2);
         fireButton = new button(false, 4);
-        pivotRight = new button(false, 6);
-        pivotLeft = new button(false, 5);
+       //pivotRight = new button(false, 6);
+       //pivotLeft = new button(false, 5);
         realign = new button(false, 7);
      //   infrisbee = new button(false, 8);//Activates the frisbee retriever 
         autotarg = new button(true, 10);
         speedBoost = new button(false, 8);
     }
-
+    public void updateAll(){
+       boolean voidBool;
+       voidBool = manpivot.getState();
+       voidBool = fireButton.getState();
+       //voidBool = pivotRight.getState();
+       //voidBool = pivotLeft.getState();
+       voidBool = realign.getState();
+       voidBool = infrisbee.getState();
+       voidBool = autotarg.getState();
+       voidBool = speedBoost.getState();
+       voidBool = voidBool; // LUL
+    }
     public static double[] getPureAxis() { // Gets, stores, and returns the status of the joysticks on the PS2 Controller
         /* We will use a double dimension arry to hold the joystick data so that everything can be sent to other functions.
          * Both of the first dimensions will hold 2 doulbes, the first is the x & y axis of the first (paning) joystick
@@ -114,6 +125,7 @@ public class InputManager {
         vect[1] = speed;
         return (vect);
     }
+    
     public static class button {
         boolean state;
         int bpin;
