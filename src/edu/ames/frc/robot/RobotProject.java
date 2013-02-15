@@ -80,8 +80,7 @@ public class RobotProject extends IterativeRobot {
             MC.drive(drivemotorvalues);
             }
             else{
-                climbval = IM.getPivot();
-                climbval = IM.rampClimb(climbval);
+                climbval = IM.getClimb();
                 climbval = MC.Climblimit(climbval);
                 MC.climb(climbval);
             }

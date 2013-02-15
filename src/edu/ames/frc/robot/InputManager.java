@@ -22,14 +22,15 @@ import edu.wpi.first.wpilibj.Joystick;
 public class InputManager {
 //Git is good
 
-    static RobotMap rm = new RobotMap();
+    //static RobotMap rm = new RobotMap();
     protected static Joystick ps2cont;
+    protected static Joystick monoJoystick;
     // protected static boolean dzactive  = false; // In case we want to check for deadzoneing being active
     //  protected static double[] axisOC = new double[2]; // Stores the original copies of the axis reads, for use elsewhere.
     protected static button manpivot;
     protected static button fireButton;
-   //protected static button pivotRight;//What are these two?
-   //protected static button pivotLeft;//What are these two?
+    //protected static button pivotRight;//What are these two?
+    //protected static button pivotLeft;//What are these two?
     protected static button realign;
     protected static button infrisbee;
     protected static button autotarg;
@@ -38,38 +39,38 @@ public class InputManager {
 
     public void init() {
         ps2cont = new Joystick(1);
-        manpivot = new button(true, 2);
-        fireButton = new button(false, 4);
-       //pivotRight = new button(false, 6);
-       //pivotLeft = new button(false, 5);
-        realign = new button(false, 7);
-     //   infrisbee = new button(false, 8);//Activates the frisbee retriever 
-        autotarg = new button(true, 10);
-        speedBoost = new button(false, 8);
-        climber = new button(true, 9);
+        monoJoystick = new Joystick(2);
+        manpivot = new button(true, RobotMap.manpivotpin);
+        fireButton = new button(false, RobotMap.forcefire);
+        realign = new button(false, RobotMap.realignpin);
+        autotarg = new button(true, RobotMap.autotarg);
+        speedBoost = new button(false, RobotMap.speedboost);
+        climber = new button(false, RobotMap.clmpin);
     }
-    public void updateAll(){
-       boolean voidBool;
-       voidBool = manpivot.getState();
-       voidBool = fireButton.getState();
-       //voidBool = pivotRight.getState();
-       //voidBool = pivotLeft.getState();
-       voidBool = realign.getState();
-       voidBool = infrisbee.getState();
-       voidBool = autotarg.getState();
-       voidBool = speedBoost.getState();
-       voidBool = voidBool; // LUL
+
+    public void updateAll() {
+        boolean voidBool;
+        voidBool = manpivot.getState();
+        voidBool = fireButton.getState();
+        //voidBool = pivotRight.getState();
+        //voidBool = pivotLeft.getState();
+        voidBool = realign.getState();
+        voidBool = infrisbee.getState();
+        voidBool = autotarg.getState();
+        voidBool = speedBoost.getState();
+        voidBool = voidBool; // LUL
     }
+
     public static double[] getPureAxis() { // Gets, stores, and returns the status of the joysticks on the PS2 Controller
         /* We will use a double dimension arry to hold the joystick data so that everything can be sent to other functions.
          * Both of the first dimensions will hold 2 doulbes, the first is the x & y axis of the first (paning) joystick
          * The second dimension holds the x & y for the second (pivoting) joystick
          */
-       // double[] axis = new double[2];// Variable for storing all that data
+        // double[] axis = new double[2];// Variable for storing all that data
         double[] dir = new double[2];
         dir[0] = -ps2cont.getRawAxis(1);// X
         dir[1] = ps2cont.getRawAxis(2);// Y
-      //  axis[2] = -ps2cont.getRawAxis(3);// X
+        //  axis[2] = -ps2cont.getRawAxis(3);// X
         //      axisOC[0] = axis[0][0]; 
         //    axisOC[1] = axis[0][1];
         //       axis[1][1] = PS2Cont.getRawAxis(4);// Y We dont actually need this value
@@ -78,10 +79,17 @@ public class InputManager {
         dir = translate(dir);
         return (dir); // Returns axis data to the caller.
     }
-    public static double getPivot(){
+
+    public static double getPivot() {
         double pivot = -ps2cont.getRawAxis(3);
         pivot = rampSingle(pivot);
         return (pivot);
+    }
+
+    public static double getClimb() {
+        double joyinput = -ps2cont.getRawAxis(8);
+        joyinput = rampClimb(joyinput);
+        return joyinput;
     }
 
     protected static double[] deadzone(double[] axis) {// Checks for deadzone
@@ -89,7 +97,7 @@ public class InputManager {
 
         // for(byte li = 0; li <= axis.length; li++){//Loops through first dimesion of array
         for (byte si = 0; si < axis.length; si++) {//loops through second dimension of array.
-            if (axis[si] <= rm.deadzone && axis[si] >= -rm.deadzone) {
+            if (axis[si] <= RobotMap.deadzone && axis[si] >= RobotMap.deadzone) {
                 axis[si] = 0;
             }
         }
@@ -100,20 +108,23 @@ public class InputManager {
     protected static double[] ramp(double[] axis) {
         for (byte ri = 0; ri < axis.length; ri++) {
             //axis[ri] = MathUtils.pow(axis[ri], rm.expo_ramp);
-            axis[ri] = ((.666)*MathUtils.pow(axis[ri], rm.expo_ramp))+((.333)*axis[ri]);
+            axis[ri] = ((.666) * MathUtils.pow(axis[ri], RobotMap.expo_ramp)) + ((.333) * axis[ri]);
         }
         return (axis);
     }
+
     protected static double rampSingle(double axis) {
-        
-            //axis = MathUtils.pow(axis, rm.expo_ramp);
-           axis = ((.666)*MathUtils.pow(axis, rm.expo_ramp))+((.333)*axis);
+
+        //axis = MathUtils.pow(axis, rm.expo_ramp);
+        axis = ((.666) * MathUtils.pow(axis, RobotMap.expo_ramp)) + ((.333) * axis);
         return (axis);
     }
-    public static double rampClimb(double raw){
-        raw = raw/10;
+
+    public static double rampClimb(double raw) {
+        raw = raw / 10;
         return raw;
     }
+
     protected static double[] translate(double[] axis) {// Translates final input values into a format for use by the rest of the code.
         double[] vect = new double[2];
         double speed = 0;
@@ -131,20 +142,22 @@ public class InputManager {
         vect[1] = speed;
         return (vect);
     }
-    
+
     public static class button {
+
         boolean state;
         int bpin;
         boolean toggle;
+
         public button(boolean isToggle, int pin) {
             toggle = isToggle;
             bpin = pin;
         }
-        public boolean getState(){
+
+        public boolean getState() {
             state = ps2cont.getRawButton(this.bpin);
-           return state;
+            return state;
         }
-        
     }
     //protected static double[] translate(double[][] axis){// Translates deadzoned and scaled inputs into whatever exact type of input MotorControl needs/wants.
     //This is a skeleton of the translate funtion. Mark should fill this in.
