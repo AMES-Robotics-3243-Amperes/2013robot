@@ -40,6 +40,7 @@ public class MotorControl {
         B.set(limit(mv[1]));
         C.set(limit(mv[2]));
     }
+    
     void climb(double power){
         power = limit(power);
         climb.set(power);
@@ -55,12 +56,14 @@ public class MotorControl {
         }
         return (value);
     }
-    static double Climblimit(double inpow){
-        if(inpow > .1){
+
+    static double Climblimit(double inpow) {
+        inpow = inpow * .1;
+
+        if (inpow > .1) {
             inpow = .1;
-        }
-        else if(inpow < -.1){
-            inpow = .1;
+        } else if (inpow < -.1) {
+            inpow = -.1;
         }
         return inpow;
     }

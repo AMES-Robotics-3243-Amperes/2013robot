@@ -77,6 +77,7 @@ public class RobotProject extends IterativeRobot {
                 wd.feed();
                 System.out.println("motors: " + drivemotorvalues[0] + ",\t" + drivemotorvalues[1] + ",\t" + drivemotorvalues[2]);
                 MC.drive(drivemotorvalues);
+                MC.climb(0);
             } else {
                 climbval = IM.getClimb();
                 climbval = MC.Climblimit(climbval);
