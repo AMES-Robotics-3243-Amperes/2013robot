@@ -14,7 +14,7 @@ public class MotorControl {
  *Shooter: Check
  *
  */
-    static RobotMap rm = new RobotMap();
+    //static RobotMap rm = new RobotMap();
     static Victor A;
     static Victor B;
     static Victor C;
@@ -22,17 +22,19 @@ public class MotorControl {
     static Relay col;
     static Relay push;
     static Jaguar shoot;
-    static Jaguar lift;
+    static Jaguar tilt;
+    static Jaguar asstclimb;
 
     void init() {
-        A = new Victor(rm.Apin);
-        B = new Victor(rm.Bpin);
-        C = new Victor(rm.Cpin);
-        climb = new Victor(rm.clmpin);
-        col = new Relay(5);
-        push = new Relay(6);
-        shoot = new Jaguar(4);
-        lift = new Jaguar(5);
+        A = new Victor(RobotMap.Apin);
+        B = new Victor(RobotMap.Bpin);
+        C = new Victor(RobotMap.Cpin);
+        climb = new Victor(RobotMap.climbpin);
+        asstclimb = new Jaguar(RobotMap.assistclimb);
+        col = new Relay(RobotMap.collectorpin);
+       // push = new Relay(RobotMap.pushpin);
+        shoot = new Jaguar(RobotMap.pushpin);
+        tilt = new Jaguar(RobotMap.tiltpin);
     }
 
     void drive(double[] mv) {
@@ -43,6 +45,7 @@ public class MotorControl {
     void climb(double power){
         power = limit(power);
         climb.set(power);
+        asstclimb.set(power);
     }
 
     static double limit(double value) {
@@ -78,11 +81,11 @@ public class MotorControl {
     }
 
     public void shootertilt(double tilt) {
-        lift.set(tilt);
+        MotorControl.tilt.set(tilt);
     }
 
     public double[] addPivot(double[] motorval, double pivot) {
-        pivot += rm.pivotconstant;
+        pivot += RobotMap.pivotconstant;
         motorval[0] += pivot;
         motorval[1] += pivot;
         motorval[2] += pivot;
@@ -94,11 +97,11 @@ public class MotorControl {
         if (!boosted) {
 
             for (int i = 0; i < in.length; i++) {
-                in[i] = in[i] * rm.speedcap;
+                in[i] = in[i] * RobotMap.speedcap;
             }
         } else if (boosted) {
             for (int i = 0; i < in.length & !boosted; i++) {
-                in[i] = in[i] * (rm.speedcap - .2);
+                in[i] = in[i] * (RobotMap.speedcap - .2);
             }
         }
         return in;

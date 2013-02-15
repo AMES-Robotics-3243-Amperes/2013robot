@@ -21,6 +21,11 @@ public class RobotMap {
     protected final static int Bpin = 2;
     protected final static int Cpin = 3;
     protected final static int gyroport = 1;// gyro is on analog port 1
+    protected final static int climbpin = 6;
+    protected final static int assistclimb = 7;
+    protected final static int collectorpin = 101;
+    protected final static int pushpin = 404;
+    protected final static int tiltpin = 405;
     //Joystick specific pins below
     protected final static int clmpin = 8;
     protected final static int manpivotpin = 2;
