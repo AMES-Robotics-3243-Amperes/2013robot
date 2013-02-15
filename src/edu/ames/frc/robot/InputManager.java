@@ -87,7 +87,7 @@ public class InputManager {
     }
 
     public static double getClimb() {
-        double joyinput = -ps2cont.getRawAxis(8);
+        double joyinput = -ps2cont.getRawAxis(4);
         joyinput = rampClimb(joyinput);
         return joyinput;
     }
