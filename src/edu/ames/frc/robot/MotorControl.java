@@ -9,7 +9,11 @@ import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.Victor;
 
 public class MotorControl {
-
+/*Motor control check list
+ *Drive: Check
+ *Shooter: Check
+ * 
+ */
     static RobotMap rm = new RobotMap();
     static Victor A;
     static Victor B;
@@ -46,12 +50,7 @@ public class MotorControl {
     }
 
     public void shooter(double power) {
-        if (power < -1) {
-            power = -1;
-        }
-        if (power > 1) {
-            power = 1;
-        }
+        power = limit(power);
         shoot.set(power);
     }
 
