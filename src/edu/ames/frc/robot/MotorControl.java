@@ -21,7 +21,7 @@ public class MotorControl {
     static Victor climb;
     static Relay push;
     static Jaguar shoot;
-    static Jaguar tilt;
+    static Relay shoottilt;
     static Jaguar asstclimb;
 
     void init() {
@@ -32,7 +32,8 @@ public class MotorControl {
         asstclimb = new Jaguar(RobotMap.assistclimb);
        // push = new Relay(RobotMap.pushpin);
         shoot = new Jaguar(RobotMap.pushpin);
-        tilt = new Jaguar(RobotMap.tiltpin);
+        shoottilt = new Relay(RobotMap.tiltpin);
+        shoottilt.setDirection(Relay.Direction.kBoth);
     }
 
     void drive(double[] mv) {
@@ -79,8 +80,14 @@ public class MotorControl {
         }
     }
 
-    public void shootertilt(double tilt) {
-        MotorControl.tilt.set(tilt);
+    public void shootertilt(int tilt) {
+        if(tilt > 0) {
+            shoottilt.set(Relay.Value.kForward);
+        } else if(tilt < 0) {
+            shoottilt.set(Relay.Value.kReverse);
+        } else {
+            shoottilt.set(Relay.Value.kOff);
+        }
     }
 
     public double[] addPivot(double[] motorval, double pivot) {

@@ -36,21 +36,29 @@ public class InputManager {
     protected static button autotarg;
     protected static button speedBoost;
     protected static button climber;
+    
+    protected static button tiltup;
+    protected static button tiltdown;
 
     public void init() {
         ps2cont = new Joystick(1);
         monoJoystick = new Joystick(2);
-        manpivot = new button(true, RobotMap.manpivotpin);
-        fireButton = new button(false, RobotMap.forcefire);
+        //manpivot = new button(true, RobotMap.manpivotpin);
+        //fireButton = new button(false, RobotMap.forcefire);
         realign = new button(false, RobotMap.realignpin);
         autotarg = new button(true, RobotMap.autotarg);
         speedBoost = new button(false, RobotMap.speedboost);
         climber = new button(false, RobotMap.clmpin);
+        
+        tiltup = new button(false, RobotMap.tiltdownbutton);
+        tiltdown = new button(false, RobotMap.tiltupbutton);
     }
 
     public void updateAllButtons() {
-        manpivot.getState();
-        fireButton.getState();
+        //manpivot.getState();
+        //fireButton.getState();
+        tiltup.getState();
+        tiltdown.getState();
         //voidBool = pivotRight.getState();
         //voidBool = pivotLeft.getState();
         //voidBool = realign.getState();

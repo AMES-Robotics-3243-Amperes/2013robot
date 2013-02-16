@@ -24,12 +24,14 @@ public class RobotMap {
     protected final static int climbpin = 6;
     protected final static int assistclimb = 7;
     protected final static int pushpin = 9;
-    protected final static int tiltpin = 8;
+    protected final static int tiltpin = 5;
     
     //Joystick specific pins below
     protected final static int clmpin = 8;
-    protected final static int manpivotpin = 2;
-    protected final static int forcefire = 4;
+    //protected final static int manpivotpin = 2;
+    //protected final static int forcefire = 4;
+    protected final static int tiltupbutton = 4;
+    protected final static int tiltdownbutton = 2;
     protected final static int realignpin = 5;
     protected final static int autotarg = 10;
     protected final static int speedboost = 3;
@@ -38,6 +40,6 @@ public class RobotMap {
     protected final static int expo_ramp = 3;
     protected final static double pivotconstant = 0.07; // because the robot drift-pivots
     protected final static double speedcap = 0.5; // speed the robot should usually move
-    protected final static double climberspeed = 0.4;
+    protected final static double climberspeed = 1.0;
     protected final static double deadzone = .05;
 } 
