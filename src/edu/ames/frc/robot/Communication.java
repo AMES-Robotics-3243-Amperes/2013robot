@@ -8,7 +8,6 @@ package edu.ames.frc.robot;
 import java.io.*;
 import javax.microedition.io.*;
 import edu.wpi.first.wpilibj.DriverStation;
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -37,23 +36,30 @@ public class Communication {
     
     
     //Speed & Direction
-    public void RobotSpeed(double Speedo ){
-        long newtime = System.currentTimeMillis();
+    public void RobotSpeed(String Speedo ){
+     String RSpeed;
+        RSpeed = Speedo;
+        if (!RSpeed.equals(" ")){
+        
         String RS = "Speed:";
-        SmartDashboard.getDouble(RS , Speedo); 
-    }
-    
-    public void RobotDirection(double x){
-        long newtime = System.currentTimeMillis();
-        String RD ="Robot Direction:";
-        SmartDashboard.getDouble(RD, x);
+        SmartDashboard.putString(RS , RSpeed); 
         
     }
+    }
     
+    public void RobotDirection(String x){
+                String RD ="Robot Direction:";
+        if(!x.equals(" ")){
+        
+        SmartDashboard.putString(RD, x);
+        }
+    }
     
+   //============================================================================================================= 
    /* public void UpdateMsg()                          ****Conceputual Mumbo Jumbo****
-    {
-             ConsolMsg("update", true, 0);
+    {                                                   I'm only using this as example code. 
+    *                                                   Not actually going to use this specific code.
+    * ConsolMsg("update", true, 0);
      }
     
     
@@ -113,7 +119,7 @@ public class Communication {
                 }
 
                 time = newtime;
-            }
+            }===========================================================================================
         
     }        */
 
