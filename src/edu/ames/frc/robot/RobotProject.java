@@ -70,6 +70,7 @@ public class RobotProject extends IterativeRobot {
             wd.feed();
             IM.updateAll();
             if(!IM.climber.state){
+            MC.climb(0);
             joystickangleandspeed = IM.getPureAxis();
             pivotval = IM.getPivot();
             drivemotorvalues = MC.convertHeadingToMotorCommands(joystickangleandspeed[0], joystickangleandspeed[1]);
