@@ -48,13 +48,20 @@ public class Communication {
     }
     
     public void RobotDirection(String x){
-                String RD ="Robot Direction:";
+                
         if(!x.equals(" ")){
-        
+        String RD ="Robot Direction:";
         SmartDashboard.putString(RD, x);
         }
     }
     
+    public void ShooterSpeed(String x){
+        if(!x.equals(" ")){
+         SmartDashboard.putString("Shoot Speed:", x);
+            
+        }
+    }
+   
    //============================================================================================================= 
    /* public void UpdateMsg()                          ****Conceputual Mumbo Jumbo****
     {                                                   I'm only using this as example code. 
