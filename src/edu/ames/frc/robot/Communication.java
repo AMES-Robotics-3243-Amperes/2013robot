@@ -39,7 +39,7 @@ public class Communication {
     public void RobotSpeed(String Speedo ){
      String RSpeed;
         RSpeed = Speedo;
-        if (!RSpeed.equals(" ")){
+        if (!RSpeed.equals(" ")){                  //Puts Robot's **speed**  to Dashboard
         
         String RS = "Speed:";
         SmartDashboard.putString(RS , RSpeed); 
@@ -47,21 +47,36 @@ public class Communication {
     }
     }
     
-    public void RobotDirection(String x){
+    public void RobotDirection(String RDirect){
                 
-        if(!x.equals(" ")){
+        if(!RDirect.equals(" ")){                   // puts relative **direction** of robot to SmartDashboard
         String RD ="Robot Direction:";
-        SmartDashboard.putString(RD, x);
+        SmartDashboard.putString(RD, RDirect);
         }
     }
     
-    public void ShooterSpeed(String x){
-        if(!x.equals(" ")){
-         SmartDashboard.putString("Shoot Speed:", x);
+    public void ShooterSpeed(String SSpeed){
+        if(!SSpeed.equals(" ")){                    //Puts **Shooter Speed** to Dashboard
+         SmartDashboard.putString("Shoot Speed:", SSpeed);
             
         }
     }
-   
+   //         *****Please be specific when writing strings to errorMethods*****
+    
+    
+    public void Error1(String x){
+        if(!x.equals(" ")){             // Puts **Error** to Dashboard
+         SmartDashboard.putString("Error:", x);  
+        }
+        }
+    
+    
+    public void SecondError (String Er2)
+    {                                       //Puts **Error2** to Dashboard
+        if(!Er2.equals(" ")){               
+            SmartDashboard.putString("Error:",Er2);
+        }
+    }
    //============================================================================================================= 
    /* public void UpdateMsg()                          ****Conceputual Mumbo Jumbo****
     {                                                   I'm only using this as example code. 
