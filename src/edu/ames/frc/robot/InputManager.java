@@ -49,7 +49,6 @@ public class InputManager {
         autotarg = new button(true, RobotMap.autotarg);
         speedBoost = new button(false, RobotMap.speedboost);
         climber = new button(false, RobotMap.clmpin);
-        
         tiltup = new button(false, RobotMap.tiltdownbutton);
         tiltdown = new button(false, RobotMap.tiltupbutton);
     }
@@ -80,7 +79,7 @@ public class InputManager {
         //      axisOC[0] = axis[0][0]; 
         //    axisOC[1] = axis[0][1];
         //       axis[1][1] = PS2Cont.getRawAxis(4);// Y We dont actually need this value
-        dir = deadzone(dir);
+        dir = deadZone(dir);
         //dir = ramp(dir);
         dir = translate(dir);
         return (dir); // Returns axis data to the caller.
@@ -99,7 +98,7 @@ public class InputManager {
         return joyinput;
     }
 
-    protected static double[] deadzone(double[] axis) {// Checks for deadzone
+    protected static double[] deadZone(double[] axis) {// Checks for deadzone
         //This is a skeleton of the deadzone funtion. Mark should fill this in.
 
         // for(byte li = 0; li <= axis.length; li++){//Loops through first dimesion of array

@@ -30,8 +30,8 @@ public class RobotMap {
     protected final static int clmpin = 8;
     //protected final static int manpivotpin = 2;
     //protected final static int forcefire = 4;
-    protected final static int tiltupbutton = 4;
-    protected final static int tiltdownbutton = 2;
+    protected final static int tiltupbutton = 4;//These are strange assignments are they temporary?
+    protected final static int tiltdownbutton = 2;//These are strange assignments are they temporary?
     protected final static int realignpin = 5;
     protected final static int autotarg = 10;
     protected final static int speedboost = 3;

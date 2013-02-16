@@ -30,7 +30,7 @@ public class MotorControl {
         C = new Victor(RobotMap.Cpin);
         climb = new Victor(RobotMap.climbpin);
         asstclimb = new Jaguar(RobotMap.assistclimb);
-       // push = new Relay(RobotMap.pushpin);
+      //push = new Relay(RobotMap.pushpin);
         shoot = new Jaguar(RobotMap.pushpin);
         shoottilt = new Relay(RobotMap.tiltpin);
         shoottilt.setDirection(Relay.Direction.kBoth);
