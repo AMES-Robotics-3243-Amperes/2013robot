@@ -122,6 +122,7 @@ public class InputManager {
         double[] vect = new double[2];
         double speed = 0;
         double angle = 0;
+        
         //Sets the speed to the length of the hypotenuse of the imaginary triangle between x & y directional values
         speed = Math.sqrt(MathUtils.pow(axis[0], 2) + MathUtils.pow(axis[1], 2));// Pythagorean theorem: The square root of ( (X^2) + (y^2) )
         //Sets the angle to the inverse tangent of x / y

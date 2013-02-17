@@ -22,8 +22,9 @@ public class RobotMap {
     protected final static int gyroport = 1;// gyro is on analog port 1
     protected final static int climbpin = 6;
     protected final static int assistclimb = 7;
-    protected final static int pushpin = 9;
+    protected final static int pushpin = 4;
     protected final static int tiltpin = 5;
+    protected final static int wheelpin = 4;
     
     //Joystick specific buttons below    
     //Playstation 2 controller pins only

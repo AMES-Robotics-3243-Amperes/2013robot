@@ -19,9 +19,9 @@ public class MotorControl {
     static Victor C;
     static Victor climb;
     static Relay push;
-    static Jaguar shoot;
     static Relay shoottilt;
     static Jaguar asstclimb;
+    static Jaguar shootwheel;
 
     void init() {
         A = new Victor(RobotMap.Apin);
@@ -29,8 +29,8 @@ public class MotorControl {
         C = new Victor(RobotMap.Cpin);
         climb = new Victor(RobotMap.climbpin);
         asstclimb = new Jaguar(RobotMap.assistclimb);
-      //push = new Relay(RobotMap.pushpin);
-        shoot = new Jaguar(RobotMap.pushpin);
+        shootwheel = new Jaguar(RobotMap.wheelpin);
+        //shoot = new Jaguar(RobotMap.pushpin);
         
         shoottilt = new Relay(RobotMap.tiltpin);
         shoottilt.setDirection(Relay.Direction.kBoth); // we also have to do this for spike relays
@@ -67,9 +67,11 @@ public class MotorControl {
         return inpow;
     }
 
-    public void shooter(double power) {
-        power = limit(power);
-        shoot.set(power);
+    public void shooter(boolean on) {
+        if(on){
+            shootwheel.set(1);
+        }
+        
     }
 
     public void pusher(boolean active) {

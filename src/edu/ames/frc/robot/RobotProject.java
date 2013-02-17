@@ -66,6 +66,7 @@ public class RobotProject extends IterativeRobot {
     public void teleopPeriodic() {
         while (isOperatorControl() && isEnabled()) {
             wd.feed();
+            MC.shooter(true);
             IM.updateAllButtons();
             if (!IM.climber.getState()) {
                 joystickangleandspeed = IM.getPureAxis();
@@ -87,6 +88,9 @@ public class RobotProject extends IterativeRobot {
                 }
                 if (!IM.tiltup.getState() && !IM.tiltdown.getState()) {
                     MC.shootertilt(0);
+                }
+                if(IM.fireButton.state & IM.fireButton.getState()){
+                    
                 }
 
             } else {
