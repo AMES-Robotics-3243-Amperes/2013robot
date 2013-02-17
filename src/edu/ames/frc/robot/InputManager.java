@@ -20,23 +20,17 @@ import edu.wpi.first.wpilibj.Joystick;
  */
 
 public class InputManager {
-//Git is good
-
-    //static RobotMap rm = new RobotMap();
     protected static Joystick ps2cont;
     protected static Joystick monoJoystick;
     // protected static boolean dzactive  = false; // In case we want to check for deadzoneing being active
     //  protected static double[] axisOC = new double[2]; // Stores the original copies of the axis reads, for use elsewhere.
     protected static button manpivot;
     protected static button fireButton;
-    //protected static button pivotRight;//What are these two?
-    //protected static button pivotLeft;//What are these two?
     protected static button realign;
     protected static button infrisbee;
     protected static button autotarg;
     protected static button speedBoost;
     protected static button climber;
-    
     protected static button tiltup;
     protected static button tiltdown;
 
@@ -75,10 +69,6 @@ public class InputManager {
         double[] dir = new double[2];
         dir[0] = -ps2cont.getRawAxis(1);// X
         dir[1] = ps2cont.getRawAxis(2);// Y
-        //  axis[2] = -ps2cont.getRawAxis(3);// X
-        //      axisOC[0] = axis[0][0]; 
-        //    axisOC[1] = axis[0][1];
-        //       axis[1][1] = PS2Cont.getRawAxis(4);// Y We dont actually need this value
         dir = deadZone(dir);
         //dir = ramp(dir);
         dir = translate(dir);
@@ -101,13 +91,11 @@ public class InputManager {
     protected static double[] deadZone(double[] axis) {// Checks for deadzone
         //This is a skeleton of the deadzone funtion. Mark should fill this in.
 
-        // for(byte li = 0; li <= axis.length; li++){//Loops through first dimesion of array
-        for (byte si = 0; si < axis.length; si++) {//loops through second dimension of array.
+        for (byte si = 0; si < axis.length; si++) {//loops through the array.
             if (axis[si] <= RobotMap.deadzone && axis[si] >= RobotMap.deadzone) {
                 axis[si] = 0;
             }
         }
-        //  }
         return (axis);
     }
 
@@ -120,7 +108,6 @@ public class InputManager {
     }
 
     protected static double rampSingle(double axis) {
-
         //axis = MathUtils.pow(axis, rm.expo_ramp);
         axis = ((.666) * MathUtils.pow(axis, RobotMap.expo_ramp)) + ((.333) * axis);
         return (axis);
@@ -161,8 +148,4 @@ public class InputManager {
             return state;
         }
     }
-    //protected static double[] translate(double[][] axis){// Translates deadzoned and scaled inputs into whatever exact type of input MotorControl needs/wants.
-    //This is a skeleton of the translate funtion. Mark should fill this in.
-    //return (ABC);
-    // }
 }

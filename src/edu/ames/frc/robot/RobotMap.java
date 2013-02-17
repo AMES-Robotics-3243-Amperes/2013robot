@@ -14,24 +14,23 @@ public class RobotMap {
      * This nameing trend is reflected in the pin assignments in this class and should continue to be reflected in other parts
      * of the overall robot system.
      */
-    
-    
-    //Pin Assignments go here!
     protected final static int Apin = 1; // Pin assignment for the front motor A
     protected final static int Bpin = 2;
     protected final static int Cpin = 3;
+    
+    //Pin Assignments go here!
     protected final static int gyroport = 1;// gyro is on analog port 1
     protected final static int climbpin = 6;
     protected final static int assistclimb = 7;
     protected final static int pushpin = 9;
     protected final static int tiltpin = 5;
     
-    //Joystick specific pins below
+    //Joystick specific buttons below
     protected final static int clmpin = 8;
     //protected final static int manpivotpin = 2;
     //protected final static int forcefire = 4;
-    protected final static int tiltupbutton = 4;//These are strange assignments are they temporary?
-    protected final static int tiltdownbutton = 2;//These are strange assignments are they temporary?
+    protected final static int tiltupbutton = 4;   // Button 4 and 2 until we
+    protected final static int tiltdownbutton = 2; // have a second joystick
     protected final static int realignpin = 5;
     protected final static int autotarg = 10;
     protected final static int speedboost = 3;

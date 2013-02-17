@@ -4,7 +4,6 @@
 /* must be accompanied by the FIRST BSD license file in the root directory of */
 /* the project.      
  /*----------------------------------------------------------------------------*/
-
 package edu.ames.frc.robot;
 //___
 // | |_  o  _     o  _    _|_|_  _    __  _  o __     _  |  _  _  _
@@ -35,10 +34,10 @@ public class RobotProject extends IterativeRobot {
     protected static RobotMap RM = new RobotMap();
     protected static Watchdog wd;
     double pivotval;
-    
     double[] drivemotorvalues;
     double[] joystickangleandspeed;
     double climbval;
+
     public void robotInit() {
         wd = Watchdog.getInstance();
         wd.setExpiration(1);
@@ -54,11 +53,11 @@ public class RobotProject extends IterativeRobot {
     public void autonomousPeriodic() {
         //Tarun example
        /* double[] example = new double[3];
-        example[0] = 0;
-        example[1] = 1;
-        example[2] = 1;
-        MC.drive(example);
-        */
+         example[0] = 0;
+         example[1] = 1;
+         example[2] = 1;
+         MC.drive(example);
+         */
     }
 
     /**
@@ -78,18 +77,18 @@ public class RobotProject extends IterativeRobot {
                 System.out.println("motors: " + drivemotorvalues[0] + ",\t" + drivemotorvalues[1] + ",\t" + drivemotorvalues[2]);
                 MC.drive(drivemotorvalues);
                 MC.climb(0);
-                
-                if(IM.tiltdown.getState()) {
-                    System.out.println("down");
+
+                // this is only temporary, should be moved to second joystick
+                if (IM.tiltdown.getState()) {
                     MC.shootertilt(1);
                 }
-                if(IM.tiltup.getState()) {
+                if (IM.tiltup.getState()) {
                     MC.shootertilt(-1);
                 }
-                if(!IM.tiltup.getState() && !IM.tiltdown.getState()) {
+                if (!IM.tiltup.getState() && !IM.tiltdown.getState()) {
                     MC.shootertilt(0);
                 }
-                
+
             } else {
                 climbval = IM.getClimb();
                 climbval = MC.Climblimit(climbval);
@@ -97,5 +96,4 @@ public class RobotProject extends IterativeRobot {
             }
         }
     }
-    
 }

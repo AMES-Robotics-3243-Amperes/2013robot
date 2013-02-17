@@ -11,16 +11,20 @@ package edu.ames.frc.robot;
 
 import com.sun.squawk.util.MathUtils;
 import edu.wpi.first.wpilibj.Gyro;
+import edu.wpi.first.wpilibj.Encoder;
 
 public class SensorInput {
 
     static RobotMap rm = new RobotMap();
     static Gyro gy;
+    static Encoder rotaryEncoder = new Encoder(1,2);
 
-//    /* Initialize sensor values & variables */
+    /* Initialize sensor values & variables */
     void init() {
         gy = new Gyro(rm.gyroport);
         gy.reset();
+        rotaryEncoder.start();
+        rotaryEncoder.reset();//Justin Case, attorney at law!
     }
 
     public double getFinalAngle(boolean nodeg) {
@@ -42,6 +46,11 @@ public class SensorInput {
         deg *= 180 / 3.141592653589793238462643383279;
         //Im a bad person XD
         return deg;
+    }
+    double encoderRot(){
+        double res = 0;
+        res = rotaryEncoder.getRaw();
+        return res;
     }
 
     /* useful to have, just in case our robot gyro drifts */
