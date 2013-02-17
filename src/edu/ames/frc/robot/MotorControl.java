@@ -19,10 +19,9 @@ public class MotorControl {
     static Victor B;
     static Victor C;
     static Victor climb;
-    static Relay col;
     static Relay push;
     static Jaguar shoot;
-    static Jaguar tilt;
+    static Relay shoottilt;
     static Jaguar asstclimb;
 
     void init() {
@@ -31,10 +30,10 @@ public class MotorControl {
         C = new Victor(RobotMap.Cpin);
         climb = new Victor(RobotMap.climbpin);
         asstclimb = new Jaguar(RobotMap.assistclimb);
-        col = new Relay(RobotMap.collectorpin);
-       // push = new Relay(RobotMap.pushpin);
+      //push = new Relay(RobotMap.pushpin);
         shoot = new Jaguar(RobotMap.pushpin);
-        tilt = new Jaguar(RobotMap.tiltpin);
+        shoottilt = new Relay(RobotMap.tiltpin);
+        shoottilt.setDirection(Relay.Direction.kBoth);
     }
 
     void drive(double[] mv) {
@@ -42,6 +41,7 @@ public class MotorControl {
         B.set(limit(mv[1]));
         C.set(limit(mv[2]));
     }
+    
     void climb(double power){
         power = limit(power);
         climb.set(power);
@@ -57,12 +57,12 @@ public class MotorControl {
         }
         return (value);
     }
-    static double Climblimit(double inpow){
-        if(inpow > .1){
-            inpow = .1;
-        }
-        else if(inpow < -.1){
-            inpow = .1;
+
+    static double Climblimit(double inpow) {
+        if (inpow > RobotMap.climberspeed) {
+            inpow = RobotMap.climberspeed;
+        } else if (inpow < -RobotMap.climberspeed) {
+            inpow = -RobotMap.climberspeed;
         }
         return inpow;
     }
@@ -80,8 +80,14 @@ public class MotorControl {
         }
     }
 
-    public void shootertilt(double tilt) {
-        MotorControl.tilt.set(tilt);
+    public void shootertilt(int tilt) {
+        if(tilt > 0) {
+            shoottilt.set(Relay.Value.kForward);
+        } else if(tilt < 0) {
+            shoottilt.set(Relay.Value.kReverse);
+        } else {
+            shoottilt.set(Relay.Value.kOff);
+        }
     }
 
     public double[] addPivot(double[] motorval, double pivot) {
@@ -106,22 +112,10 @@ public class MotorControl {
         }
         return in;
     }
+  
     /* This converts the direction we want to go (from 0 to 1, relative to the robot's base)
      * and speed (from 0 to 1) directly to values for the three omni-wheeled motors.
      */
-
-    public void rotationDirection(int state) {
-        if (state > 0) {
-            col.set(Relay.Value.kForward);
-        } else if (state < 0) {
-            col.set(Relay.Value.kReverse);
-        } else if (state == 0) {
-            col.set(Relay.Value.kOff);
-        }
-    }
-
-    //the col motor either goes front, back or stays there.
-    //Who added double drive?
     double[] convertHeadingToMotorCommands(double direction, double speed) {
         double[] motorvalue = new double[3];
         /* so, we'll define the direction we want to go as "forward". There are
@@ -131,26 +125,16 @@ public class MotorControl {
         // 0 is what we define as the "front" motodrivemotorvalues - what we measure our heading angle from,
         // 1 is the motor one position clockwise from that, and
         // 2 is the motor one position counter-clockwise from 0.
+        /*
         motorvalue[0] = speed * Math.sin(direction);
         motorvalue[1] = speed * Math.sin(direction - (2 * Math.PI / 3));
         motorvalue[2] = speed * Math.sin(direction + (2 * Math.PI / 3));
-
-        //pivot += RobotMap.pivotconstant;
-
-
-        /*
-         if (pivot < 0) {
-         motorvalue[0] = -pivot;
-         motorvalue[1] = -pivot;
-         motorvalue[2] = -pivot;
-         }
-         if (pivot > 0) {
-         motorvalue[0] = +pivot;
-         motorvalue[1] = +pivot;
-         motorvalue[2] = +pivot;
-         }
-         */
-
+        */
+        
+        motorvalue[0] = speed * Math.cos(direction - (Math.PI / 4));
+        motorvalue[1] = speed * -Math.sin(direction);
+        motorvalue[2] = speed * -Math.cos(direction);
+        
         return motorvalue;
     }
 }

@@ -65,22 +65,32 @@ public class RobotProject extends IterativeRobot {
      * This function is called periodically during operator control
      */
     public void teleopPeriodic() {
-        wd.feed();
         while (isOperatorControl() && isEnabled()) {
             wd.feed();
-            IM.updateAll();
-            if(!IM.climber.state){
-            MC.climb(0);
-            joystickangleandspeed = IM.getPureAxis();
-            pivotval = IM.getPivot();
-            drivemotorvalues = MC.convertHeadingToMotorCommands(joystickangleandspeed[0], joystickangleandspeed[1]);
-            drivemotorvalues = MC.setSpeedCap(drivemotorvalues, IM.speedBoost.getState());
-            drivemotorvalues = MC.addPivot(drivemotorvalues, pivotval);
-            wd.feed();
-            System.out.println("motors: " + drivemotorvalues[0] + ",\t" + drivemotorvalues[1] + ",\t" + drivemotorvalues[2]);
-            MC.drive(drivemotorvalues);
-            }
-            else if(IM.climber.state){
+            IM.updateAllButtons();
+            if (!IM.climber.getState()) {
+                joystickangleandspeed = IM.getPureAxis();
+                pivotval = IM.getPivot();
+                drivemotorvalues = MC.convertHeadingToMotorCommands(joystickangleandspeed[0], joystickangleandspeed[1]);
+                drivemotorvalues = MC.setSpeedCap(drivemotorvalues, IM.speedBoost.getState());
+                drivemotorvalues = MC.addPivot(drivemotorvalues, pivotval);
+                wd.feed();
+                System.out.println("motors: " + drivemotorvalues[0] + ",\t" + drivemotorvalues[1] + ",\t" + drivemotorvalues[2]);
+                MC.drive(drivemotorvalues);
+                MC.climb(0);
+                
+                if(IM.tiltdown.getState()) {
+                    System.out.println("down");
+                    MC.shootertilt(1);
+                }
+                if(IM.tiltup.getState()) {
+                    MC.shootertilt(-1);
+                }
+                if(!IM.tiltup.getState() && !IM.tiltdown.getState()) {
+                    MC.shootertilt(0);
+                }
+                
+            } else {
                 climbval = IM.getClimb();
                 climbval = MC.Climblimit(climbval);
                 MC.climb(climbval);

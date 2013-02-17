@@ -36,29 +36,34 @@ public class InputManager {
     protected static button autotarg;
     protected static button speedBoost;
     protected static button climber;
+    
+    protected static button tiltup;
+    protected static button tiltdown;
 
     public void init() {
         ps2cont = new Joystick(1);
         monoJoystick = new Joystick(2);
-        manpivot = new button(true, RobotMap.manpivotpin);
-        fireButton = new button(false, RobotMap.forcefire);
+        //manpivot = new button(true, RobotMap.manpivotpin);
+        //fireButton = new button(false, RobotMap.forcefire);
         realign = new button(false, RobotMap.realignpin);
         autotarg = new button(true, RobotMap.autotarg);
         speedBoost = new button(false, RobotMap.speedboost);
         climber = new button(false, RobotMap.clmpin);
+        tiltup = new button(false, RobotMap.tiltdownbutton);
+        tiltdown = new button(false, RobotMap.tiltupbutton);
     }
 
-    public void updateAll() {
-        boolean voidBool;
-        voidBool = manpivot.getState();
-        voidBool = fireButton.getState();
+    public void updateAllButtons() {
+        //manpivot.getState();
+        //fireButton.getState();
+        tiltup.getState();
+        tiltdown.getState();
         //voidBool = pivotRight.getState();
         //voidBool = pivotLeft.getState();
-        voidBool = realign.getState();
-        voidBool = infrisbee.getState();
-        voidBool = autotarg.getState();
-        voidBool = speedBoost.getState();
-        voidBool = voidBool; // LUL
+        //voidBool = realign.getState();
+        //voidBool = infrisbee.getState();
+        //voidBool = autotarg.getState();
+        speedBoost.getState();
     }
 
     public static double[] getPureAxis() { // Gets, stores, and returns the status of the joysticks on the PS2 Controller
@@ -74,7 +79,7 @@ public class InputManager {
         //      axisOC[0] = axis[0][0]; 
         //    axisOC[1] = axis[0][1];
         //       axis[1][1] = PS2Cont.getRawAxis(4);// Y We dont actually need this value
-        dir = deadzone(dir);
+        dir = deadZone(dir);
         //dir = ramp(dir);
         dir = translate(dir);
         return (dir); // Returns axis data to the caller.
@@ -93,7 +98,7 @@ public class InputManager {
         return joyinput;
     }
 
-    protected static double[] deadzone(double[] axis) {// Checks for deadzone
+    protected static double[] deadZone(double[] axis) {// Checks for deadzone
         //This is a skeleton of the deadzone funtion. Mark should fill this in.
 
         // for(byte li = 0; li <= axis.length; li++){//Loops through first dimesion of array
@@ -122,7 +127,7 @@ public class InputManager {
     }
 
     public static double rampClimb(double raw) {
-        raw = raw / 10;
+        raw = raw * RobotMap.climberspeed;
         return raw;
     }
 
@@ -134,10 +139,6 @@ public class InputManager {
         speed = Math.sqrt(MathUtils.pow(axis[0], 2) + MathUtils.pow(axis[1], 2));// Pythagorean theorem: The square root of ( (X^2) + (y^2) )
         //Sets the angle to the inverse tangent of x / y
         angle = MathUtils.atan2(axis[0], axis[1]);// Tan^-1(x/y) Example: Tan^-1(.7/.2)
-
-        if (angle < 0) {
-            angle = (2 * Math.PI) - Math.abs(angle);//Wut
-        }
 
         vect[0] = angle;
         vect[1] = speed;

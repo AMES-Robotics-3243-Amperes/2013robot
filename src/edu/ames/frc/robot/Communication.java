@@ -7,116 +7,65 @@ package edu.ames.frc.robot;
 //Non-explicit imports of io libraries. Once code is finished it should be changed into a set of explicit imports.
 import java.io.*;
 import javax.microedition.io.*;
-import edu.wpi.first.wpilibj.DriverStation;
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
- import edu.wpi.first.wpilibj.command.Subsystem;
 
-
-/* import edu.wpi.first.wpilibj.command.Command;
- * import edu.wpi.first.wpilibj.Communication;
- * import edu.wpi.first.wpilibj.templates.OI;
- * 
- * 
- * 
- * 
- */
 
 
 public class Communication {
 
-    public static boolean debugmode = false; // debugging symbols enabled/disabled?
-    public static long time;
-    public static int step = 0;
-    public static double voltage;
-    public static boolean sensorlighton;
-    public static String[] messages = new String[5];
-    public static int cycle = 0;            // how many clock cycles the robot ran, divided by 500
-
-    
-    
-    
-    //Speed & Direction
-    public void RobotSpeed(double Speedo ){
-        long newtime = System.currentTimeMillis();
+     
+    //==================================================================================
+    public void RobotSpeed(String Speedo ){
+     String RSpeed;
+        RSpeed = Speedo;
+        if (!RSpeed.equals(" ")){                  //Puts Robot's **speed**  to Dashboard
+        
         String RS = "Speed:";
-        SmartDashboard.getDouble(RS , Speedo); 
+        SmartDashboard.putString(RS , RSpeed); 
+        
+    }
     }
     
-    public void RobotDirection(double x){
-        long newtime = System.currentTimeMillis();
+    
+    //==================================================================================
+    public void RobotDirection(String RDirect){
+                
+        if(!RDirect.equals(" ")){                   // puts relative **direction** of robot to SmartDashboard
         String RD ="Robot Direction:";
-        SmartDashboard.getDouble(RD, x);
-        
+        SmartDashboard.putString(RD, RDirect);
+        }
     }
     
     
-   /* public void UpdateMsg()                          ****Conceputual Mumbo Jumbo****
-    {
-             ConsolMsg("update", true, 0);
-     }
+    //==================================================================================
+    public void ShooterSpeed(String SSpeed){
+        if(!SSpeed.equals(" ")){                    //Puts **Shooter Speed** to Dashboard
+         SmartDashboard.putString("Shoot Speed:", SSpeed);
+            
+        }
+    }
     
     
-    public void ConsolMsg(String msg, boolean NewStuff, int type){ //Sends Messages to Consol
-                long newtime = System.currentTimeMillis();
-
-        if (newtime - time > 500) {
-                if (!"update".equals(msg)) {
-                    if (!messages[1].equals(" ")) {                                     // Shooter Speed
-                        SmartDashboard.putString("Shooter Speed: ", messages[1]);
-                    }
-                    
-                    if (!messages[2].equals(" ")) {                                     // shooter Angle 
-                        SmartDashboard.putString("Shooter Angle: ", messages[2]);
-                    }
-                    
-                    if (!messages[3].equals(" ")) {                                     // Gyro Angle
-                        SmartDashboard.putString("Gyro Angle: ", messages[3]);
-                    }
-                    
-                    if (!messages[4].equals(" ")) {                                     // errors
-                        SmartDashboard.putString("Error: ", messages[4]);
-                    }
-                    
-                    if (!messages[5].equals(" ")) {       
-                        SmartDashboard.putString("Error: ", messages[5]);
-                    }
-                    
-                    if (!messages[6].equals(" ")) {      
-                        SmartDashboard.putString("Error: ", messages[6]);
-                    }
-                    
-                    if (!messages[7].equals(" ")) {      
-                        SmartDashboard.putString("Error: ", messages[7]);
-                    }
-                    
-                    if (!messages[8].equals(" ")) {      
-                        SmartDashboard.putString("Error: ", messages[8]);
-                    }
-                    
-                    if (!messages[8].equals(" ")) {      
-                        SmartDashboard.putString(": ", messages[9]);
-                    }
-                    
-                    if (!messages[8].equals(" ")) {      
-                        SmartDashboard.putString(" ", messages[10]);
-                    }
-                }
-
-                if ("update".equals(msg) && NewStuff) {
-                    System.out.println("RobotInfo: updated");
-                    for (int i = 0; i < messages.length; i++) { // reset messages
-                        messages[i] = " ";
-                    }
-                } else {
-                    //System.out.println(s);
-                }
-
-                time = newtime;
-            }
-        
-    }        */
-
+    
+    //==================================================================================
+   //         *****Please be specific when writing strings to errorMethods*****
+    
+    
+    public void Error1(String x){
+        if(!x.equals(" ")){             // Puts **Error** to Dashboard
+         SmartDashboard.putString("Error:", x);  
+        }
+        }
+    
+    //=================================================================================
+    public void SecondError (String Er2)
+    {                                       //Puts **Error2** to Dashboard
+        if(!Er2.equals(" ")){               
+            SmartDashboard.putString("Error:",Er2);
+        }
+    }
+    
+    
     /***************************************************************************
      *               Raspberry Pi Protocol Information
      * 
