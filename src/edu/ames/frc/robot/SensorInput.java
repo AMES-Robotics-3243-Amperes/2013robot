@@ -19,7 +19,7 @@ public class SensorInput {
     static Gyro gy;
     static Encoder rotaryEncoder = new Encoder(1,2);
 
-//    /* Initialize sensor values & variables */
+    /* Initialize sensor values & variables */
     void init() {
         gy = new Gyro(rm.gyroport);
         gy.reset();

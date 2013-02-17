@@ -14,7 +14,6 @@ public class MotorControl {
  *Shooter: Check
  *
  */
-    //static RobotMap rm = new RobotMap();
     static Victor A;
     static Victor B;
     static Victor C;
@@ -32,8 +31,9 @@ public class MotorControl {
         asstclimb = new Jaguar(RobotMap.assistclimb);
       //push = new Relay(RobotMap.pushpin);
         shoot = new Jaguar(RobotMap.pushpin);
+        
         shoottilt = new Relay(RobotMap.tiltpin);
-        shoottilt.setDirection(Relay.Direction.kBoth);
+        shoottilt.setDirection(Relay.Direction.kBoth); // we also have to do this for spike relays
     }
 
     void drive(double[] mv) {
@@ -97,15 +97,15 @@ public class MotorControl {
         motorval[2] += pivot;
         return motorval;
     }
+    
     /* Make sure the motors don't go full blast all the time */
-
     double[] setSpeedCap(double[] in, boolean boosted) {
         if (!boosted) {
-
             for (int i = 0; i < in.length; i++) {
                 in[i] = in[i] * RobotMap.speedcap;
             }
-        } else if (boosted) {
+        } else {
+            // uh-oh, what is this next line supposed to do?
             for (int i = 0; i < in.length & !boosted; i++) {
                 in[i] = in[i] * (RobotMap.speedcap - .2);
             }

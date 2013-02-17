@@ -9,39 +9,33 @@ import java.io.*;
 import javax.microedition.io.*;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-
-
 public class Communication {
-
-     
     //==================================================================================
-    public void RobotSpeed(String Speedo ){
-     String RSpeed;
+    public void RobotSpeed(String Speedo) {
+        String RSpeed;
         RSpeed = Speedo;
-        if (!RSpeed.equals(" ")){                  //Puts Robot's **speed**  to Dashboard
-        
-        String RS = "Speed:";
-        SmartDashboard.putString(RS , RSpeed); 
-        
+        if (!RSpeed.equals(" ")) {                  //Puts Robot's **speed**  to Dashboard
+
+            String RS = "Speed:";
+            SmartDashboard.putString(RS, RSpeed);
+
+        }
     }
-    }
-    
     
     //==================================================================================
     public void RobotDirection(String RDirect){
-                
-        if(!RDirect.equals(" ")){                   // puts relative **direction** of robot to SmartDashboard
-        String RD ="Robot Direction:";
-        SmartDashboard.putString(RD, RDirect);
+        if (!RDirect.equals(" ")) {                   // puts relative **direction** of robot to SmartDashboard
+            String RD = "Robot Direction:";
+            SmartDashboard.putString(RD, RDirect);
         }
     }
     
     
     //==================================================================================
-    public void ShooterSpeed(String SSpeed){
-        if(!SSpeed.equals(" ")){                    //Puts **Shooter Speed** to Dashboard
-         SmartDashboard.putString("Shoot Speed:", SSpeed);
-            
+    public void ShooterSpeed(String SSpeed) {
+        if (!SSpeed.equals(" ")) {                    //Puts **Shooter Speed** to Dashboard
+            SmartDashboard.putString("Shoot Speed:", SSpeed);
+
         }
     }
     
@@ -49,19 +43,17 @@ public class Communication {
     
     //==================================================================================
    //         *****Please be specific when writing strings to errorMethods*****
-    
-    
-    public void Error1(String x){
-        if(!x.equals(" ")){             // Puts **Error** to Dashboard
-         SmartDashboard.putString("Error:", x);  
+    public void Error1(String x) {
+        if (!x.equals(" ")) {             // Puts **Error** to Dashboard
+            SmartDashboard.putString("Error:", x);
         }
-        }
+    }
     
     //=================================================================================
-    public void SecondError (String Er2)
-    {                                       //Puts **Error2** to Dashboard
-        if(!Er2.equals(" ")){               
-            SmartDashboard.putString("Error:",Er2);
+    public void SecondError(String Er2) {
+        //Puts **Error2** to Dashboard
+        if (!Er2.equals(" ")) {
+            SmartDashboard.putString("Error:", Er2);
         }
     }
     
@@ -96,6 +88,7 @@ public class Communication {
         int heightInt;
         int distanceInt;
         int confInt;
+        
         public PISocket(boolean activated) throws Exception {
             active = activated;
             psock = (SocketConnection) Connector.open("socket://127.0.0.1:3243");
@@ -104,19 +97,17 @@ public class Communication {
             distanceInt = 0;
             confInt = 0;
         }   
+        
         public void GetData() throws Exception {
             InputStream is = psock.openInputStream();
             rcnum = new Integer(is.read()); //Converting int to Integer object
            String strNumber  = rcnum.toString();  //Converting Integer value into a string value
             
-            
              //Need to make sure that check numbers are correct
-            if(strNumber.charAt(2) == '4' &&  strNumber.charAt(5) == '4' && strNumber.charAt(8) == '4')//DANIEL, ARE YOU SURE OUR CHECK NUMBERS WILL ONLY BE 4???
-            {
+            if(strNumber.charAt(2) == '4' &&  strNumber.charAt(5) == '4' && strNumber.charAt(8) == '4') {
                 String angleX = strNumber.substring(0, 2);//   assinging the first two digits into the varible angleX = 67 in this case.it starts a the 0th possition and goes to the number before 2nd possition
                 angleInt = Integer.parseInt(angleX);//converts the angleX srting variable type to int.
                     
-                
                 String heightY = strNumber.substring(3, 5);//   assiging the first two digits into the varible height=55 in this case .it starts a the 0th possition and goes to the number before 2nd possition
                 heightInt = Integer.parseInt(heightY);//converts the heightY srting variable type to int.
                 
@@ -125,15 +116,11 @@ public class Communication {
                 
                 String confidenceLevelC = strNumber.substring(9, 11);//   assiging the first two digits into the varible confidenceLevel = 95 in this case .it starts a the 0th possition and goes to the number before 2nd possition
                 confInt = Integer.parseInt(confidenceLevelC);//converts the ConfidenceLevelC srting variable type to int.
-     
-            }
-            else
-            {
+            } else {
                 SmartDashboard.putString("LOLwut?:", "Check numbers are wrong do something here....");
                     //if it turns out not being genuine
             }
+            /*** this needs to return an array of variables!!! ***/
         }
-        
     }
 }
-//Figure out how to take a long number such as 67455423497 and seperate it into many individual numbers according to the layout shown above
