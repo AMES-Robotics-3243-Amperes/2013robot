@@ -54,17 +54,17 @@ public class InputManager {
 
     public void updateAllButtons() {
         //manpivot.getState();
-        fireButton.getState();
-        tiltup.getState();
-        tiltdown.getState();
+        fireButton.getState(RobotMap.secondary);
+        tiltup.getState(RobotMap.primary);
+        tiltdown.getState(RobotMap.primary);
         //voidBool = pivotRight.getState();
         //voidBool = pivotLeft.getState();
         //voidBool = realign.getState();
         //voidBool = infrisbee.getState();
         //voidBool = autotarg.getState();
         
-        speedBoost.getState();
-        tilttoggle.getState();
+        speedBoost.getState(RobotMap.primary);
+        tilttoggle.getState(RobotMap.primary);
     }
 
     public static double[] getPureAxis() { // Gets, stores, and returns the status of the joysticks on the PS2 Controller
@@ -153,7 +153,7 @@ public class InputManager {
         //Sets the angle to the inverse tangent of x / y
         angle = MathUtils.atan2(axis[0], axis[1]);// Tan^-1(x/y) Example: Tan^-1(.7/.2)
 
-        vect[0] = angle + (Math.PI / 2);
+        vect[0] = angle - (3 * Math.PI / 4);
         vect[1] = speed;
         return (vect);
     }
@@ -167,8 +167,13 @@ public class InputManager {
             bpin = pin;
         }
 
-        public boolean getState() {
-            state = ps2cont.getRawButton(this.bpin);
+        public boolean getState(boolean joystick) {
+            // true: first joystick, false: second joystick
+            if(joystick) {
+                state = ps2cont.getRawButton(this.bpin);
+            } else {
+                state = monoJoystick.getRawButton(this.bpin);
+            }
             return state;
         }
     }

@@ -8,6 +8,8 @@ package edu.ames.frc.robot;
 public class RobotMap {
     //Setting go here
     protected final static boolean debugmode = true;
+    //Pin Assignments go here!
+    
     /*Drive motor pins.
      * For managment reasons we will track each wheel motor based on the side of the traingle/hexagon it is located at
      * Each corner is labeled as either A,B, or C. A being the front wheel, B being the back right, and C being the back left.
@@ -17,15 +19,21 @@ public class RobotMap {
     protected final static int Apin = 1; // Pin assignment for the front motor A
     protected final static int Bpin = 2;
     protected final static int Cpin = 3;
-    
-    //Pin Assignments go here!
-    protected final static int gyroport = 1;// gyro is on analog port 1
-    protected final static int climbpin = 6;
-    protected final static int pushpin = 4;
-    protected final static int tiltpin = 7;
+
     protected final static int wheelpin = 4;
+    protected final static int climbasstpin = 5;
+    protected final static int climbpin = 6;
+    protected final static int tiltpin = 7;
+    
+    // digital I/O pins for the spike relays
+    protected final static int pushpin = 4;    
+    
+    protected final static int gyroport = 1; // gyro is on analog port 1
     
     //Joystick specific buttons below    
+    // boolean for picking primary or secondary controller
+    protected final static boolean primary = true;
+    protected final static boolean secondary = false;
     
     //Playstation 2 controller buttons only
     protected final static int tiltupbutton = 4;   // Button 4 and 2 until we

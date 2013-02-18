@@ -70,11 +70,11 @@ public class RobotProject extends IterativeRobot {
             MC.shooter(true);
             IM.updateAllButtons();
             
-            if (!IM.climber.getState()) {
+            if (!IM.climber.getState(RobotMap.primary)) {
                 joystickangleandspeed = IM.getPureAxis();
                 pivotval = IM.getPivot();
                 drivemotorvalues = MC.convertHeadingToMotorCommands(joystickangleandspeed[0], joystickangleandspeed[1]);
-                drivemotorvalues = MC.setSpeedCap(drivemotorvalues, IM.speedBoost.getState());
+                drivemotorvalues = MC.setSpeedCap(drivemotorvalues, IM.speedBoost.getState(RobotMap.primary));
                 drivemotorvalues = MC.addPivot(drivemotorvalues, pivotval);
                 wd.feed();
                 System.out.println("motors: " + drivemotorvalues[0] + ",\t" + drivemotorvalues[1] + ",\t" + drivemotorvalues[2]);
@@ -82,7 +82,7 @@ public class RobotProject extends IterativeRobot {
                 
                 auxjoystick = IM.getSecondaryAxis();
                 
-                if(!IM.tilttoggle.getState()) {
+                if(!IM.tilttoggle.getState(RobotMap.primary)) {
                     MC.shootertilt(auxjoystick);
                     MC.climb(0);
                 } else {
@@ -103,21 +103,21 @@ public class RobotProject extends IterativeRobot {
                 }
                 */
                 
-                if(IM.tiltdown.getState()) {
+                if(IM.tiltdown.getState(RobotMap.primary)) {
                     drivemotorvalues[0] = joystickangleandspeed[1] * .9;
                     drivemotorvalues[1] = joystickangleandspeed[1] * -.3;
                     drivemotorvalues[2] = joystickangleandspeed[1] * -.4;
                     MC.drive(drivemotorvalues);
                 }
                 
-                if(IM.tiltup.getState()) {
+                if(IM.tiltup.getState(RobotMap.primary)) {
                     drivemotorvalues[0] = joystickangleandspeed[1] * -.9;
                     drivemotorvalues[1] = joystickangleandspeed[1] * .3;
                     drivemotorvalues[2] = joystickangleandspeed[1] * .4;
                     MC.drive(drivemotorvalues);
                 }
                 
-                if(IM.fireButton.getState()) {
+                if(IM.fireButton.getState(RobotMap.secondary)) {
                     MC.shooter(true);
                 } else {
                     MC.shooter(false);

@@ -18,15 +18,19 @@ public class MotorControl {
     static Victor B;
     static Victor C;
     static Victor climb;
-    static Relay push;
+
+    static Jaguar climbasst;
     static Jaguar shoottilt;
     static Jaguar shootwheel;
 
+    static Relay  push;
+    
     void init() {
         A = new Victor(RobotMap.Apin);
         B = new Victor(RobotMap.Bpin);
         C = new Victor(RobotMap.Cpin);
         climb = new Victor(RobotMap.climbpin);
+        climbasst = new Jaguar(RobotMap.climbasstpin);
         shootwheel = new Jaguar(RobotMap.wheelpin);
         //shoot = new Jaguar(RobotMap.pushpin);
         
@@ -42,6 +46,7 @@ public class MotorControl {
     void climb(double power){
         power = limit(power);
         climb.set(power);
+        climbasst.set(power);
     }
 
     static double limit(double value) {
