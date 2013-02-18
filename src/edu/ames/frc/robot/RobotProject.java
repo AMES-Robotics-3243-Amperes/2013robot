@@ -79,7 +79,7 @@ public class RobotProject extends IterativeRobot {
                 MC.drive(drivemotorvalues);
                 MC.climb(0);
 
-                if(IM.activ8tilt.getState()){
+                if(!IM.activ8tilt.getState()){
                     MC.shootertilt(IM.getSecondaryAxis());
                 }
                 // this is only temporary, should be moved to second joystick
