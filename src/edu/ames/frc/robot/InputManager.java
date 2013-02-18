@@ -69,8 +69,8 @@ public class InputManager {
         double[] dir = new double[2];
         dir[0] = -ps2cont.getRawAxis(1);// X
         dir[1] = ps2cont.getRawAxis(2);// Y
-        dir[2] = monoJoystick.getRawAxis(1);
-        dir[3] = monoJoystick.getRawAxis(2);
+        dir[2] = monoJoystick.getRawAxis(1);// X
+        dir[3] = monoJoystick.getRawAxis(2);// Y
         
         dir = deadZone(dir);
         //dir = ramp(dir);
