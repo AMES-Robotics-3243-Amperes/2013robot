@@ -82,7 +82,7 @@ public class MotorControl {
         }
     }
 
-    public void shootertilt(int tilt) {
+    public void shootertilt(double tilt) {
         if(tilt > 0) {
             shoottilt.set(Relay.Value.kForward);
         } else if(tilt < 0) {

@@ -23,7 +23,7 @@ public class InputManager {
     protected static Joystick ps2cont;
     protected static Joystick monoJoystick;
     // protected static boolean dzactive  = false; // In case we want to check for deadzoneing being active
-    //  protected static double[] axisOC = new double[2]; // Stores the original copies of the axis reads, for use elsewhere.
+    // protected static double[] axisOC = new double[2]; // Stores the original copies of the axis reads, for use elsewhere.
     protected static button manpivot;
     protected static button fireButton;
     protected static button realign;
@@ -31,8 +31,9 @@ public class InputManager {
     protected static button autotarg;
     protected static button speedBoost;
     protected static button climber;
-    protected static button tiltup;
-    protected static button tiltdown;
+    //protected static button tiltup;
+    //protected static button tiltdown;
+    protected static button activ8tilt;
 
     public void init() {
         ps2cont = new Joystick(1);
@@ -43,15 +44,16 @@ public class InputManager {
         autotarg = new button(true, RobotMap.autotarg);
         speedBoost = new button(false, RobotMap.speedboost);
         climber = new button(false, RobotMap.clmpin);
-        tiltup = new button(false, RobotMap.tiltdownbutton);
-        tiltdown = new button(false, RobotMap.tiltupbutton);
+        //tiltup = new button(false, RobotMap.tiltdownbutton);
+        //tiltdown = new button(false, RobotMap.tiltupbutton);
+        activ8tilt = new button(false, RobotMap.armactiv8);
     }
 
     public void updateAllButtons() {
         //manpivot.getState();
         //fireButton.getState();
-        tiltup.getState();
-        tiltdown.getState();
+       // tiltup.getState();
+        //tiltdown.getState();
         //voidBool = pivotRight.getState();
         //voidBool = pivotLeft.getState();
         //voidBool = realign.getState();
@@ -69,13 +71,20 @@ public class InputManager {
         double[] dir = new double[4];
         dir[0] = -ps2cont.getRawAxis(1);// X
         dir[1] = ps2cont.getRawAxis(2);// Y
-        dir[2] = monoJoystick.getRawAxis(1);// X
-        dir[3] = monoJoystick.getRawAxis(2);// Y
+        //dir[2] = monoJoystick.getRawAxis(1);// X
+        //dir[3] = monoJoystick.getRawAxis(2);// Y
         
         dir = deadZone(dir);
         //dir = ramp(dir);
         dir = translate(dir);
         return (dir); // Returns axis data to the caller.
+    }
+    public static double getSecondaryAxis(){
+       double finalval;
+       finalval = monoJoystick.getRawAxis(2);
+       finalval = deadZoneMono(finalval);
+       //finalval = rampSingle(finalval);
+       return finalval;
     }
 
     public static double getPivot() {
@@ -100,6 +109,12 @@ public class InputManager {
             }
         }
         return (axis);
+    }
+    protected static double deadZoneMono(double axis){
+        if (axis <= RobotMap.deadzone && axis >= RobotMap.deadzone) {
+                axis = 0;
+            }
+        return axis;
     }
 
     protected static double[] ramp(double[] axis) {
