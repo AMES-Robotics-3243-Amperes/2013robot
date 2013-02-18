@@ -19,17 +19,21 @@ public class MotorControl {
     static Victor C;
     static Victor climb;
     static Relay push;
-    static Jaguar shoot;
-    static Jaguar shoottilt;
+    static Relay shoottilt;
+    static Jaguar asstclimb;
+    static Jaguar shootwheel;
 
     void init() {
         A = new Victor(RobotMap.Apin);
         B = new Victor(RobotMap.Bpin);
         C = new Victor(RobotMap.Cpin);
         climb = new Victor(RobotMap.climbpin);
-      //push = new Relay(RobotMap.pushpin);
-        shoot = new Jaguar(RobotMap.pushpin);
-        shoottilt = new Jaguar(RobotMap.tiltpin);
+        asstclimb = new Jaguar(RobotMap.assistclimb);
+        shootwheel = new Jaguar(RobotMap.wheelpin);
+        //shoot = new Jaguar(RobotMap.pushpin);
+        
+        shoottilt = new Relay(RobotMap.tiltpin);
+        shoottilt.setDirection(Relay.Direction.kBoth); // we also have to do this for spike relays
     }
 
     void drive(double[] mv) {
@@ -62,9 +66,11 @@ public class MotorControl {
         return inpow;
     }
 
-    public void shooter(double power) {
-        power = limit(power);
-        shoot.set(power);
+    public void shooter(boolean on) {
+        if(on){
+            shootwheel.set(1);
+        }
+        
     }
 
     public void pusher(boolean active) {
@@ -81,7 +87,7 @@ public class MotorControl {
     }
 
     public double[] addPivot(double[] motorval, double pivot) {
-        pivot += RobotMap.pivotconstant;
+        pivot += RobotMap.compensatePivot;
         motorval[0] += pivot;
         motorval[1] += pivot;
         motorval[2] += pivot;
@@ -126,5 +132,17 @@ public class MotorControl {
         motorvalue[2] = speed * -Math.cos(direction);
         
         return motorvalue;
-    }
+    }/* so, we'll define the direction we want to go as "forward". There are
+         * 3 different points where only two motors will need to run (if the direction
+         * is parallel to a motor's axle).
+         */
+        // 0 is what we define as the "front" motodrivemotorvalues - what we measure our heading angle from,
+        // 1 is the motor one position clockwise from that, and
+        // 2 is the motor one position counter-clockwise from 0.
+        /*
+        motorvalue[0] = speed * Math.sin(direction);
+        motorvalue[1] = speed * Math.sin(direction - (2 * Math.PI / 3));
+        motorvalue[2] = speed * Math.sin(direction + (2 * Math.PI / 3));
+        */
+        
 }

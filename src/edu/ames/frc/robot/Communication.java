@@ -11,51 +11,88 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Communication {
     //==================================================================================
-    public void RobotSpeed(String Speedo) {
-        String RSpeed;
-        RSpeed = Speedo;
-        if (!RSpeed.equals(" ")) {                  //Puts Robot's **speed**  to Dashboard
-
-            String RS = "Speed:";
-            SmartDashboard.putString(RS, RSpeed);
-
-        }
+    public void RobotSpeed(double Speedo ){
+     String RSpeed;
+        RSpeed = Double.toString(Speedo);
+        if (!RSpeed.equals(" ")){                  //Puts Robot's **speed**  to Dashboard
+        
+        String RS = "Speed:";
+        SmartDashboard.putString(RS , RSpeed); 
+     }
     }
-    
     //==================================================================================
-    public void RobotDirection(String RDirect){
-        if (!RDirect.equals(" ")) {                   // puts relative **direction** of robot to SmartDashboard
-            String RD = "Robot Direction:";
-            SmartDashboard.putString(RD, RDirect);
+    public void RobotDirection(double RDirect){
+        String RD;
+         RD = Double.toString(RDirect);
+        if(!RD.equals(" ")){                   // puts relative **direction** of robot to SmartDashboard
+        String x ="Robot Direction:";
+        SmartDashboard.putString(x, RD);
         }
     }
-    
-    
     //==================================================================================
-    public void ShooterSpeed(String SSpeed) {
-        if (!SSpeed.equals(" ")) {                    //Puts **Shooter Speed** to Dashboard
-            SmartDashboard.putString("Shoot Speed:", SSpeed);
-
-        }
+    public void ShooterSpeed(double SS){
+        String SSpeed;
+        SSpeed= Double.toString(SS);
+        if(!SSpeed.equals(" ")){                    //Puts **Shooter Speed** to Dashboard
+         SmartDashboard.putString("Shoot Speed:", SSpeed);
+       }
     }
-    
-    
-    
+       
     //==================================================================================
    //         *****Please be specific when writing strings to errorMethods*****
-    public void Error1(String x) {
-        if (!x.equals(" ")) {             // Puts **Error** to Dashboard
-            SmartDashboard.putString("Error:", x);
+    
+        public void Error1(String x){
+
+        if(!x.equals(" ")){             // Puts **Error** to Dashboard
+         SmartDashboard.putString("Error:", x);  
+        }
+        }
+      
+    //=================================================================================
+    public void Error2 (String Er2)
+    {                                       //Puts **Error2** to Dashboard
+        if(!Er2.equals(" ")){               
+            SmartDashboard.putString("Error:",Er2);
         }
     }
+    //=================================================================================
+    public void Error3(String x){
+
+        if(!x.equals(" ")){             // Puts **Error3** to Dashboard
+         SmartDashboard.putString("Error:", x);  
+        }
+        }
+    //=================================================================================
+    public void Error4(String x){
+
+        if(!x.equals(" ")){             // Puts **Error4** to Dashboard
+         SmartDashboard.putString("Error:", x);  
+        }
+        }
+    //=================================================================================
+    public void Error5(String x){
+
+        if(!x.equals(" ")){             // Puts **Error5** to Dashboard
+         SmartDashboard.putString("Error:", x);  
+        }
+        }
     
     //=================================================================================
-    public void SecondError(String Er2) {
-        //Puts **Error2** to Dashboard
-        if (!Er2.equals(" ")) {
-            SmartDashboard.putString("Error:", Er2);
+    public void Error6(String x){
+
+        if(!x.equals(" ")){             // Puts **Error6** to Dashboard
+         SmartDashboard.putString("Error:", x);  
         }
-    }
+        }
+    //=================================================================================
+    public void Error7(String x){
+
+        if(!x.equals(" ")){             // Puts **Error7** to Dashboard
+         SmartDashboard.putString("Error:", x);  
+        }
+        }
+    
+    //=================================================================================
     
     
     /***************************************************************************

@@ -43,7 +43,7 @@ public class SensorInput {
     }
 
     double convertToRadian(double deg) {
-        deg *= 180 / 3.141592653589793238462643383279;
+        deg /= 180 / 3.141592653589793238462643383279;
         //Im a bad person XD
         return deg;
     }
