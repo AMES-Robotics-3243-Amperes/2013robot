@@ -66,7 +66,7 @@ public class InputManager {
          * The second dimension holds the x & y for the second (pivoting) joystick
          */
         // double[] axis = new double[2];// Variable for storing all that data
-        double[] dir = new double[2];
+        double[] dir = new double[4];
         dir[0] = -ps2cont.getRawAxis(1);// X
         dir[1] = ps2cont.getRawAxis(2);// Y
         dir[2] = monoJoystick.getRawAxis(1);// X
