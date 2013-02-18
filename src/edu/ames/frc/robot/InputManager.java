@@ -105,14 +105,14 @@ public class InputManager {
         //This is a skeleton of the deadzone funtion. Mark should fill this in.
 
         for (byte si = 0; si < axis.length; si++) {//loops through the array.
-            if (axis[si] <= RobotMap.deadzone && axis[si] >= RobotMap.deadzone) {
+            if (axis[si] <= RobotMap.deadzone && axis[si] >= -RobotMap.deadzone) {
                 axis[si] = 0;
             }
         }
         return (axis);
     }
     protected static double deadZoneMono(double axis){
-        if (axis <= RobotMap.deadzone && axis >= RobotMap.deadzone) {
+        if (axis <= RobotMap.deadzone && axis >= -RobotMap.deadzone) {
                 axis = 0;
             }
         return axis;
