@@ -38,12 +38,13 @@ public class RobotMap {
     //Playstation 2 controller buttons only
     protected final static int tiltupbutton = 4;   // Button 4 and 2 until we
     protected final static int tiltdownbutton = 2; // have a second joystick
-    protected final static int realignpin = 5;
-    protected final static int lockrotRight = 8;
-    protected final static int lockrotLeft = 9;
+    protected final static int realignpin = 9;
+    protected final static int lockrotRight = 6;
+    protected final static int lockrotLeft = 5;
     protected final static int autotarg = 10;
-    protected final static int clmpin = 8;
-    protected final static int speedboost = 3;
+    //protected final static int clmpin = 8;
+    protected final static int speedboost = 7;
+    protected final static int speedunboost = 8;
     
     //Attack Joystick controller buttons
     protected final static int trigger = 1;

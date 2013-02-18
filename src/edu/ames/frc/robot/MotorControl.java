@@ -115,15 +115,15 @@ public class MotorControl {
     
     
     /* Make sure the motors don't go full blast all the time */
-    double[] setSpeedCap(double[] in, boolean boosted) {
-        if (!boosted) {
+    double[] setSpeedCap(double[] in, boolean boosted, boolean unboosted) {
+        if (!boosted && !unboosted) {
             for (int i = 0; i < in.length; i++) {
                 in[i] = in[i] * RobotMap.speedcap;
             }
-        } else {
-            // uh-oh, what is this next line supposed to do?
-            for (int i = 0; i < in.length & !boosted; i++) {
-                in[i] = in[i] * (RobotMap.speedcap - .2);
+        }
+        if(!boosted && unboosted) {
+            for (int i = 0; i < in.length; i++) {
+                in[i] = in[i] * (RobotMap.speedcap * 0.5);
             }
         }
         return in;

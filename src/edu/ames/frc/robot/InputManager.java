@@ -30,6 +30,7 @@ public class InputManager {
     protected static button infrisbee;
     protected static button autotarg;
     protected static button speedBoost;
+    protected static button speedUnboost;
     protected static button climber;
     protected static button tiltup;
     protected static button tiltdown;
@@ -42,10 +43,13 @@ public class InputManager {
         ps2cont = new Joystick(1);
         monoJoystick = new Joystick(2);
         
+        //climber = new button(RobotMap.clmpin, RobotMap.primary);
+        
         realign = new button(RobotMap.realignpin, RobotMap.primary);
         autotarg = new button(RobotMap.autotarg, RobotMap.primary);
-        speedBoost = new button( RobotMap.speedboost, RobotMap.primary);
-        climber = new button(RobotMap.clmpin, RobotMap.primary);
+        speedBoost = new button(RobotMap.speedboost, RobotMap.primary);
+        speedUnboost = new button(RobotMap.speedunboost, RobotMap.primary);
+        
         tiltup = new button(RobotMap.tiltdownbutton, RobotMap.primary);
         tiltdown = new button(RobotMap.tiltupbutton, RobotMap.primary);
         
@@ -65,6 +69,7 @@ public class InputManager {
         //voidBool = autotarg.getState();
         
         speedBoost.getState();
+        speedUnboost.getState();
         tilttoggle.getState();
     }
 
@@ -99,7 +104,7 @@ public class InputManager {
         pivot = rampSingle(pivot);
         return (pivot);
     }
-
+    
     public static double getClimb() {
         double joyinput = -ps2cont.getRawAxis(4);
         //System.out.println("Raw axis exported: " + joyinput);
