@@ -26,7 +26,8 @@ public class RobotMap {
     protected final static int wheelpin = 4;
     
     //Joystick specific buttons below    
-    //Playstation 2 controller pins only
+    
+    //Playstation 2 controller buttons only
     protected final static int tiltupbutton = 4;   // Button 4 and 2 until we
     protected final static int tiltdownbutton = 2; // have a second joystick
     protected final static int realignpin = 5;
@@ -36,9 +37,10 @@ public class RobotMap {
     protected final static int clmpin = 8;
     protected final static int speedboost = 3;
     
-    //Joystick controller pins
+    //Attack Joystick controller buttons
     protected final static int trigger = 1;
     protected final static int armactiv8 = 3;
+
     protected final static String ok = "It's going to be ok now";
     
     //Values go here!

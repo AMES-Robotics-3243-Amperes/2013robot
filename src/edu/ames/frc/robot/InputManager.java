@@ -33,25 +33,28 @@ public class InputManager {
     protected static button climber;
     protected static button tiltup;
     protected static button tiltdown;
-    protected static button activ8tilt;
+    protected static button tilttoggle;
 
     public void init() {
+        // note: when only the ps2 joystick is plugged in, then that is joystick 1.
+        // however, when the attack 3 joystick is also plugged in, then the ps2
+        // joystick is now joystick 2. Careful!
         ps2cont = new Joystick(1);
         monoJoystick = new Joystick(2);
         //manpivot = new button(true, RobotMap.manpivotpin);
-        //fireButton = new button(false, RobotMap.forcefire);
-        realign = new button(false, RobotMap.realignpin);
-        autotarg = new button(true, RobotMap.autotarg);
-        speedBoost = new button(false, RobotMap.speedboost);
-        climber = new button(false, RobotMap.clmpin);
-        tiltup = new button(false, RobotMap.tiltdownbutton);
-        tiltdown = new button(false, RobotMap.tiltupbutton);
-        activ8tilt = new button(false, RobotMap.armactiv8);
+        fireButton = new button(RobotMap.trigger);
+        realign = new button(RobotMap.realignpin);
+        autotarg = new button(RobotMap.autotarg);
+        speedBoost = new button( RobotMap.speedboost);
+        climber = new button(RobotMap.clmpin);
+        tiltup = new button(RobotMap.tiltdownbutton);
+        tiltdown = new button(RobotMap.tiltupbutton);
+        tilttoggle = new button(RobotMap.armactiv8);
     }
 
     public void updateAllButtons() {
         //manpivot.getState();
-        //fireButton.getState();
+        fireButton.getState();
         tiltup.getState();
         tiltdown.getState();
         //voidBool = pivotRight.getState();
@@ -59,7 +62,9 @@ public class InputManager {
         //voidBool = realign.getState();
         //voidBool = infrisbee.getState();
         //voidBool = autotarg.getState();
+        
         speedBoost.getState();
+        tilttoggle.getState();
     }
 
     public static double[] getPureAxis() { // Gets, stores, and returns the status of the joysticks on the PS2 Controller
@@ -81,11 +86,11 @@ public class InputManager {
     }
 
     public static double getSecondaryAxis() {
-        double finalval;
-        finalval = monoJoystick.getRawAxis(2);
-        finalval = deadZoneMono(finalval);
+        double finalval = -monoJoystick.getAxis(Joystick.AxisType.kY);
+        //finalval = deadZoneMono(finalval);
         //finalval = rampSingle(finalval);
-        return finalval;
+        // ramping
+        return finalval * 0.7;
     }
 
     public static double getPivot() {
@@ -111,10 +116,11 @@ public class InputManager {
         }
         return (axis);
     }
-    protected static double deadZoneMono(double axis){
+
+    protected static double deadZoneMono(double axis) {
         if (axis <= RobotMap.deadzone && axis >= -RobotMap.deadzone) {
-                axis = 0;
-            }
+            axis = 0;
+        }
         return axis;
     }
 
@@ -147,7 +153,7 @@ public class InputManager {
         //Sets the angle to the inverse tangent of x / y
         angle = MathUtils.atan2(axis[0], axis[1]);// Tan^-1(x/y) Example: Tan^-1(.7/.2)
 
-        vect[0] = angle + ( 90 / (180 / Math.PI));
+        vect[0] = angle + (Math.PI / 2);
         vect[1] = speed;
         return (vect);
     }
@@ -156,10 +162,8 @@ public class InputManager {
 
         boolean state;
         int bpin;
-        boolean toggle;
 
-        public button(boolean isToggle, int pin) {
-            toggle = isToggle;
+        public button(int pin) {
             bpin = pin;
         }
 

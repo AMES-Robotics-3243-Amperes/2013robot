@@ -66,8 +66,9 @@ public class MotorControl {
     public void shooter(boolean on) {
         if(on){
             shootwheel.set(1);
+        } else {
+            shootwheel.set(0);
         }
-        
     }
 
     public void pusher(boolean active) {

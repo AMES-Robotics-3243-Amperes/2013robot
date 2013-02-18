@@ -37,10 +37,11 @@ public class RobotProject extends IterativeRobot {
     double[] drivemotorvalues;
     double[] joystickangleandspeed;
     double climbval;
+    double auxjoystick;
 
     public void robotInit() {
         wd = Watchdog.getInstance();
-        wd.setExpiration(1);
+        wd.setExpiration(0.5);
         SI.init();
         IM.init();
         MC.init();
@@ -78,27 +79,57 @@ public class RobotProject extends IterativeRobot {
                 wd.feed();
                 System.out.println("motors: " + drivemotorvalues[0] + ",\t" + drivemotorvalues[1] + ",\t" + drivemotorvalues[2]);
                 MC.drive(drivemotorvalues);
-                MC.climb(0);
-
-                if(!IM.activ8tilt.getState()) {
-                    MC.shootertilt(IM.getSecondaryAxis());
+                
+                auxjoystick = IM.getSecondaryAxis();
+                
+                if(!IM.tilttoggle.getState()) {
+                    MC.shootertilt(auxjoystick);
+                    MC.climb(0);
+                } else {
+                    MC.shootertilt(0);
+                    MC.climb(auxjoystick);
                 }
                 
                 // this is only temporary, should be moved to second joystick
+                /*
                 if (IM.tiltdown.getState()) {
-                    MC.shootertilt(0.5);
+                    MC.shootertilt(0.4);
                 }
                 if (IM.tiltup.getState()) {
-                    MC.shootertilt(-0.5);
+                    MC.shootertilt(-0.4);
                 }
                 if (!IM.tiltup.getState() && !IM.tiltdown.getState()) {
                     MC.shootertilt(0);
                 }
+                */
                 
-                MC.pusher(IM.fireButton.getState());
+                if(IM.tiltdown.getState()) {
+                    drivemotorvalues[0] = joystickangleandspeed[1] * .9;
+                    drivemotorvalues[1] = joystickangleandspeed[1] * -.3;
+                    drivemotorvalues[2] = joystickangleandspeed[1] * -.4;
+                    MC.drive(drivemotorvalues);
+                }
+                
+                if(IM.tiltup.getState()) {
+                    drivemotorvalues[0] = joystickangleandspeed[1] * -.9;
+                    drivemotorvalues[1] = joystickangleandspeed[1] * .3;
+                    drivemotorvalues[2] = joystickangleandspeed[1] * .4;
+                    MC.drive(drivemotorvalues);
+                }
+                
+                if(IM.fireButton.getState()) {
+                    MC.shooter(true);
+                } else {
+                    MC.shooter(false);
+                }
             } else {
                 climbval = IM.getClimb();
                 climbval = MC.Climblimit(climbval);
+                MC.shooter(false);
+                drivemotorvalues[0] = 0;
+                drivemotorvalues[1] = 0;
+                drivemotorvalues[2] = 0;
+                MC.drive(drivemotorvalues);
                 MC.climb(climbval);
             }
         }
