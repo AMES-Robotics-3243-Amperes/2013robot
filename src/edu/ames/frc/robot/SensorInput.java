@@ -43,8 +43,7 @@ public class SensorInput {
     }
 
     double convertToRadian(double deg) {
-        deg /= 180 / 3.141592653589793238462643383279;
-        //Im a bad person XD
+        deg = deg * Math.PI / 180;
         return deg;
     }
     double encoderRot(){
