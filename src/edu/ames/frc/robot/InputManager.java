@@ -31,8 +31,8 @@ public class InputManager {
     protected static button autotarg;
     protected static button speedBoost;
     protected static button climber;
-    //protected static button tiltup;
-    //protected static button tiltdown;
+    protected static button tiltup;
+    protected static button tiltdown;
     protected static button activ8tilt;
 
     public void init() {
@@ -44,16 +44,16 @@ public class InputManager {
         autotarg = new button(true, RobotMap.autotarg);
         speedBoost = new button(false, RobotMap.speedboost);
         climber = new button(false, RobotMap.clmpin);
-        //tiltup = new button(false, RobotMap.tiltdownbutton);
-        //tiltdown = new button(false, RobotMap.tiltupbutton);
+        tiltup = new button(false, RobotMap.tiltdownbutton);
+        tiltdown = new button(false, RobotMap.tiltupbutton);
         activ8tilt = new button(false, RobotMap.armactiv8);
     }
 
     public void updateAllButtons() {
         //manpivot.getState();
         //fireButton.getState();
-       // tiltup.getState();
-        //tiltdown.getState();
+        tiltup.getState();
+        tiltdown.getState();
         //voidBool = pivotRight.getState();
         //voidBool = pivotLeft.getState();
         //voidBool = realign.getState();
