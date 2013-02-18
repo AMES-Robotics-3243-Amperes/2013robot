@@ -73,18 +73,19 @@ public class InputManager {
         dir[1] = ps2cont.getRawAxis(2);// Y
         //dir[2] = monoJoystick.getRawAxis(1);// X
         //dir[3] = monoJoystick.getRawAxis(2);// Y
-        
+
         dir = deadZone(dir);
         //dir = ramp(dir);
         dir = translate(dir);
         return (dir); // Returns axis data to the caller.
     }
-    public static double getSecondaryAxis(){
-       double finalval;
-       finalval = monoJoystick.getRawAxis(2);
-       finalval = deadZoneMono(finalval);
-       //finalval = rampSingle(finalval);
-       return finalval;
+
+    public static double getSecondaryAxis() {
+        double finalval;
+        finalval = monoJoystick.getRawAxis(2);
+        finalval = deadZoneMono(finalval);
+        //finalval = rampSingle(finalval);
+        return finalval;
     }
 
     public static double getPivot() {
@@ -146,7 +147,7 @@ public class InputManager {
         //Sets the angle to the inverse tangent of x / y
         angle = MathUtils.atan2(axis[0], axis[1]);// Tan^-1(x/y) Example: Tan^-1(.7/.2)
 
-        vect[0] = angle + ( 90 / (180 / 3.141592653589793238));
+        vect[0] = angle + ( 90 / (180 / Math.PI));
         vect[1] = speed;
         return (vect);
     }

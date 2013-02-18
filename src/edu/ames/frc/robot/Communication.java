@@ -12,13 +12,13 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class Communication {
     //==================================================================================
     public void RobotSpeed(double Speedo ){
-     String RSpeed;
+        String RSpeed;
         RSpeed = Double.toString(Speedo);
-        if (!RSpeed.equals(" ")){                  //Puts Robot's **speed**  to Dashboard
-        
-        String RS = "Speed:";
-        SmartDashboard.putString(RS , RSpeed); 
-     }
+        if (!RSpeed.equals(" ")) {                  //Puts Robot's **speed**  to Dashboard
+
+            String RS = "Speed:";
+            SmartDashboard.putString(RS, RSpeed);
+        }
     }
     //==================================================================================
     public void RobotDirection(double RDirect){
@@ -40,13 +40,11 @@ public class Communication {
        
     //==================================================================================
    //         *****Please be specific when writing strings to errorMethods*****
-    
-        public void Error1(String x){
-
-        if(!x.equals(" ")){             // Puts **Error** to Dashboard
-         SmartDashboard.putString("Error:", x);  
+    public void Error1(String x) {
+        if (!x.equals(" ")) {             // Puts **Error** to Dashboard
+            SmartDashboard.putString("Error:", x);
         }
-        }
+    }
       
     //=================================================================================
     public void Error2 (String Er2)
@@ -56,42 +54,37 @@ public class Communication {
         }
     }
     //=================================================================================
-    public void Error3(String x){
-
-        if(!x.equals(" ")){             // Puts **Error3** to Dashboard
-         SmartDashboard.putString("Error:", x);  
+    public void Error3(String x) {
+        if (!x.equals(" ")) {             // Puts **Error3** to Dashboard
+            SmartDashboard.putString("Error:", x);
         }
-        }
+    }
     //=================================================================================
     public void Error4(String x){
-
-        if(!x.equals(" ")){             // Puts **Error4** to Dashboard
-         SmartDashboard.putString("Error:", x);  
+        if (!x.equals(" ")) {             // Puts **Error4** to Dashboard
+            SmartDashboard.putString("Error:", x);
         }
-        }
+    }
     //=================================================================================
     public void Error5(String x){
-
-        if(!x.equals(" ")){             // Puts **Error5** to Dashboard
-         SmartDashboard.putString("Error:", x);  
+        if (!x.equals(" ")) {             // Puts **Error5** to Dashboard
+            SmartDashboard.putString("Error:", x);
         }
-        }
+    }
     
     //=================================================================================
     public void Error6(String x){
-
-        if(!x.equals(" ")){             // Puts **Error6** to Dashboard
-         SmartDashboard.putString("Error:", x);  
+        if (!x.equals(" ")) {             // Puts **Error6** to Dashboard
+            SmartDashboard.putString("Error:", x);
         }
-        }
+    }
     //=================================================================================
     public void Error7(String x){
+        if (!x.equals(" ")) {             // Puts **Error7** to Dashboard
+            SmartDashboard.putString("Error:", x);
+        }
+    }
 
-        if(!x.equals(" ")){             // Puts **Error7** to Dashboard
-         SmartDashboard.putString("Error:", x);  
-        }
-        }
-    
     //=================================================================================
     
     

@@ -68,6 +68,7 @@ public class RobotProject extends IterativeRobot {
             wd.feed();
             MC.shooter(true);
             IM.updateAllButtons();
+            
             if (!IM.climber.getState()) {
                 joystickangleandspeed = IM.getPureAxis();
                 pivotval = IM.getPivot();
