@@ -69,6 +69,9 @@ public class InputManager {
         double[] dir = new double[2];
         dir[0] = -ps2cont.getRawAxis(1);// X
         dir[1] = ps2cont.getRawAxis(2);// Y
+        dir[2] = monoJoystick.getRawAxis(1);
+        dir[3] = monoJoystick.getRawAxis(2);
+        
         dir = deadZone(dir);
         //dir = ramp(dir);
         dir = translate(dir);
@@ -128,7 +131,7 @@ public class InputManager {
         //Sets the angle to the inverse tangent of x / y
         angle = MathUtils.atan2(axis[0], axis[1]);// Tan^-1(x/y) Example: Tan^-1(.7/.2)
 
-        vect[0] = angle;
+        vect[0] = angle + ( 90 / (180 / 3.141592653589793238));
         vect[1] = speed;
         return (vect);
     }
