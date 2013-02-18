@@ -91,6 +91,21 @@ public class MotorControl {
         motorval[2] += pivot;
         return motorval;
     }
+    public double[] addleftEvade(double[] motorval, double leftEvade) {
+        leftEvade += RobotMap.compensatePivot;
+        motorval[0] += leftEvade;//since left is counterclockwise in our scenerio,we -value making it rotate counterclockwise
+        motorval[1] += leftEvade;
+        motorval[2] += leftEvade;
+        return motorval;
+    }
+     public double[] addrightEvade(double[] motorval, double rightEvade) {
+        rightEvade -= RobotMap.compensatePivot;
+        motorval[0] -= rightEvade;
+        motorval[1] -= rightEvade;
+        motorval[2] -= rightEvade;
+        return motorval;
+    }           
+    
     
     /* Make sure the motors don't go full blast all the time */
     double[] setSpeedCap(double[] in, boolean boosted) {
