@@ -41,30 +41,31 @@ public class InputManager {
         // joystick is now joystick 2. Careful!
         ps2cont = new Joystick(1);
         monoJoystick = new Joystick(2);
-        //manpivot = new button(true, RobotMap.manpivotpin);
-        fireButton = new button(RobotMap.trigger);
-        realign = new button(RobotMap.realignpin);
-        autotarg = new button(RobotMap.autotarg);
-        speedBoost = new button( RobotMap.speedboost);
-        climber = new button(RobotMap.clmpin);
-        tiltup = new button(RobotMap.tiltdownbutton);
-        tiltdown = new button(RobotMap.tiltupbutton);
-        tilttoggle = new button(RobotMap.armactiv8);
+        
+        realign = new button(RobotMap.realignpin, RobotMap.primary);
+        autotarg = new button(RobotMap.autotarg, RobotMap.primary);
+        speedBoost = new button( RobotMap.speedboost, RobotMap.primary);
+        climber = new button(RobotMap.clmpin, RobotMap.primary);
+        tiltup = new button(RobotMap.tiltdownbutton, RobotMap.primary);
+        tiltdown = new button(RobotMap.tiltupbutton, RobotMap.primary);
+        
+        fireButton = new button(RobotMap.shooterenable, RobotMap.secondary);                
+        tilttoggle = new button(RobotMap.trigger, RobotMap.secondary);
     }
 
     public void updateAllButtons() {
         //manpivot.getState();
-        fireButton.getState(RobotMap.secondary);
-        tiltup.getState(RobotMap.primary);
-        tiltdown.getState(RobotMap.primary);
+        fireButton.getState();
+        tiltup.getState();
+        tiltdown.getState();
         //voidBool = pivotRight.getState();
         //voidBool = pivotLeft.getState();
         //voidBool = realign.getState();
         //voidBool = infrisbee.getState();
         //voidBool = autotarg.getState();
         
-        speedBoost.getState(RobotMap.primary);
-        tilttoggle.getState(RobotMap.primary);
+        speedBoost.getState();
+        tilttoggle.getState();
     }
 
     public static double[] getPureAxis() { // Gets, stores, and returns the status of the joysticks on the PS2 Controller
@@ -101,7 +102,7 @@ public class InputManager {
 
     public static double getClimb() {
         double joyinput = -ps2cont.getRawAxis(4);
-        System.out.println("Raw axis exported: " + joyinput);
+        //System.out.println("Raw axis exported: " + joyinput);
         joyinput = rampClimb(joyinput);
         return joyinput;
     }
@@ -161,15 +162,17 @@ public class InputManager {
     public static class button {
 
         boolean state;
+        boolean bjoystick;
         int bpin;
 
-        public button(int pin) {
+        public button(int pin, boolean joystick) {
+            bjoystick = joystick;
             bpin = pin;
         }
 
-        public boolean getState(boolean joystick) {
+        public boolean getState() {
             // true: first joystick, false: second joystick
-            if(joystick) {
+            if(bjoystick) {
                 state = ps2cont.getRawButton(this.bpin);
             } else {
                 state = monoJoystick.getRawButton(this.bpin);

@@ -48,6 +48,7 @@ public class RobotMap {
     //Attack Joystick controller buttons
     protected final static int trigger = 1;
     protected final static int armactiv8 = 3;
+    protected final static int shooterenable = 7;
 
     protected final static String ok = "It's going to be ok now";
     

@@ -67,61 +67,17 @@ public class RobotProject extends IterativeRobot {
     public void teleopPeriodic() {
         while (isOperatorControl() && isEnabled()) {
             wd.feed();
-            MC.shooter(true);
             IM.updateAllButtons();
             
-            if (!IM.climber.getState(RobotMap.primary)) {
+            if (!IM.climber.getState()) {
                 joystickangleandspeed = IM.getPureAxis();
                 pivotval = IM.getPivot();
                 drivemotorvalues = MC.convertHeadingToMotorCommands(joystickangleandspeed[0], joystickangleandspeed[1]);
-                drivemotorvalues = MC.setSpeedCap(drivemotorvalues, IM.speedBoost.getState(RobotMap.primary));
+                drivemotorvalues = MC.setSpeedCap(drivemotorvalues, IM.speedBoost.getState());
                 drivemotorvalues = MC.addPivot(drivemotorvalues, pivotval);
                 wd.feed();
                 System.out.println("motors: " + drivemotorvalues[0] + ",\t" + drivemotorvalues[1] + ",\t" + drivemotorvalues[2]);
                 MC.drive(drivemotorvalues);
-                
-                auxjoystick = IM.getSecondaryAxis();
-                
-                if(!IM.tilttoggle.getState(RobotMap.primary)) {
-                    MC.shootertilt(auxjoystick);
-                    MC.climb(0);
-                } else {
-                    MC.shootertilt(0);
-                    MC.climb(auxjoystick);
-                }
-                
-                // this is only temporary, should be moved to second joystick
-                /*
-                if (IM.tiltdown.getState()) {
-                    MC.shootertilt(0.4);
-                }
-                if (IM.tiltup.getState()) {
-                    MC.shootertilt(-0.4);
-                }
-                if (!IM.tiltup.getState() && !IM.tiltdown.getState()) {
-                    MC.shootertilt(0);
-                }
-                */
-                
-                if(IM.tiltdown.getState(RobotMap.primary)) {
-                    drivemotorvalues[0] = joystickangleandspeed[1] * .9;
-                    drivemotorvalues[1] = joystickangleandspeed[1] * -.3;
-                    drivemotorvalues[2] = joystickangleandspeed[1] * -.4;
-                    MC.drive(drivemotorvalues);
-                }
-                
-                if(IM.tiltup.getState(RobotMap.primary)) {
-                    drivemotorvalues[0] = joystickangleandspeed[1] * -.9;
-                    drivemotorvalues[1] = joystickangleandspeed[1] * .3;
-                    drivemotorvalues[2] = joystickangleandspeed[1] * .4;
-                    MC.drive(drivemotorvalues);
-                }
-                
-                if(IM.fireButton.getState(RobotMap.secondary)) {
-                    MC.shooter(true);
-                } else {
-                    MC.shooter(false);
-                }
             } else {
                 climbval = IM.getClimb();
                 climbval = MC.Climblimit(climbval);
@@ -131,6 +87,21 @@ public class RobotProject extends IterativeRobot {
                 drivemotorvalues[2] = 0;
                 MC.drive(drivemotorvalues);
                 MC.climb(climbval);
+            }
+
+            auxjoystick = IM.getSecondaryAxis();
+            if (IM.tilttoggle.getState()) {
+                MC.shootertilt(0);
+                MC.climb(MC.Climblimit(auxjoystick));
+            } else {
+                MC.shootertilt(auxjoystick);
+                MC.climb(0);
+            }
+
+            if (IM.fireButton.getState()) {
+                MC.shooter(true);
+            } else if (!IM.fireButton.getState()) {
+                MC.shooter(false);
             }
         }
     }

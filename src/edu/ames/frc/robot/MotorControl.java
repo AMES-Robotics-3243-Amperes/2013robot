@@ -69,7 +69,7 @@ public class MotorControl {
     }
 
     public void shooter(boolean on) {
-        if(on){
+        if (on) {
             shootwheel.set(1);
         } else {
             shootwheel.set(0);
@@ -96,6 +96,7 @@ public class MotorControl {
         motorval[2] += pivot;
         return motorval;
     }
+    
     public double[] addleftEvade(double[] motorval, double leftEvade) {
         leftEvade += RobotMap.compensatePivot;
         motorval[0] += leftEvade;//since left is counterclockwise in our scenerio,we -value making it rotate counterclockwise
@@ -103,6 +104,7 @@ public class MotorControl {
         motorval[2] += leftEvade;
         return motorval;
     }
+    
      public double[] addrightEvade(double[] motorval, double rightEvade) {
         rightEvade -= RobotMap.compensatePivot;
         motorval[0] -= rightEvade;
