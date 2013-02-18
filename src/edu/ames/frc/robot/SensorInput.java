@@ -15,14 +15,14 @@ import edu.wpi.first.wpilibj.Encoder;
 
 public class SensorInput {
 
-    static RobotMap rm = new RobotMap();
     static Gyro gy;
-    static Encoder rotaryEncoder = new Encoder(1,2);
+    static Encoder rotaryEncoder;
 
     /* Initialize sensor values & variables */
     void init() {
-        gy = new Gyro(rm.gyroport);
+        gy = new Gyro(RobotMap.gyroport);
         gy.reset();
+        rotaryEncoder = new Encoder(1,2);
         rotaryEncoder.start();
         rotaryEncoder.reset();//Justin Case, attorney at law!
     }
