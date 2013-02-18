@@ -20,20 +20,16 @@ public class MotorControl {
     static Victor climb;
     static Relay push;
     static Jaguar shoot;
-    static Relay shoottilt;
-    static Jaguar asstclimb;
+    static Jaguar shoottilt;
 
     void init() {
         A = new Victor(RobotMap.Apin);
         B = new Victor(RobotMap.Bpin);
         C = new Victor(RobotMap.Cpin);
         climb = new Victor(RobotMap.climbpin);
-        asstclimb = new Jaguar(RobotMap.assistclimb);
       //push = new Relay(RobotMap.pushpin);
         shoot = new Jaguar(RobotMap.pushpin);
-        
-        shoottilt = new Relay(RobotMap.tiltpin);
-        shoottilt.setDirection(Relay.Direction.kBoth); // we also have to do this for spike relays
+        shoottilt = new Jaguar(RobotMap.tiltpin);
     }
 
     void drive(double[] mv) {
@@ -45,7 +41,6 @@ public class MotorControl {
     void climb(double power){
         power = limit(power);
         climb.set(power);
-        asstclimb.set(power);
     }
 
     static double limit(double value) {
@@ -80,14 +75,9 @@ public class MotorControl {
         }
     }
 
-    public void shootertilt(int tilt) {
-        if(tilt > 0) {
-            shoottilt.set(Relay.Value.kForward);
-        } else if(tilt < 0) {
-            shoottilt.set(Relay.Value.kReverse);
-        } else {
-            shoottilt.set(Relay.Value.kOff);
-        }
+    public void shootertilt(double tilt) {
+        tilt = limit(tilt);
+        shoottilt.set(tilt);
     }
 
     public double[] addPivot(double[] motorval, double pivot) {

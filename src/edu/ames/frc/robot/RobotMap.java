@@ -21,9 +21,8 @@ public class RobotMap {
     //Pin Assignments go here!
     protected final static int gyroport = 1;// gyro is on analog port 1
     protected final static int climbpin = 6;
-    protected final static int assistclimb = 7;
     protected final static int pushpin = 9;
-    protected final static int tiltpin = 5;
+    protected final static int tiltpin = 7;
     
     //Joystick specific buttons below
     protected final static int clmpin = 8;
