@@ -30,11 +30,11 @@ public class Communication {
         }
     }
     //==================================================================================
-    public void ShooterSpeed(double SS){
-        String SSpeed;
-        SSpeed= Double.toString(SS);
-        if(!SSpeed.equals(" ")){                    //Puts **Shooter Speed** to Dashboard
-         SmartDashboard.putString("Shoot Speed:", SSpeed);
+    public void ShooterAngle(double SA){
+        String SAngle;
+        SAngle= Double.toString(SA);
+        if(!SAngle.equals(" ")){                    //Puts **Shooter Speed** to Dashboard
+         SmartDashboard.putString("Shoot Angle:", SAngle);
        }
     }
        
