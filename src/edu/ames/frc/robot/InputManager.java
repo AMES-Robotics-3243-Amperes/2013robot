@@ -96,7 +96,7 @@ public class InputManager {
         //finalval = deadZoneMono(finalval);
         //finalval = rampSingle(finalval);
         // ramping
-        return finalval * 0.7;
+        return finalval;
     }
 
     public static double getPivot() {
