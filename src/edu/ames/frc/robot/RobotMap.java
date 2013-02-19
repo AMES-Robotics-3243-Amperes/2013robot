@@ -50,6 +50,8 @@ public class RobotMap {
     protected final static int trigger = 1;
     protected final static int armactiv8 = 3;
     protected final static int shooterenable = 7;
+    protected final static int feederforward = 11;
+    protected final static int feederback = 10;
 
     protected final static String ok = "It's going to be ok now";
     

@@ -31,10 +31,13 @@ public class InputManager {
     protected static button autotarg;
     protected static button speedBoost;
     protected static button speedUnboost;
+    
     protected static button climber;
     protected static button tiltup;
     protected static button tiltdown;
     protected static button tilttoggle;
+    protected static button feedforward;
+    protected static button feedback;
 
     public void init() {
         // note: when only the ps2 joystick is plugged in, then that is joystick 1.
@@ -55,6 +58,9 @@ public class InputManager {
         
         fireButton = new button(RobotMap.shooterenable, RobotMap.secondary);                
         tilttoggle = new button(RobotMap.trigger, RobotMap.secondary);
+        
+        feedforward = new button(RobotMap.feederforward, RobotMap.secondary);
+        feedback = new button(RobotMap.feederback, RobotMap.secondary);
     }
 
     public void updateAllButtons() {
@@ -71,6 +77,8 @@ public class InputManager {
         speedBoost.getState();
         speedUnboost.getState();
         tilttoggle.getState();
+        feedforward.getState();
+        feedback.getState();
     }
 
     public static double[] getPureAxis() { // Gets, stores, and returns the status of the joysticks on the PS2 Controller
