@@ -27,11 +27,11 @@ public class SensorInput {
         rotaryEncoder = new Encoder(1,2);
         rotaryEncoder.start();
         rotaryEncoder.reset();//Justin Case, attorney at law!
-        feederLimit = new DigitalInput(1);
+        feederLimit = new DigitalInput(14);
     }
     
     public boolean getFeederSwitch() {
-        return feederLimit.get();
+        return !feederLimit.get();
     }
 
     public double getFinalAngle(boolean nodeg) {

@@ -10,6 +10,7 @@ package edu.ames.frc.robot;
 // | | | | _>     | _>     |_| |(/_   |||(_| | | |   (_  | (_|_> _>
 //The main class is under control of Kolton Yager and Danial Ebling. DO NOT EDIT
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.Watchdog;
 
 /**
@@ -46,13 +47,23 @@ public class RobotProject extends IterativeRobot {
             try {
                 System.out.println("fed!");
                 wd.feed();
-                MC.pusher(1);
-                Thread.sleep(250);
+                while(!SI.getFeederSwitch()) {
+                    System.out.println("going...");
+                    wd.feed();
+                    Thread.sleep(30);
+                    MC.pusher(1);
+                }
+                MC.pusher(0);
+                Thread.sleep(50);
                 wd.feed();
-                MC.pusher(-1);
-                Thread.sleep(240);
+                for(int i=0;i<7;i++) {
+                    wd.feed();
+                    MC.pusher(-1);
+                    Thread.sleep(30);
+                }
                 wd.feed();
                 MC.pusher(0);
+                wd.feed();
             } catch (InterruptedException ex) {
                 ex.printStackTrace();
             }
