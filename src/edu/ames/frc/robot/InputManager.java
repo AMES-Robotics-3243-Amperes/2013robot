@@ -93,9 +93,15 @@ public class InputManager {
 
     public static double getSecondaryAxis() {
         double finalval = -monoJoystick.getAxis(Joystick.AxisType.kY);
-        //finalval = deadZoneMono(finalval);
+        finalval = deadZoneMono(finalval);
         //finalval = rampSingle(finalval);
-        // ramping
+        return finalval;
+    }
+    
+    // the 'throttle axis' is the little roller at the base of the secondary,
+    // non-ps2 joystick
+    public static double getThrottleAxis() {
+        double finalval = monoJoystick.getThrottle();
         return finalval;
     }
 
