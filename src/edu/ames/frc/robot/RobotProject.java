@@ -69,29 +69,16 @@ public class RobotProject extends IterativeRobot {
             wd.feed();
             IM.updateAllButtons();
             
-            //if (!IM.climber.getState()) {
-                joystickangleandspeed = IM.getPureAxis();
-                pivotval = IM.getPivot();
-                
-                drivemotorvalues = MC.convertHeadingToMotorCommands(joystickangleandspeed[0], joystickangleandspeed[1]);
-                drivemotorvalues = MC.setSpeedCap(drivemotorvalues, IM.speedBoost.getState(), IM.speedUnboost.getState());
-                drivemotorvalues = MC.addPivot(drivemotorvalues, pivotval);
-                wd.feed();
-                System.out.println("motors: " + drivemotorvalues[0] + ",\t" + drivemotorvalues[1] + ",\t" + drivemotorvalues[2]);
-                MC.drive(drivemotorvalues);
-            /*
-            } else {
-                climbval = IM.getClimb();
-                climbval = MC.Climblimit(climbval);
-                MC.shooter(false);
-                drivemotorvalues[0] = 0;
-                drivemotorvalues[1] = 0;
-                drivemotorvalues[2] = 0;
-                MC.drive(drivemotorvalues);
-                MC.climb(climbval);
-            }
-            */
+            joystickangleandspeed = IM.getPureAxis();
+            pivotval = IM.getPivot();
 
+            drivemotorvalues = MC.convertHeadingToMotorCommands(joystickangleandspeed[0], joystickangleandspeed[1]);
+            drivemotorvalues = MC.setSpeedCap(drivemotorvalues, IM.speedBoost.getState(), IM.speedUnboost.getState());
+            drivemotorvalues = MC.addPivot(drivemotorvalues, pivotval);
+            wd.feed();
+            System.out.println("motors: " + drivemotorvalues[0] + ",\t" + drivemotorvalues[1] + ",\t" + drivemotorvalues[2]);
+            MC.drive(drivemotorvalues);
+                
             auxjoystick = IM.getSecondaryAxis();
             if (IM.tilttoggle.getState()) {
                 MC.shootertilt(0);
