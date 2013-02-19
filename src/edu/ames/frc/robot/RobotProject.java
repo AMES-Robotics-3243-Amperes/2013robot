@@ -134,6 +134,10 @@ public class RobotProject extends IterativeRobot {
                 FeederThread ft = new FeederThread();
                 new Thread(ft).start();
             }
+            
+            if(SI.getFeederSwitch()) {
+                System.out.println("pressed");
+            }
         }
     }
 }

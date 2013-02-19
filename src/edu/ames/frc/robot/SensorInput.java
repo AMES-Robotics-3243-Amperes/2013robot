@@ -10,6 +10,7 @@
 package edu.ames.frc.robot;
 
 import com.sun.squawk.util.MathUtils;
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Gyro;
 import edu.wpi.first.wpilibj.Encoder;
 
@@ -17,6 +18,7 @@ public class SensorInput {
 
     static Gyro gy;
     static Encoder rotaryEncoder;
+    static DigitalInput feederLimit;
 
     /* Initialize sensor values & variables */
     void init() {
@@ -25,6 +27,11 @@ public class SensorInput {
         rotaryEncoder = new Encoder(1,2);
         rotaryEncoder.start();
         rotaryEncoder.reset();//Justin Case, attorney at law!
+        feederLimit = new DigitalInput(1);
+    }
+    
+    public boolean getFeederSwitch() {
+        return feederLimit.get();
     }
 
     public double getFinalAngle(boolean nodeg) {
