@@ -50,6 +50,7 @@ public class RobotMap {
     protected final static int trigger = 1;
     protected final static int tiltslowpin = 2;
     protected final static int feeder = 3;
+    protected final static int slowshooterenable = 6;
     protected final static int shooterenable = 7;
     protected final static int feederforward = 11;
     protected final static int feederback = 10;

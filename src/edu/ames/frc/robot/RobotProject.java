@@ -44,12 +44,13 @@ public class RobotProject extends IterativeRobot {
     class FeederThread extends Thread {
         public void run() {
             try {
+                System.out.println("fed!");
                 wd.feed();
                 MC.pusher(1);
-                Thread.sleep(300);
+                Thread.sleep(250);
                 wd.feed();
                 MC.pusher(-1);
-                Thread.sleep(300);
+                Thread.sleep(240);
                 wd.feed();
                 MC.pusher(0);
             } catch (InterruptedException ex) {
@@ -57,9 +58,7 @@ public class RobotProject extends IterativeRobot {
             }
         }
     }
-    
-    FeederThread ft;
-    
+        
     public void robotInit() {
         wd = Watchdog.getInstance();
         wd.setExpiration(0.5);
@@ -92,7 +91,7 @@ public class RobotProject extends IterativeRobot {
             IM.updateAllButtons();
             
             joystickangleandspeed = IM.getPureAxis();
-            pivotval = IM.getPivot();
+            pivotval = IM.getPivot() * 0.5;
             Com.RobotDirection(joystickangleandspeed[0]);
             Com.RobotSpeed(joystickangleandspeed[1]);            
             
@@ -115,10 +114,12 @@ public class RobotProject extends IterativeRobot {
                 MC.climb(0);
             }
 
-            if (IM.fireButton.getState()) {
-                MC.shooter(true);
-            } else if (!IM.fireButton.getState()) {
-                MC.shooter(false);
+            if (IM.fireButton.getState() && !IM.slowfireButton.getState()) {
+                MC.shooter(1.0);
+            } else if(!IM.fireButton.getState() && IM.slowfireButton.getState()) {
+                MC.shooter(0.5);
+            } else if (!IM.fireButton.getState() && !IM.slowfireButton.getState()) {
+                MC.shooter(0);
             }
             
             if(IM.feedforward.getState() && !IM.feedback.getState()) {
@@ -130,7 +131,8 @@ public class RobotProject extends IterativeRobot {
             }
             
             if(IM.feedbutton.getState()) {
-                ft.run();
+                FeederThread ft = new FeederThread();
+                new Thread(ft).start();
             }
         }
     }

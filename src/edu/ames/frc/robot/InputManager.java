@@ -25,13 +25,14 @@ public class InputManager {
     // protected static boolean dzactive  = false; // In case we want to check for deadzoneing being active
     // protected static double[] axisOC = new double[2]; // Stores the original copies of the axis reads, for use elsewhere.
     protected static button manpivot;
-    protected static button fireButton;
     protected static button realign;
     protected static button infrisbee;
     protected static button autotarg;
     protected static button speedBoost;
     protected static button speedUnboost;
     
+    protected static button fireButton;
+    protected static button slowfireButton;
     protected static button climber;
     protected static button tiltup;
     protected static button tiltdown;
@@ -60,6 +61,7 @@ public class InputManager {
         tiltslow = new button(RobotMap.tiltslowpin, RobotMap.secondary);
         
         fireButton = new button(RobotMap.shooterenable, RobotMap.secondary);                
+        slowfireButton = new button(RobotMap.slowshooterenable, RobotMap.secondary); 
         tilttoggle = new button(RobotMap.trigger, RobotMap.secondary);
         
         feedforward = new button(RobotMap.feederforward, RobotMap.secondary);

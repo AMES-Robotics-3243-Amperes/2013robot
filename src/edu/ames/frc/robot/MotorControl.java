@@ -68,19 +68,15 @@ public class MotorControl {
         return inpow;
     }
 
-    public void shooter(boolean on) {
-        if (on) {
-            shootwheel.set(1);
-        } else {
-            shootwheel.set(0);
-        }
+    public void shooter(double on) {
+        shootwheel.set(limit(on));
     }
 
     public void pusher(int active) {
         if (active == 1) {
-            push.set(Relay.Value.kForward);
+            push.set(Relay.Value.kReverse); // wires are switched
         } else if(active == -1) {
-            push.set(Relay.Value.kReverse);
+            push.set(Relay.Value.kForward);
         } else {
             push.set(Relay.Value.kOff);
         }
