@@ -16,7 +16,7 @@ public class RobotMap {
      * This nameing trend is reflected in the pin assignments in this class and should continue to be reflected in other parts
      * of the overall robot system.
      */
-    protected final static int Apin = 1; // Pin assignment for the front motor A
+    protected final static int Apin = 8; // For some reason, pin 1 isn't working
     protected final static int Bpin = 2;
     protected final static int Cpin = 3;
 
@@ -48,7 +48,8 @@ public class RobotMap {
     
     //Attack Joystick controller buttons
     protected final static int trigger = 1;
-    protected final static int armactiv8 = 3;
+    protected final static int tiltslowpin = 2;
+    protected final static int feeder = 3;
     protected final static int shooterenable = 7;
     protected final static int feederforward = 11;
     protected final static int feederback = 10;

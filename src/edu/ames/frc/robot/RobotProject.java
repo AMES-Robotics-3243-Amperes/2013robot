@@ -39,6 +39,27 @@ public class RobotProject extends IterativeRobot {
     double climbval;
     double auxjoystick;
 
+    // this runs the feeder - we only need to make it dart in and out
+    // putting this function in a thread also allows us to keep driving the robot
+    class FeederThread extends Thread {
+        public void run() {
+            try {
+                wd.feed();
+                MC.pusher(1);
+                Thread.sleep(300);
+                wd.feed();
+                MC.pusher(-1);
+                Thread.sleep(300);
+                wd.feed();
+                MC.pusher(0);
+            } catch (InterruptedException ex) {
+                ex.printStackTrace();
+            }
+        }
+    }
+    
+    FeederThread ft;
+    
     public void robotInit() {
         wd = Watchdog.getInstance();
         wd.setExpiration(0.5);
@@ -52,6 +73,7 @@ public class RobotProject extends IterativeRobot {
      * This function is called periodically during autonomous
      */
     public void autonomousPeriodic() {
+        System.out.println("Joystick: " + IM.getThrottleAxis());
         //Tarun example
        /* double[] example = new double[3];
          example[0] = 0;
@@ -71,17 +93,22 @@ public class RobotProject extends IterativeRobot {
             
             joystickangleandspeed = IM.getPureAxis();
             pivotval = IM.getPivot();
-
+            Com.RobotDirection(joystickangleandspeed[0]);
+            Com.RobotSpeed(joystickangleandspeed[1]);            
+            
             drivemotorvalues = MC.convertHeadingToMotorCommands(joystickangleandspeed[0], joystickangleandspeed[1]);
             drivemotorvalues = MC.setSpeedCap(drivemotorvalues, IM.speedBoost.getState(), IM.speedUnboost.getState());
             drivemotorvalues = MC.addPivot(drivemotorvalues, pivotval);
             wd.feed();
-            System.out.println("motors: " + drivemotorvalues[0] + ",\t" + drivemotorvalues[1] + ",\t" + drivemotorvalues[2]);
+            
+            System.out.println("angle: " + joystickangleandspeed[0] + 
+                    "\tmotors: " + drivemotorvalues[0] + ",\t" + 
+                    drivemotorvalues[1] + ",\t" + drivemotorvalues[2]);
             MC.drive(drivemotorvalues);
                 
-            auxjoystick = IM.getSecondaryAxis();
+            auxjoystick = IM.getSecondaryAxis(IM.tiltslow.getState());
             if (IM.tilttoggle.getState()) {
-                MC.shootertilt(0);
+                MC.shootertilt(IM.getThrottleAxis());
                 MC.climb(MC.Climblimit(auxjoystick));
             } else {
                 MC.shootertilt(auxjoystick);
@@ -92,6 +119,18 @@ public class RobotProject extends IterativeRobot {
                 MC.shooter(true);
             } else if (!IM.fireButton.getState()) {
                 MC.shooter(false);
+            }
+            
+            if(IM.feedforward.getState() && !IM.feedback.getState()) {
+                MC.pusher(1);
+            } else if(!IM.feedforward.getState() && IM.feedback.getState()) {
+                MC.pusher(-1);
+            } else if(!IM.feedforward.getState() && !IM.feedback.getState()) {
+                MC.pusher(0);
+            }
+            
+            if(IM.feedbutton.getState()) {
+                ft.run();
             }
         }
     }

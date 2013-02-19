@@ -36,8 +36,10 @@ public class InputManager {
     protected static button tiltup;
     protected static button tiltdown;
     protected static button tilttoggle;
+    protected static button tiltslow;
     protected static button feedforward;
     protected static button feedback;
+    protected static button feedbutton;
 
     public void init() {
         // note: when only the ps2 joystick is plugged in, then that is joystick 1.
@@ -55,12 +57,14 @@ public class InputManager {
         
         tiltup = new button(RobotMap.tiltdownbutton, RobotMap.primary);
         tiltdown = new button(RobotMap.tiltupbutton, RobotMap.primary);
+        tiltslow = new button(RobotMap.tiltslowpin, RobotMap.secondary);
         
         fireButton = new button(RobotMap.shooterenable, RobotMap.secondary);                
         tilttoggle = new button(RobotMap.trigger, RobotMap.secondary);
         
         feedforward = new button(RobotMap.feederforward, RobotMap.secondary);
         feedback = new button(RobotMap.feederback, RobotMap.secondary);
+        feedbutton = new button(RobotMap.feeder, RobotMap.secondary);
     }
 
     public void updateAllButtons() {
@@ -68,6 +72,7 @@ public class InputManager {
         fireButton.getState();
         tiltup.getState();
         tiltdown.getState();
+        tiltslow.getState();
         //voidBool = pivotRight.getState();
         //voidBool = pivotLeft.getState();
         //voidBool = realign.getState();
@@ -79,6 +84,7 @@ public class InputManager {
         tilttoggle.getState();
         feedforward.getState();
         feedback.getState();
+        feedbutton.getState();
     }
 
     public static double[] getPureAxis() { // Gets, stores, and returns the status of the joysticks on the PS2 Controller
@@ -99,10 +105,13 @@ public class InputManager {
         return (dir); // Returns axis data to the caller.
     }
 
-    public static double getSecondaryAxis() {
+    public static double getSecondaryAxis(boolean slow) {
         double finalval = -monoJoystick.getAxis(Joystick.AxisType.kY);
         finalval = deadZoneMono(finalval);
         //finalval = rampSingle(finalval);
+        if(slow) {
+            finalval = finalval * 0.7;
+        }
         return finalval;
     }
     
@@ -171,7 +180,7 @@ public class InputManager {
         //Sets the speed to the length of the hypotenuse of the imaginary triangle between x & y directional values
         speed = Math.sqrt(MathUtils.pow(axis[0], 2) + MathUtils.pow(axis[1], 2));// Pythagorean theorem: The square root of ( (X^2) + (y^2) )
         //Sets the angle to the inverse tangent of x / y
-        angle = MathUtils.atan2(axis[0], axis[1]);// Tan^-1(x/y) Example: Tan^-1(.7/.2)
+        angle = MathUtils.atan2(-axis[0], axis[1]);// Tan^-1(x/y) Example: Tan^-1(.7/.2)
 
         vect[0] = angle - (3 * Math.PI / 4);
         vect[1] = speed;
