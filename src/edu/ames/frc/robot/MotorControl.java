@@ -32,9 +32,9 @@ public class MotorControl {
         climb = new Victor(RobotMap.climbpin);
         climbasst = new Jaguar(RobotMap.climbasstpin);
         shootwheel = new Jaguar(RobotMap.wheelpin);
-        //shoot = new Jaguar(RobotMap.pushpin);
-        
         shoottilt = new Jaguar(RobotMap.tiltpin);
+        push = new Relay(RobotMap.pushpin);
+        push.setDirection(Relay.Direction.kBoth);
     }
 
     void drive(double[] mv) {
@@ -76,9 +76,11 @@ public class MotorControl {
         }
     }
 
-    public void pusher(boolean active) {
-        if (active) {
+    public void pusher(int active) {
+        if (active == 1) {
             push.set(Relay.Value.kForward);
+        } else if(active == -1) {
+            push.set(Relay.Value.kReverse);
         } else {
             push.set(Relay.Value.kOff);
         }

@@ -26,7 +26,7 @@ public class RobotMap {
     protected final static int tiltpin = 7;
     
     // digital I/O pins for the spike relays
-    protected final static int pushpin = 4;    
+    protected final static int pushpin = 7;    
     
     protected final static int gyroport = 1; // gyro is on analog port 1
     
