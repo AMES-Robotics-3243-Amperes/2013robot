@@ -128,7 +128,7 @@ public class RobotProject extends IterativeRobot {
             if (IM.fireButton.getState() && !IM.slowfireButton.getState()) {
                 MC.shooter(1.0);
             } else if(!IM.fireButton.getState() && IM.slowfireButton.getState()) {
-                MC.shooter(0.5);
+                MC.shooter(0.6);
             } else if (!IM.fireButton.getState() && !IM.slowfireButton.getState()) {
                 MC.shooter(0);
             }
