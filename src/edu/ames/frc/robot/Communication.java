@@ -112,8 +112,8 @@ public class Communication {
     public class PISocket {
 
         boolean active;
+        ServerSocketConnection pserversock = null;
         SocketConnection psock = null;
-        Integer rcnum;
         int angleInt;
         int heightInt;
         int distanceInt;
@@ -121,7 +121,9 @@ public class Communication {
         
         public PISocket(boolean activated) throws Exception {
             active = activated;
-            psock = (SocketConnection) Connector.open("socket://127.0.0.1:3243");
+            pserversock = (ServerSocketConnection) Connector.open("socket://:3243");
+            
+            
             angleInt = 0;
             heightInt = 0;
             distanceInt = 0;
@@ -129,9 +131,15 @@ public class Communication {
         }   
         
         public void GetData() throws Exception {
-            InputStream is = psock.openInputStream();
-            rcnum = new Integer(is.read()); //Converting int to Integer object
-           String strNumber  = rcnum.toString();  //Converting Integer value into a string value
+            psock = (SocketConnection) pserversock.acceptAndOpen();
+            psock.setSocketOption(SocketConnection.DELAY, 0);
+            psock.setSocketOption(SocketConnection.LINGER, 0);
+            psock.setSocketOption(SocketConnection.KEEPALIVE, 0);
+            psock.setSocketOption(SocketConnection.RCVBUF, 128);
+            psock.setSocketOption(SocketConnection.SNDBUF, 128);
+            
+            DataInputStream is = psock.openDataInputStream();
+            String strNumber = is.readUTF(); //Converting int to Integer object
             
              //Need to make sure that check numbers are correct
             if(strNumber.charAt(2) == '4' &&  strNumber.charAt(5) == '4' && strNumber.charAt(8) == '4') {
@@ -150,6 +158,8 @@ public class Communication {
                 SmartDashboard.putString("LOLwut?:", "Check numbers are wrong do something here....");
                     //if it turns out not being genuine
             }
+            is.close();
+            //psock.close();
             /*** this needs to return an array of variables!!! ***/
         }
     }
