@@ -96,15 +96,15 @@ public class Communication {
      * level (how sure it is that the blobs it found are actual goals) 
      * This is sent in a long integer:
      * 
-     * (example): 67455423497
+     * (example): 67455423
      * 
      * The 11-digit number is split up as such:
      * 
      *      check numbers (to make sure the integer sent is valid)
-     *            |          |          |
-     *     67    4    55    4    23    4    97
-     *      |          |          |          |
-     *  angle(x)  height(y)   distance(z)    confidence level(c)
+     *            |          |          
+     *     67    4    55    4    23
+     *      |          |          |          
+     *  angle(x)  height(y)   distance(z)
      * 
      * All values range from 0 to 99 - that is, these values use 
      * arbitrary units.
@@ -117,7 +117,7 @@ public class Communication {
         int angleInt;
         int heightInt;
         int distanceInt;
-        int confInt;
+        //int confInt;
         
         public PISocket(boolean activated) throws Exception {
             active = activated;
@@ -127,7 +127,7 @@ public class Communication {
             angleInt = 0;
             heightInt = 0;
             distanceInt = 0;
-            confInt = 0;
+            //confInt = 0;
         }   
         
         public void GetData() throws Exception {
@@ -152,8 +152,10 @@ public class Communication {
                 String distanceZ = strNumber.substring(6, 8);//   assiging the first two digits into the varible distanceZ = 23 in this case .it starts a the 0th possition and goes to the number before 2nd possition
                 distanceInt = Integer.parseInt(distanceZ);//converts the distanceZ srting variable type to int.
                 
+                /*
                 String confidenceLevelC = strNumber.substring(9, 11);//   assiging the first two digits into the varible confidenceLevel = 95 in this case .it starts a the 0th possition and goes to the number before 2nd possition
                 confInt = Integer.parseInt(confidenceLevelC);//converts the ConfidenceLevelC srting variable type to int.
+                */
             } else {
                 SmartDashboard.putString("LOLwut?:", "Check numbers are wrong do something here....");
                     //if it turns out not being genuine
