@@ -124,6 +124,11 @@ public class MotorControl {
                 in[i] = in[i] * (RobotMap.speedcap * 0.5);
             }
         }
+        if(boosted && !unboosted) {
+            for (int i = 0; i < in.length; i++) {
+                in[i] = in[i] * (RobotMap.speedcap * 2);
+            }
+        }
         return in;
     }
   
