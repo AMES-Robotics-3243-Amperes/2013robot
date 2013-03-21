@@ -39,6 +39,7 @@ public class RobotProject extends IterativeRobot {
     double[] joystickangleandspeed;
     double climbval;
     double auxjoystick;
+    protected static byte autonomfcount;
 
     // this runs the feeder - we only need to make it dart in and out
     // putting this function in a thread also allows us to keep driving the robot
@@ -71,6 +72,7 @@ public class RobotProject extends IterativeRobot {
     }
         
     public void robotInit() {
+        autonomfcount = 3;
         wd = Watchdog.getInstance();
         wd.setExpiration(0.5);
         SI.init();
@@ -83,14 +85,31 @@ public class RobotProject extends IterativeRobot {
      * This function is called periodically during autonomous
      */
     public void autonomousPeriodic() {
-        System.out.println("Joystick: " + IM.getThrottleAxis());
-        //Tarun example
-       /* double[] example = new double[3];
-         example[0] = 0;
-         example[1] = 1;
-         example[2] = 1;
-         MC.drive(example);
-         */
+        FeederThread aft = new FeederThread();
+        wd.feed();
+        if(autonomfcount == 3){
+            wd.feed();
+            MC.shooter(.7);
+            for(int ti = 0; ti <= 2; ti++){
+                Timer.delay(200);
+                wd.feed();
+            }
+            Timer.delay(100);
+            wd.feed();
+        }
+        if(autonomfcount > 0){
+            new Thread (aft).start();
+            autonomfcount--;
+            wd.feed();
+            for(int ti = 0; ti <= 10; ti++){
+                Timer.delay(200);
+                wd.feed();
+            }
+        } else if(autonomfcount == 0){
+            MC.shooter(0);
+            System.out.println("Autonomous Shooting finished");
+            autonomfcount =-1;
+        }
     }
 
     /**
@@ -117,7 +136,7 @@ public class RobotProject extends IterativeRobot {
             MC.drive(drivemotorvalues);
                 
             auxjoystick = IM.getSecondaryAxis(IM.tiltslow.getState());
-            if (IM.tilttoggle.getState()) {
+           if (IM.tilttoggle.getState()) {
                 MC.shootertilt(IM.getThrottleAxis());
                 MC.climb(MC.Climblimit(auxjoystick));
             } else {
