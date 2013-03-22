@@ -60,7 +60,7 @@ public class RobotMap {
     //Values go here!
     protected final static int expo_ramp = 3;
     protected final static double compensatePivot = 0.07; // because the robot drift-pivots
-    protected final static double speedcap = 0.5; // speed the robot should usually move
+    protected final static double speedcap = 0.7; // speed the robot should usually move
     protected final static double climberspeed = 1.0;
     protected final static double deadzone = .05;
 } 
