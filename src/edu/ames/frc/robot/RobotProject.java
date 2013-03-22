@@ -39,6 +39,7 @@ public class RobotProject extends IterativeRobot {
     double[] joystickangleandspeed;
     double climbval;
     double auxjoystick;
+    boolean feederthreadrunning = false;
     protected static byte autonomfcount;
 
     // this runs the feeder - we only need to make it dart in and out
@@ -51,6 +52,7 @@ public class RobotProject extends IterativeRobot {
                 while(!SI.getFeederSwitch()) {
                     System.out.println("going...");
                     wd.feed();
+                    feederthreadrunning = true;
                     Thread.sleep(30);
                     MC.pusher(1);
                 }
@@ -59,6 +61,7 @@ public class RobotProject extends IterativeRobot {
                 wd.feed();
                 for(int i=0;i<7;i++) {
                     wd.feed();
+                    feederthreadrunning = true;
                     MC.pusher(-1);
                     Thread.sleep(30);
                 }
@@ -68,6 +71,7 @@ public class RobotProject extends IterativeRobot {
             } catch (InterruptedException ex) {
                 ex.printStackTrace();
             }
+            feederthreadrunning = false;
         }
     }
         
@@ -181,7 +185,7 @@ public class RobotProject extends IterativeRobot {
                 MC.pusher(1);
             } else if(!IM.feedforward.getState() && IM.feedback.getState()) {
                 MC.pusher(-1);
-            } else if(!IM.feedforward.getState() && !IM.feedback.getState()) {
+            } else if(!IM.feedforward.getState() && !IM.feedback.getState() && !feederthreadrunning) {
                 MC.pusher(0);
             }
             
