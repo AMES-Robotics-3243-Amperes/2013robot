@@ -39,6 +39,7 @@ public class RobotProject extends IterativeRobot {
     double[] joystickangleandspeed;
     double climbval;
     double auxjoystick;
+    double shooterspeed;
     boolean feederthreadrunning = false;
     protected static byte autonomfcount;
 
@@ -49,21 +50,26 @@ public class RobotProject extends IterativeRobot {
             try {
                 System.out.println("fed!");
                 wd.feed();
+                int j = 0;
                 while(!SI.getFeederSwitch()) {
                     System.out.println("going...");
                     wd.feed();
                     feederthreadrunning = true;
-                    Thread.sleep(30);
+                    Thread.sleep(10);
                     MC.pusher(1);
+                    j++;
+                    if(j>60) {
+                        break;
+                    }
                 }
                 MC.pusher(0);
                 Thread.sleep(50);
                 wd.feed();
-                for(int i=0;i<7;i++) {
+                for(int i=0;i<5;i++) {
                     wd.feed();
                     feederthreadrunning = true;
                     MC.pusher(-1);
-                    Thread.sleep(30);
+                    Thread.sleep(10);
                 }
                 wd.feed();
                 MC.pusher(0);
@@ -78,12 +84,14 @@ public class RobotProject extends IterativeRobot {
     public void robotInit() {
         //Com.ps = new Communication.PISocket(true);
         
+        /*
         try{
             Com.ps.init(true);
             Com.ps.GetData();
         } catch (Exception ex) {
             ex.printStackTrace();
         }
+        */
         wd = Watchdog.getInstance();
         wd.setExpiration(0.5);
         SI.init();
@@ -96,43 +104,65 @@ public class RobotProject extends IterativeRobot {
      * This function is called periodically during autonomous
      */
     public void autonomousPeriodic() {
-        autonomfcount = 3;
-        while(isAutonomous()){
-            FeederThread aft = new FeederThread();
+        autonomfcount = 4;
+        while (isAutonomous()) {
             wd.feed();
-            if (autonomfcount == 3) {
-                for(double it = 0; it <= 10; it++){
-                   //MC.shooter(it);
-                   MC.shootertilt(1 - (it * .1));
-                   System.out.println("decrement: " + (1 - (it * .1)));
-                   wd.feed();
-                   Timer.delay(.15);
+            if (autonomfcount == 4) {
+                for (double it = 0; it <= 10; it++) {
+                    //MC.shooter(it);
+                    MC.shootertilt(1 - (it * .1));
+                    System.out.println("decrement: " + (1 - (it * .1)));
+                    wd.feed();
+                    Timer.delay(.05);
                 }
-                MC.shooter(0);//Justin Case Attorney at law!!
-                wd.feed();
-                MC.shooter(.7);
-                System.out.println("Autonomous Shooting=3");
-                
-                for (int ti = 0; ti <= 2; ti++) {
+
+                for (int ti = 0; ti <= 3; ti++) {
                     Timer.delay(.2);
                     wd.feed();
                 }
-                
+
+                MC.shooter(0);//Justin Case Attorney at law!!
+                wd.feed();
+                MC.shooter(.87);
+                System.out.println("Autonomous Shooting=4");
+
+                for (int ti = 0; ti <= 9; ti++) {
+                    Timer.delay(.2);
+                    wd.feed();
+                }
+
                 Timer.delay(.1);
-                System.out.println("$#####");
                 wd.feed();
             }
+
             if (autonomfcount > 0) {
                 System.out.println("In shooter loop");
+                FeederThread aft = new FeederThread();
                 new Thread(aft).start();
                 autonomfcount--;
                 wd.feed();
-                for (int ti = 0; ti <= 10; ti++) {
+
+                for (int ti = 0; ti <= 5; ti++) {
                     Timer.delay(.2);
                     wd.feed();
                 }
+
+                MC.pusher(-1);
+                Timer.delay(.05);
+                wd.feed();
+                Timer.delay(.1);
+                MC.pusher(0);
+                wd.feed();
+
+                for (int ti = 0; ti <= 5; ti++) {
+                    Timer.delay(.2);
+                    wd.feed();
+                }
+                
                 System.out.println("Autonomous Shooting >0");
             } else if (autonomfcount == 0) {
+                System.out.println("In shooter loop");
+                FeederThread aft = new FeederThread();
                 MC.shooter(0);
                 System.out.println("Autonomous Shooting finished");
                 autonomfcount = -1;
@@ -150,6 +180,7 @@ public class RobotProject extends IterativeRobot {
             IM.updateAllButtons();
             
             joystickangleandspeed = IM.getPureAxis();
+            shooterspeed = IM.getThrottleAxis();
             pivotval = IM.getPivot() * 0.5;
             Com.RobotDirection(joystickangleandspeed[0]);
             Com.RobotSpeed(joystickangleandspeed[1]);            
@@ -173,11 +204,20 @@ public class RobotProject extends IterativeRobot {
                 MC.climb(0);
             }
 
+            if(IM.level2shootbutton.getState()) {
+                MC.shooter(0.84);
+            }
+            
+            if(IM.level3shootbutton.getState()) {
+                MC.shooter(0.89);
+            }
+           
             if (IM.fireButton.getState() && !IM.slowfireButton.getState()) {
                 MC.shooter(1.0);
             } else if(!IM.fireButton.getState() && IM.slowfireButton.getState()) {
-                MC.shooter(0.75);
-            } else if (!IM.fireButton.getState() && !IM.slowfireButton.getState()) {
+                MC.shooter(shooterspeed);
+            } else if (!IM.fireButton.getState() && !IM.slowfireButton.getState() 
+                    && !IM.level2shootbutton.getState() && !IM.level3shootbutton.getState()) {
                 MC.shooter(0);
             }
             
@@ -199,13 +239,14 @@ public class RobotProject extends IterativeRobot {
             }
             
             // vision code
+            /*
             try {
                 Com.ps.GetData();
                 System.out.println("distance: " + Com.ps.distanceInt);
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
-            
+            */
         }
     }
 }

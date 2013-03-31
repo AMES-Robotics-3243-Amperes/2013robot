@@ -41,6 +41,8 @@ public class InputManager {
     protected static button feedforward;
     protected static button feedback;
     protected static button feedbutton;
+    protected static button level2shootbutton;
+    protected static button level3shootbutton;
 
     public void init() {
         // note: when only the ps2 joystick is plugged in, then that is joystick 1.
@@ -67,6 +69,9 @@ public class InputManager {
         feedforward = new button(RobotMap.feederforward, RobotMap.secondary);
         feedback = new button(RobotMap.feederback, RobotMap.secondary);
         feedbutton = new button(RobotMap.feeder, RobotMap.secondary);
+        
+        level2shootbutton = new button(RobotMap.level2shoot, RobotMap.secondary);
+        level3shootbutton = new button(RobotMap.level3shoot, RobotMap.secondary);
     }
 
     public void updateAllButtons() {
@@ -120,7 +125,10 @@ public class InputManager {
     // the 'throttle axis' is the little roller at the base of the secondary,
     // non-ps2 joystick
     public static double getThrottleAxis() {
-        double finalval = monoJoystick.getThrottle();
+        double finalval = monoJoystick.getTwist();
+        finalval = (1 + finalval) / 2;
+        finalval = 1 - finalval;
+        System.out.println("throttle: " + finalval);
         return finalval;
     }
 

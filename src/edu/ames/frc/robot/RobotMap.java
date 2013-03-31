@@ -52,6 +52,8 @@ public class RobotMap {
     protected final static int feeder = 3;
     protected final static int slowshooterenable = 6;
     protected final static int shooterenable = 7;
+    protected final static int level2shoot = 8;
+    protected final static int level3shoot = 9;    
     protected final static int feederforward = 11;
     protected final static int feederback = 10;
 

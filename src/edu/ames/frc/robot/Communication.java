@@ -121,54 +121,68 @@ public class Communication {
         int distanceInt;
         //int confInt;
         
-        public void init(boolean activated) throws Exception {
+        public void init(boolean activated) {
             active = activated;
-            pserversock = (ServerSocketConnection) Connector.open("socket://:3243");
-            
+            System.out.println("a1");
+            try {
+                pserversock = (ServerSocketConnection) Connector.open("socket://:3243");
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+            System.out.println("a2");
             angleInt = 0;
             heightInt = 0;
             distanceInt = 0;
             //confInt = 0;
-        }   
-        
-        public void GetData() throws Exception {
+        }
+
+        public void GetData() {
             System.out.println("a");
-            psock = (SocketConnection) pserversock.acceptAndOpen();
-            System.out.println("b");
-            psock.setSocketOption(SocketConnection.DELAY, 0);
-            psock.setSocketOption(SocketConnection.LINGER, 0);
-            psock.setSocketOption(SocketConnection.KEEPALIVE, 0);
-            psock.setSocketOption(SocketConnection.RCVBUF, 128);
-            psock.setSocketOption(SocketConnection.SNDBUF, 128);
-            
-            System.out.println("c");
-            DataInputStream is = psock.openDataInputStream();
-            String strNumber = is.readUTF(); //Converting int to Integer object
-            
-            System.out.println("d");
-             //Need to make sure that check numbers are correct
-            if(strNumber.charAt(2) == '4' &&  strNumber.charAt(5) == '4' && strNumber.charAt(8) == '4') {
-                String angleX = strNumber.substring(0, 2);//   assinging the first two digits into the varible angleX = 67 in this case.it starts a the 0th possition and goes to the number before 2nd possition
-                angleInt = Integer.parseInt(angleX);//converts the angleX srting variable type to int.
-                    
-                String heightY = strNumber.substring(3, 5);//   assiging the first two digits into the varible height=55 in this case .it starts a the 0th possition and goes to the number before 2nd possition
-                heightInt = Integer.parseInt(heightY);//converts the heightY srting variable type to int.
-                
-                String distanceZ = strNumber.substring(6, 8);//   assiging the first two digits into the varible distanceZ = 23 in this case .it starts a the 0th possition and goes to the number before 2nd possition
-                distanceInt = Integer.parseInt(distanceZ);//converts the distanceZ srting variable type to int.
-                
-                /*
-                String confidenceLevelC = strNumber.substring(9, 11);//   assiging the first two digits into the varible confidenceLevel = 95 in this case .it starts a the 0th possition and goes to the number before 2nd possition
-                confInt = Integer.parseInt(confidenceLevelC);//converts the ConfidenceLevelC srting variable type to int.
-                */
-            } else {
-                SmartDashboard.putString("LOLwut?:", "Check numbers are wrong do something here....");
+            try {
+                psock = (SocketConnection) pserversock.acceptAndOpen();
+
+                System.out.println("b");
+                psock.setSocketOption(SocketConnection.DELAY, 0);
+                psock.setSocketOption(SocketConnection.LINGER, 0);
+                psock.setSocketOption(SocketConnection.KEEPALIVE, 0);
+                psock.setSocketOption(SocketConnection.RCVBUF, 128);
+                psock.setSocketOption(SocketConnection.SNDBUF, 128);
+
+                System.out.println("c");
+                DataInputStream is = psock.openDataInputStream();
+                String strNumber = is.readUTF(); //Converting int to Integer object
+
+
+
+                System.out.println("d");
+                //Need to make sure that check numbers are correct
+                if (strNumber.charAt(2) == '4' && strNumber.charAt(5) == '4' && strNumber.charAt(8) == '4') {
+                    String angleX = strNumber.substring(0, 2);//   assinging the first two digits into the varible angleX = 67 in this case.it starts a the 0th possition and goes to the number before 2nd possition
+                    angleInt = Integer.parseInt(angleX);//converts the angleX srting variable type to int.
+
+                    String heightY = strNumber.substring(3, 5);//   assiging the first two digits into the varible height=55 in this case .it starts a the 0th possition and goes to the number before 2nd possition
+                    heightInt = Integer.parseInt(heightY);//converts the heightY srting variable type to int.
+
+                    String distanceZ = strNumber.substring(6, 8);//   assiging the first two digits into the varible distanceZ = 23 in this case .it starts a the 0th possition and goes to the number before 2nd possition
+                    distanceInt = Integer.parseInt(distanceZ);//converts the distanceZ srting variable type to int.
+
+                    /*
+                     String confidenceLevelC = strNumber.substring(9, 11);//   assiging the first two digits into the varible confidenceLevel = 95 in this case .it starts a the 0th possition and goes to the number before 2nd possition
+                     confInt = Integer.parseInt(confidenceLevelC);//converts the ConfidenceLevelC srting variable type to int.
+                     */
+                } else {
+                    SmartDashboard.putString("LOLwut?:", "Check numbers are wrong do something here....");
                     //if it turns out not being genuine
+                }
+                System.out.println("e");
+                is.close();
+            } catch (IOException ex) {
+                ex.printStackTrace();
             }
-            System.out.println("e");
-            is.close();
             //psock.close();
-            /*** this needs to return an array of variables!!! ***/
+            /**
+             * * this needs to return an array of variables!!! **
+             */
         }
     }
 }
