@@ -14,6 +14,8 @@ public class MotorControl {
  *Shooter: Check
  *
  */
+    static Communication Com = new Communication();
+    
     static Victor A;
     static Victor B;
     static Victor C;
@@ -69,6 +71,7 @@ public class MotorControl {
     }
 
     public void shooter(double on) {
+        Com.RobotSpeed(on);
         shootwheel.set(limit(on));
     }
 

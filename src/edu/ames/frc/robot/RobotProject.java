@@ -108,10 +108,10 @@ public class RobotProject extends IterativeRobot {
         while (isAutonomous()) {
             wd.feed();
             if (autonomfcount == 4) {
-                for (double it = 0; it <= 10; it++) {
+                for (double it = 0; it <= 8; it++) {
                     //MC.shooter(it);
-                    MC.shootertilt(1 - (it * .1));
-                    System.out.println("decrement: " + (1 - (it * .1)));
+                    MC.shootertilt(1 - (it * .125));
+                    System.out.println("decrement: " + (1 - (it * .125)));
                     wd.feed();
                     Timer.delay(.05);
                 }
