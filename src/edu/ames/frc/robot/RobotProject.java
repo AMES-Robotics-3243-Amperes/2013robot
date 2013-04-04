@@ -113,20 +113,21 @@ public class RobotProject extends IterativeRobot {
                     MC.shootertilt(1 - (it * .125));
                     System.out.println("decrement: " + (1 - (it * .125)));
                     wd.feed();
-                    Timer.delay(.05);
+                    Timer.delay(.07);
                 }
 
-                for (int ti = 0; ti <= 3; ti++) {
+                for (int ti = 0; ti <= 2; ti++) {
                     Timer.delay(.2);
                     wd.feed();
                 }
 
                 MC.shooter(0);//Justin Case Attorney at law!!
                 wd.feed();
-                MC.shooter(.87);
+                // MC.shooter(.86); // for level 2
+                MC.shooter(.90); // for level 3
                 System.out.println("Autonomous Shooting=4");
 
-                for (int ti = 0; ti <= 9; ti++) {
+                for (int ti = 0; ti <= 10; ti++) {
                     Timer.delay(.2);
                     wd.feed();
                 }
