@@ -87,7 +87,7 @@ public class MotorControl {
 
     public void shootertilt(double tilt) {
         tilt = limit(tilt);
-        shoottilt.set(tilt);
+        shoottilt.set(-tilt);
     }
 
     public double[] addPivot(double[] motorval, double pivot) {
