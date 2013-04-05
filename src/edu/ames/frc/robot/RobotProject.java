@@ -69,11 +69,12 @@ public class RobotProject extends IterativeRobot {
                     wd.feed();
                     feederthreadrunning = true;
                     MC.pusher(-1);
-                    Thread.sleep(10);
+                    Thread.sleep(9);
                 }
                 wd.feed();
                 MC.pusher(0);
                 wd.feed();
+                feederthreadrunning = false;
             } catch (InterruptedException ex) {
                 ex.printStackTrace();
             }
@@ -124,7 +125,8 @@ public class RobotProject extends IterativeRobot {
                 MC.shooter(0);//Justin Case Attorney at law!!
                 wd.feed();
                 // MC.shooter(.86); // for level 2
-                MC.shooter(.90); // for level 3
+                //MC.shooter(.89); // for level 3
+                MC.shooter(0.86); // new level 3
                 System.out.println("Autonomous Shooting=4");
 
                 for (int ti = 0; ti <= 10; ti++) {
@@ -210,7 +212,8 @@ public class RobotProject extends IterativeRobot {
             }
             
             if(IM.level3shootbutton.getState()) {
-                MC.shooter(0.89);
+                //MC.shooter(0.89);
+                MC.shooter(0.87); // new level 3
             }
            
             if (IM.fireButton.getState() && !IM.slowfireButton.getState()) {
